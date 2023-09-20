@@ -19,8 +19,12 @@ public class BoardPosition
     /**
      * constructor for BoardPosition object. sets the instance variavle to values passed in by params.
      *
-     * @param aRow
-     * @param aColumn
+     * @param aRow value for Row to be set to
+     * @param aColumn value for Column to be set to
+     *
+     * @pre 6 > aRow >= 0 AND 7 > aColumn >= 0
+     *
+     * @post Row = aRow AND Column = aColumn
      */
     public BoardPosition(int aRow, int aColumn)
     {
