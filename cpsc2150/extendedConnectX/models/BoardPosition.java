@@ -7,7 +7,9 @@ Terance Harrison (Teranceh)
  */
 
 /**
+ * This class is a position on the board. It is the row, and column position on the board.
  *
+ * @invariant 6 > Row >= 0 AND 7 > Column >= 0
  */
 public class BoardPosition
 {
@@ -15,6 +17,7 @@ public class BoardPosition
     private int Column;
 
     /**
+     * constructor for BoardPosition object. sets the instance variavle to values passed in by params.
      *
      * @param aRow
      * @param aColumn
@@ -25,8 +28,13 @@ public class BoardPosition
     }
 
     /**
+     * returns the value stored in the Row variable when called
      *
-     * @return
+     * @return Row for this instance
+     *
+     * @pre none
+     *
+     * @post Row = #Row AND Column = #Column
      */
     public int getRow()
     {
@@ -34,8 +42,13 @@ public class BoardPosition
     }
 
     /**
+     * returns the value stored in the Column variable when called
      *
-     * @return
+     * @return Column for this instance
+     *
+     * @pre none
+     *
+     * @post Row = #Row AND Column = #Column
      */
     public int getColumn()
     {
@@ -43,9 +56,15 @@ public class BoardPosition
     }
 
     /**
+     * checks if this BoardPosition and another BoardPosition are equal
      *
-     * @param obj
-     * @return
+     * @param obj another BoardPosition object that is being checked if it is equal to this BoardPosition
+     *
+     * @return True if the two objects are equal OR False if the two object are not equal
+     *
+     * @pre obj is of type BoardPosition
+     *
+     * @post Row = #Row AND Column = #Column
      */
     @Override
     public boolean equals(Object obj)
@@ -54,8 +73,13 @@ public class BoardPosition
     }
 
     /**
+     * returns the Row and Column of this instance in this format: <Row>,<Column>
      *
-     * @return
+     * @return Row and Column in the format: <Row>,<Column>
+     *
+     * @pre none
+     *
+     * @post Row = #Row AND Column = #Column
      */
     @Override
     public String toString()
