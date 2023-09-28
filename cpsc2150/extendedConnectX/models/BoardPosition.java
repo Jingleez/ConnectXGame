@@ -10,7 +10,7 @@ Rowan Froeschner (Rojofroe)
 /**
  * This class is a position on the board. It is the row, and column position on the board.
  *
- * @invariant 6 > Row >= 0 AND 7 > Column >= 0
+ *
  */
 public class BoardPosition
 {
@@ -23,7 +23,7 @@ public class BoardPosition
      * @param aRow value for Row to be set to
      * @param aColumn value for Column to be set to
      *
-     * @pre 6 > aRow >= 0 AND 7 > aColumn >= 0
+     * @pre none
      *
      * @post Row = aRow AND Column = aColumn
      */
@@ -39,7 +39,7 @@ public class BoardPosition
      *
      * @pre none
      *
-     * @post Row = #Row AND Column = #Column
+     * @post Row = #Row AND Column = #Column AND [return Row]
      */
     public int getRow()
     {
@@ -53,7 +53,7 @@ public class BoardPosition
      *
      * @pre none
      *
-     * @post Row = #Row AND Column = #Column
+     * @post Row = #Row AND Column = #Column AND [return Column]
      */
     public int getColumn()
     {
@@ -67,9 +67,10 @@ public class BoardPosition
      *
      * @return True if the two objects are equal OR False if the two object are not equal
      *
-     * @pre obj is of type BoardPosition
+     * @pre none
      *
-     * @post Row = #Row AND Column = #Column
+     * @post Row = #Row AND Column = #Column AND [returns true if the the two BoardPositions have the same value in Row
+     * and Column or false if the two are not the same]
      */
     @Override
     public boolean equals(Object obj)
@@ -84,7 +85,7 @@ public class BoardPosition
      *
      * @pre none
      *
-     * @post Row = #Row AND Column = #Column
+     * @post Row = #Row AND Column = #Column AND return Row and Column [in the format: <Row>,<Column>]
      */
     @Override
     public String toString()
