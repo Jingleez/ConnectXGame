@@ -7,6 +7,7 @@ Kalyaan Narnamalpuram Srinivasan (Jingleez)
 Rowan Froeschner (Rojofroe)
  */
 
+
 /**
  * this class holds the gameboard and its functions like checking for wins
  */
@@ -17,8 +18,8 @@ public class GameBoard
     char[][] Board;
     /**
      * Constructs a game board that is empty.
-     * The game board is a two dimensional array initialized with blank spaces.
-     * This constructor creates a new instance of the gameBoard class.
+     * This constructor initializes a new instance of the gameboard class with a 2D array of blank spaces
+     * The game board is being represented as a grid with rows and columns, where each position is initially empty.
      *
      * @pre None
      *
@@ -90,7 +91,7 @@ public class GameBoard
      * 
      */
 
-     
+
     public boolean checkForWin(int c)
     {
         /*this function will check to see if the last token placed in column c resulted in the player winning the game.
