@@ -57,7 +57,7 @@ public class GameBoard
      * @param c an integer, specifically the column the user inputs they want to play their token
      *
      * @pre
-     * 0 < c <= maxColumn, must be a valid column to place token in
+     * 0 < c (latest column) <= maxColumn, must be a valid column to place token in
      * p = X or O, these are the only 2 valid pieces
      * checkIfFree() must return true to confirm a token can be placed there.
      *
@@ -79,9 +79,10 @@ public class GameBoard
      *
      * @return true if the last move caused a layer to win OR false if the game still continues
      *
-     * @pre maxRow > c >= 0
+     * @pre c is colum lastest token was placed, maxRow > c >= 0
      *
      * @post Board[][] = #Board
+     * 
      */
     public boolean checkForWin(int c)
     {
@@ -125,16 +126,13 @@ public class GameBoard
      * @return true if there are 4 horizontal in a row, false if not
      *
      * @pre
-     * The row and column variables of the BoardPosition object passed into the function both must
-     * be > 0 but less than total number of rows/columns - 1 to account for 0, and char must be either X or O.
+     * BoardPosition already validated, char p must be either X or O, can't be equal to ' ' (a blank space).
      *
      * @post
-     * The following function checks starts at the BoardPosition, so the most recently placed
-     * token location and checks to see if there are three more of whatever character the player is
-     * right above or right below, so basically checking if row/col, row+1/col, row+2/col, and row+3/col
-     * or row/col, row-1/col, row-2/col, and row-3/col are all the same character, returns true if
-     * yes, false if no.
-     * Board = #Board
+    * The following function checks if BoardPosition[row][col] = p, BoardPosition[row+1][col] = p, BoardPosition[row+2][col] = p, and BoardPosition[row+3][col] = p
+     * or BoardPosition[row][col] = p, BoardPosition[row-1][col] = p, BoardPosition[row-2][col] = p, and BoardPosition[row-3][col] = p
+     * are true, returning true if yes and false if no.
+     * self = #self
      */
     public boolean checkHorizWin(BoardPosition pos, char p)
     {
@@ -151,16 +149,13 @@ public class GameBoard
      * @return true if there are 4 vertical in a row, false if not
      *
      * @pre
-     * The row and column variables of the BoardPosition object passed into the function both must
-     * be > 0 but less than total number of rows/columns - 1 to account for 0, and char must be either X or O.
+     * BoardPosition already validated, char p must be either X or O, can't be equal to ' ' (a blank space).
      *
      * @post
-     * The following function checks starts at the BoardPosition, so the most recently placed
-     * token location and checks to see if there are three more of whatever character the player is
-     * right next to on the sides, so basically checking if row/col, row/col+1, row/col+2, and row/col+3
-     * or row/col, row/col-1, row/col-2, and row/col-3 are all the same character, returns true if
-     * yes, false if no.
-     * Board = #Board
+     * The following function checks if BoardPosition[row][col] = p, BoardPosition[row][col+1] = p, BoardPosition[row][col+2] = p, and BoardPosition[row][col+3] = p
+     * or BoardPosition[row][col] = p, BoardPosition[row][col-1] = p, BoardPosition[row][col-2] = p, and BoardPosition[row][col-3] = p
+     * are true, returning true if yes and false if no.
+     * self = #self
      */
     public boolean checkVertWin(BoardPosition pos, char p)
     {
@@ -177,17 +172,15 @@ public class GameBoard
      * @return true if there are 4 diagnol in a row, false if not
      *
      * @pre
-     * The row and column variables of the BoardPosition object passed into the function both must
-     * be > 0 but less than total number of rows/columns - 1 to account for 0, and char must be either X or O.
+     * BoardPosition already validated, char p must be either X or O, can't be equal to ' ' (a blank space).
      *
      * @post
-     * The following function checks starts at the BoardPosition, so the most recently placed
-     * token location and checks to see if there are three more of whatever character the player is
-     * diagonal sequentially to the original, so basically checking if row/col, row+1/col+1,
-     * row+2/col+2, and * row+3/col+3 * or row/col, row-1/col-1, row-2/col-2, and row-3/col-3 or
-     * row/col, row+1/col-1, row+2/col-2, and * row+3/col-3 * or row/col, row-1/col+1, row-2/col+2, and
-     * row-3/col+3 are all the same character, returns true if yes, false if no.
-     * Board = #Board
+  * The following function checks if BoardPosition[row][col] = p, BoardPosition[row+1][col+1] = p, BoardPosition[row+2][col+2] = p, and BoardPosition[row+3][col+3] = p
+     * or BoardPosition[row][col] = p, BoardPosition[row-1][col-1] = p, BoardPosition[row-2][col-2] = p, and BoardPosition[row-3][col-3] = p
+     * or BoardPosition[row][col] = p, BoardPosition[row+1][col-1] = p, BoardPosition[row+2][col-2] = p, and BoardPosition[row+3][col-3] = p
+     * or BoardPosition[row][col] = p, BoardPosition[row-1][col+1] = p, BoardPosition[row-2][col+2] = p, and BoardPosition[row-3][col+3] = p
+     * are true, returning true if yes and false if no.
+     * self = #self
      */
     public boolean checkDiagWin(BoardPosition pos, char p)
     {
@@ -200,9 +193,7 @@ public class GameBoard
      *
      * @param pos The boardPosition object that specifies the row and column to examine
      *
-     * @pre The boardPosition that is provided to the function must not be NULL
-     * The row and column values within the boardPosition object must be in the valid range of rows
-     * and columns on the gameBoard.
+     * @pre None
      *
      * @post This function returns the character (‘X’, ‘O’, ‘ ‘ ) located at the specific boardPosition
      * This function returns blank space, if the specified boardPosition is unoccupied. Board = #Board
