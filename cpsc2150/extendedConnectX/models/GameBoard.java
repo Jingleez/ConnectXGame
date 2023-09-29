@@ -67,23 +67,30 @@ public class GameBoard
      * down and when the loop either ends because no token or is occupied by X or O, go back up one row
      * and place token value p at that location.
      */
+
+    
     public void dropToken(char p, int c)
     {
-        //places the character p in column c. The token will be placed in the lowest available row in column c.
+        //Places the character 'p' in column 'c'. The token will be placed in the lowest available row in column 'c'.
     }
 
     /**
      * checks if the last placed token wins the game, calls the other three check functions to do that
      *
-     * @param c the column the last token was dropped in
+     * @param c an integer, the column where the token is to be placed ( 1 <= c <= maxColumn)
+     * @param p a character, either 'X' or 'O', which represents the player's token
      *
-     * @return true if the last move caused a layer to win OR false if the game still continues
+     * @pre 1 <= c <= maxColumn, should be a valid column to place a token in p is either 'X' or 'O'
+     *      The column 'c' must be empty or have space for the token to be placed
      *
-     * @pre c is colum lastest token was placed, maxRow > c >= 0
-     *
-     * @post Board[][] = #Board
+     * @post The function places the token 'p' in the lowest availble row in the column 'c'.
+     * 
+     * @return true if the token is sucessfully placed, false otherwise.( this means the column is already full )
+     * 
      * 
      */
+
+     
     public boolean checkForWin(int c)
     {
         /*this function will check to see if the last token placed in column c resulted in the player winning the game.
