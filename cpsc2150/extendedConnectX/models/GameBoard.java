@@ -16,7 +16,9 @@ public class GameBoard
     int maxRow = 6;
     int maxColumn = 7;
     char[][] Board;
-    /**
+
+
+    /*
      * Constructs a game board that is empty.
      * This constructor initializes a new instance of the gameboard class with a 2D array of blank spaces
      * The game board is being represented as a grid with rows and columns, where each position is initially empty.
@@ -24,43 +26,44 @@ public class GameBoard
      * @pre None
      *
      * @post Initializes a new game board with all the positions containing blank spaces.
+     * 
      */
     public GameBoard()
     {
 
     }
 
+
     /**
-     * This function will check if a certain column on the board is available
-     * for a token to be placed in, so not yet full.
+     * This function checks if a specified column on the gameBoard is availble for placing a token
      *
-     * @param c an integer, specifically the column the user inputs they want to play their token
-     * @return returns a true of false statement whether or not a token can be played in
-     * the selected column
+     * @param c an integer representing the column where the user wants to play their token (0 to maxColumn-1)
+     * 
+     * @return  Returns true if the selected column is availble, false otherwise
      *
-     * @pre
-     * 0 < c <= maxColumn, must be a valid column to place token in
+     * @pre The parameter 'c' must be a non-negative integer within the vaild range of columns (0 to maxColumn-1)
      *
-     * @post
-     * This function will check the value of GameBoard[maxRow][c], if value is X or O
-     * return false, if value is " " return true, object unchanged just checking
+     * @post Returns true if the top-most row of the specified column 'c' contains a blank space, which means the 
+     *       column is availble for placing a token
+     *       Returns false if the top-most row of the specified column 'c' is already occupied by a token ('X' or 'O')
+     * 
      */
     public boolean checkIfFree(int c)
     {
         //returns true if the column can accept another token; false otherwise.
     }
 
+
     /**
-     * This function place a token in a specific column and the row the token goes to
-     * will drop until it collides with another token.
+     * This function places a token in a specific column, allowing it to drop until it collides with amother token
      *
-     * @param p a character, representing either X or O depending on which player’s turn it is
-     * @param c an integer, specifically the column the user inputs they want to play their token
+     * @param p a character, representing either X or O depending on the current player's turn
+     * @param c an integer, specifically the column where the player wants to play their token (0 to maxColumn-1)
      *
-     * @pre
-     * 0 < c (latest column) <= maxColumn, must be a valid column to place token in
-     * p = X or O, these are the only 2 valid pieces
-     * checkIfFree() must return true to confirm a token can be placed there.
+     * @pre 
+     * The integer parameter 'c' must be a non-negative integer within the vaild range of columns
+     * The character parameter 'p' must be 'X' or 'O', representing the tokens for the players
+     * There also must be space availble in the specified column 'c' for the token to be placed
      *
      * @post
      * The following function will loop (i = 0, i <= maxRow, i++) checking whether the location
@@ -68,30 +71,28 @@ public class GameBoard
      * down and when the loop either ends because no token or is occupied by X or O, go back up one row
      * and place token value p at that location.
      */
-
-    
     public void dropToken(char p, int c)
     {
         //Places the character 'p' in column 'c'. The token will be placed in the lowest available row in column 'c'.
     }
 
+
     /**
      * checks if the last placed token wins the game, calls the other three check functions to do that
      *
-     * @param c an integer, the column where the token is to be placed ( 1 <= c <= maxColumn)
-     * @param p a character, either 'X' or 'O', which represents the player's token
+     * @param c an integer, the column where the last token was dropped
      *
-     * @pre 1 <= c <= maxColumn, should be a valid column to place a token in p is either 'X' or 'O'
-     *      The column 'c' must be empty or have space for the token to be placed
+     * @pre 'c' is the column where the last token was placed. and it should be within the valid column range [0, maxColumn-1]
      *
-     * @post The function places the token 'p' in the lowest availble row in the column 'c'.
+     * @post 
+     * The method returns true if the last placed token in column 'c' resulted in the player winning the game by forming
+     * a winning sequence either vertically, horizontally, or diagonally
+     * The state of the 'Board' remains unchanged after this function is called
      * 
-     * @return true if the token is sucessfully placed, false otherwise.( this means the column is already full )
+     * @return Returns true if the last move resulted in a player winning the game, otherwise false
      * 
      * 
      */
-
-
     public boolean checkForWin(int c)
     {
         /*this function will check to see if the last token placed in column c resulted in the player winning the game.
@@ -99,48 +100,44 @@ public class GameBoard
         checking if the last token placed results in a win. You may call other methods to complete this method */
     }
 
+
     /**
-     * This function will check if every position is filled by either and X or an O and every time
-     * the check for win functions have passed and all return false, game is declared a tie.
+     * This function checks if the game has resulted in a tie. A Game is considered tie if there are no free board positions remaining.
+     * It returns true if the game is tied and false otherwise
      *
-     * @return true if whole board is filled and no win, false if there is a win somewhere
+     * @return Returns true of the whole board is filled with 'X' or 'O' ( no empty places ) and no player has won, false otherwise
      *
-     * @pre
-     * The board must be full in order for this to ever return true as there are always other moves to
-     * be made, but even if board is full it can check the board or whole board one more time for any
-     * wins before concluding tie is true.
+     * @pre None Required
      *
      * @post
-     * The function to save time will go through the whole top row and make sure they all either have
-     * an X or O and no blank space, and this will mean that every other spot will be full if the
-     * whole top is full based on functionality, and will return true if no wins were ever returned
-     * true during the game
-     * Board = #Board
+     * The function returns true if every position on the board is filled with either 'X' or 'O', indicating a tie game, and no
+     * player has won. It returns false if there is a win somewhere on the board
+     * The state of the 'Board' remains unchanged after this method is called (self = #self)
      */
     public boolean checkTie()
     {
         /*this function will check to see if the game has resulted in a tie. A game is tied if there are no free board
-        positions remaining. You do not need to check for any potential wins because we can assume that the players
-        were checking for win conditions as they played the game. It will return true if the game is tied and
+        positions remaining. It will return true if the game is tied (all positions filled with X or O) and
         false otherwise.*/
     }
 
+
     /**
-     * This function will check if there are three identical pieces to the one passed in rows
-     * right above the set location, or right below the set location.
+     * This function checks if there are four identical pieces adjacent to the specified position in a horizontal direction
      *
-     * @param pos a BoardPosition, the position where the most recent piece was played in this case
+     * @param pos a BoardPosition, the position where the most recent piece was played
      * @param p a character, representing either X or O depending on which player’s turn it is
-     * @return true if there are 4 horizontal in a row, false if not
+     * @return Returns true if there are four consecutive identical pieces (horizontal), false if not
      *
      * @pre
-     * BoardPosition already validated, char p must be either X or O, can't be equal to ' ' (a blank space).
+     * The character 'p' must be either 'X' or 'O' (representing the player's token)
+     * No explicit precondition checking is done here, as the contracts for BoardPosition are expected to ensure this.
      *
      * @post
-    * The following function checks if BoardPosition[row][col] = p, BoardPosition[row+1][col] = p, BoardPosition[row+2][col] = p, and BoardPosition[row+3][col] = p
-     * or BoardPosition[row][col] = p, BoardPosition[row-1][col] = p, BoardPosition[row-2][col] = p, and BoardPosition[row-3][col] = p
-     * are true, returning true if yes and false if no.
-     * self = #self
+     * The function checks for four consecutive identical pieces starting at the 'pos' position, both to the right and to the left
+     * It returns true if it finds four identical pieces in a horizontal direction (either right or left), and false otherwise
+     * The state of the 'Board' remains unchanged after this method is called (self = #self)
+     * 
      */
     public boolean checkHorizWin(BoardPosition pos, char p)
     {
@@ -148,47 +145,46 @@ public class GameBoard
         a row horizontally. Returns true if it does, otherwise false*/
     }
 
+
     /**
-     * This function will check if there are three identical pieces to the one passed in a columns
-     * right next to the set location.
+     * This function checks if there are four identical pieces adjacent to the specified position in a vertical direction
      *
-     * @param pos a BoardPosition, the position where the most recent piece was played in this case
+     * @param pos a BoardPosition, the position where the most recent piece was played
      * @param p a character, representing either X or O depending on which player’s turn it is
-     * @return true if there are 4 vertical in a row, false if not
+     * @return Returns true if there are four consecutive identical pieces (vertically), false if not
      *
      * @pre
-     * BoardPosition already validated, char p must be either X or O, can't be equal to ' ' (a blank space).
+     * The character 'p' must be either 'X' or 'O' (representing the player's token)
+     * No explicit precondition checking is done here, as the contracts for BoardPosition are expected to ensure this.
      *
      * @post
-     * The following function checks if BoardPosition[row][col] = p, BoardPosition[row][col+1] = p, BoardPosition[row][col+2] = p, and BoardPosition[row][col+3] = p
-     * or BoardPosition[row][col] = p, BoardPosition[row][col-1] = p, BoardPosition[row][col-2] = p, and BoardPosition[row][col-3] = p
-     * are true, returning true if yes and false if no.
-     * self = #self
+     * The function checks for four consecutive identical pieces starting at the 'pos' position, both upwards and downwards
+     * It returns true if it finds four identical pieces in a vertical direction (either up or down), and false otherwise
+     * The state of the 'Board' remains unchanged after this method is called (self = #self).
+     * 
      */
     public boolean checkVertWin(BoardPosition pos, char p)
     {
-        /*checks to see if the last token placed (which was placed in position pos by player p) resulted in 5 in a row
+        /*checks to see if the last token placed (which was placed in position pos by player p) resulted in four in a row
         vertically. Returns true if it does, otherwise false*/
     }
 
+
     /**
-     * This function will check if there are three identical pieces above and across from
-     * each other sequentially for at least 4 pieces.
+     * This function checks if there are four identical pieces diagonally aligned with the specified position
      *
-     * @param pos a BoardPosition, the position where the most recent piece was played in this case
+     * @param pos a BoardPosition, the position where the most recent piece was played
      * @param p a character, representing either X or O depending on which player’s turn it is
-     * @return true if there are 4 diagnol in a row, false if not
+     * @return Returns true if there are four consecutive identical pieces (diagonally), false if not
      *
      * @pre
-     * BoardPosition already validated, char p must be either X or O, can't be equal to ' ' (a blank space).
+     * The character 'p' must be either 'X' or 'O' (representing the player's token)
+     * No explicit precondition checking is done here, as the contracts for BoardPosition are expected to ensure this.
      *
      * @post
-  * The following function checks if BoardPosition[row][col] = p, BoardPosition[row+1][col+1] = p, BoardPosition[row+2][col+2] = p, and BoardPosition[row+3][col+3] = p
-     * or BoardPosition[row][col] = p, BoardPosition[row-1][col-1] = p, BoardPosition[row-2][col-2] = p, and BoardPosition[row-3][col-3] = p
-     * or BoardPosition[row][col] = p, BoardPosition[row+1][col-1] = p, BoardPosition[row+2][col-2] = p, and BoardPosition[row+3][col-3] = p
-     * or BoardPosition[row][col] = p, BoardPosition[row-1][col+1] = p, BoardPosition[row-2][col+2] = p, and BoardPosition[row-3][col+3] = p
-     * are true, returning true if yes and false if no.
-     * self = #self
+     * The function checks for four consecutive identical pieces starting at the 'pos' position in diagonal directions.
+     * It returns true if it finds four identical pieces diagonally (in any of the two diagonal directions), and false otherwise
+     * The state of the 'Board' remains unchanged after this method is called (self = #self)
      */
     public boolean checkDiagWin(BoardPosition pos, char p)
     {
@@ -196,73 +192,71 @@ public class GameBoard
         diagonally. Returns true if it does, otherwise false Note: there are two diagonals to check*/
     }
 
+
     /**
      * This function retrieves a character from at a specified boardPosition on the game board
      *
      * @param pos The boardPosition object that specifies the row and column to examine
      *
-     * @pre None
+     * @pre 
+     * The boardPosition 'pos' provided to the function is assumed to be valid and not null.
+     * No explicit precondition checking is done here, as the contracts for BoardPosition are expected to ensure this.
      *
      * @post This function returns the character (‘X’, ‘O’, ‘ ‘ ) located at the specific boardPosition
-     * This function returns blank space, if the specified boardPosition is unoccupied. Board = #Board
+     * This function returns blank space, if the specified boardPosition is unoccupied. 
+     * The state of the 'Board' remains unchanged after this method is called (self = #self)
      *
      * @return The character (‘X’, ‘O’, ‘ ‘ )
      */
     public char whatsAtPos(BoardPosition pos)
     {
-        //returns what is in the GameBoard at position pos If no marker is there, it returns a blank space char.
+        //Returns the character at the specified boardPosition on the gameboard. If no marker is there, it returns a blank space character
     }
 
+
     /**
+     * This function decides whether the selected player's token ('X' or 'O') occupies the specified position on the gameboard
      *
      * @param pos The boardPosition object that specifies the row and column to examine
      * @param player This character represents the player piece  (‘X’, ‘O’) to check for
      *
-     * @pre the provided BoardPosition must not be NULL
-     * The row and column values within the boardPosition object must be in the valid range of rows
-     * and columns on the gameBoard.
-     * The playerChar must be either 'X' or 'O'.
+     * @pre 
+     * The provided BoardPosition 'pos' must not be NULL
+     * The row and column values within the 'pos' object are expected to be within the valid range of rows 
+     * and columns on the game board.
+     * The 'player' character must be either 'X' or 'O'
      *
-     * @post Decides whether the selected player’s piece occupies the specified position on the gameboard
-     * Board = #Board
+     * @post
+     * This function returns true if the selected player is at the given position, false if not
+     * The state of the 'Board' remains unchanged after this method is called (self = #self)
      *
      * @return Returns true if the selected player is at the given position, false otherwise
      */
     public boolean isPlayerAtPos(BoardPosition pos, char player)
     {
-        /*returns true if the player is at pos; otherwise, it returns false. Note: this method will be implemented very
-        similarly to whatsAtPos, but it's asking a different question. We only know they will be similar because we
-        know GameBoard will contain a 2D array. If the data structure were to change in the future,
-        these two methods could be radically different.*/
+        /* Returns true if the player's piece ('X' or 'O') is at the specified position 'pos'otherwise, it returns false. 
+        Note: This method is implemented similarly to whatsAtPos, but it checks for a specific player's piece instead.
+     */
     }
 
+
     /**
-     * This function returns the string representing the entire game board.
-     * This function formats the gameBoard as string, including the row and column labels
+     * This function returns a string representing the entire gameboard, including row and column labels
      *
      * @pre None Required
      *
-     * @post Produces a string representation of the gameBoard with a clear layout
-     * The resulting string includes labels for rows and columns. Board = #Board
+     * @post 
+     * This function produces a string representation of the gameBoard with a clear layout, including the labels for rows and columns
+     * The resulting string represents the current state of the gameboard
+     * The state of the 'Board' remains unchanged after this method is called (self = #self)
      *
-     * @return the whole gameboard at that moment.
+     * @return The string representation of the entire gameboard
      */
     @Override
     public String toString(){
-
+        /*This function returns a string representation of the entire game board, including labels for rows and columns,
+         without altering the board's state. */
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }
