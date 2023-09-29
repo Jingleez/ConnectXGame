@@ -12,16 +12,17 @@ Rowan Froeschner (Rojofroe)
  */
 public class GameBoard
 {
+    int maxRow = 6;
+    int maxColumn = 7;
     char[][] Board;
     /**
      * Constructs a game board that is empty.
      * The game board is a two dimensional array initialized with blank spaces.
      * This constructor creates a new instance of the gameBoard class.
      *
-     * @pre None Required
+     * @pre None
      *
-     * @post Initializes a new game board with all the positions containing blank spaces
-     * The new gameboard instance is created and ready for the gameplay
+     * @post Initializes a new game board with all the positions containing blank spaces.
      */
     public GameBoard()
     {
@@ -37,12 +38,11 @@ public class GameBoard
      * the selected column
      *
      * @pre
-     * The parameter must be > 0 but less than the total amount of columns minus 1 (accounting for
-     * 0), so same as the int column because that's what the parameter is.
+     * 0 < c <= maxColumn, must be a valid column to place token in
      *
      * @post
-     * The following program will check if the top row, and if it is an X or an O in that position,
-     * the function returns false, if its a blank space, it returns true.
+     * This function will check the value of GameBoard[maxRow][c], if value is X or O
+     * return false, if value is " " return true, object unchanged just checking
      */
     public boolean checkIfFree(int c)
     {
@@ -57,15 +57,15 @@ public class GameBoard
      * @param c an integer, specifically the column the user inputs they want to play their token
      *
      * @pre
-     * The int parameter must be > 0 but less than the total amount of columns minus 1 (accounting
-     * for * 0), so same as int column because thats what the parameter is.
-     * The char parameter must either be an X or an O, because these are the only two token pieces * that a player could have.
+     * 0 < c <= maxColumn, must be a valid column to place token in
+     * p = X or O, these are the only 2 valid pieces
+     * checkIfFree() must return true to confirm a token can be placed there.
      *
      * @post
-     * The following program goes to the user-inputted column and places a token all the way
-     * down checking to make sure it passes through all the blank space positions, but when it
-     * hits an X, and O, or the first row, then it stops and this is the tokens position which it
-     * will occupy for the rest of  the game.
+     * The following function will loop (i = 0, i <= maxRow, i++) checking whether the location
+     * GameBoard[maxRow-i][c] each loop checking if spot is occupied by X or O, after going 
+     * down and when the loop either ends because no token or is occupied by X or O, go back up one row
+     * and place token value p at that location.
      */
     public void dropToken(char p, int c)
     {
@@ -79,7 +79,7 @@ public class GameBoard
      *
      * @return true if the last move caused a layer to win OR false if the game still continues
      *
-     * @pre 7 > c >= 0
+     * @pre maxRow > c >= 0
      *
      * @post Board[][] = #Board
      */
