@@ -41,7 +41,7 @@ public class GameBoard
      * 
      * @return  Returns true if the selected column is availble, false otherwise
      *
-     * @pre  0 < c <= maxColumn, must be a valid column to place token in
+     * @pre  0 < c <= maxColumn, [must be a valid column to place token in]
      *
      * @post * This function will check the value of GameBoard[maxRow][c], if value is X or O
      * return false, if value is " " return true, object unchanged just checking
@@ -60,9 +60,9 @@ public class GameBoard
      * @param p a character, either 'X' or 'O', which represents the player's token
      *
      * @pre 
-     * 0 < c (latest column) <= maxColumn - 1, must be a valid column to place token in
+     * 0 < c (latest column) <= maxColumn - 1, [must be a valid column to place token in
      * p = X or O, these are the only 2 valid pieces
-     * checkIfFree() must return true to confirm a token can be placed there.
+     * checkIfFree() must return true to confirm a token can be placed there.]
      *
      * @post
      * The following function will loop (i = 0, i <= maxRow, i++) checking whether the location
