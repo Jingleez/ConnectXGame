@@ -18,7 +18,7 @@ public class BoardPosition
     private int Column;
 
     /**
-     * constructor for BoardPosition object. sets the instance variavle to values passed in by params.
+     * constructor for BoardPosition object. sets the instance variable to values passed in by params.
      *
      * @param aRow value for Row to be set to
      * @param aColumn value for Column to be set to
