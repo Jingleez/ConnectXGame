@@ -6,7 +6,7 @@ This project should be runnable with JDK17
 --------------------------------------------------------
 ## Contribution Statements:
 
-Kalyaan Narnamalpuram ( Jingleez ) - Modified existing contracts for the Gameboard functions. Made sure it met the requirnments from gradescope comments. I ensured that each method has appropriate preconditions, postconditions, and descriptions to convey their functionality and usage.
+Kalyaan Narnamalpuram ( Jingleez ) - Modified existing contracts for the Gameboard functions.
 
 
 

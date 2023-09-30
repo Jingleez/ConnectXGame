@@ -41,7 +41,8 @@ public class GameBoard
      * 
      * @return  Returns true if the selected column is availble, false otherwise
      *
-     * @pre The parameter 'c' must be a non-negative integer within the vaild range of columns (0 to maxColumn-1)
+     * @pre 0 <= c < MAX_COLUMNS
+     * The parameter 'c' must be a non-negative integer within the vaild range of columns 
      *
      * @post Returns true if the top-most row of the specified column 'c' contains a blank space, which means the 
      *       column is availble for placing a token
@@ -60,7 +61,7 @@ public class GameBoard
      * @param p a character, representing either X or O depending on the current player's turn
      * @param c an integer, specifically the column where the player wants to play their token (0 to maxColumn-1)
      *
-     * @pre 
+     * @pre 0 <= c < MAX_COLUMNS
      * The integer parameter 'c' must be a non-negative integer within the vaild range of columns
      * The character parameter 'p' must be 'X' or 'O', representing the tokens for the players
      * There also must be space availble in the specified column 'c' for the token to be placed
@@ -82,7 +83,8 @@ public class GameBoard
      *
      * @param c an integer, the column where the last token was dropped
      *
-     * @pre 'c' is the column where the last token was placed. and it should be within the valid column range [0, maxColumn-1]
+     * @pre 0 <= c < MAX_COLUMNS
+     *  'c' is the column where the last token was placed and it should be within the valid column range
      *
      * @post 
      * The method returns true if the last placed token in column 'c' resulted in the player winning the game by forming
@@ -129,7 +131,8 @@ public class GameBoard
      * @param p a character, representing either X or O depending on which player’s turn it is
      * @return Returns true if there are four consecutive identical pieces (horizontal), false if not
      *
-     * @pre
+     * @pre  0 <= pos.getRow() < MAX_ROWS
+     *       0 <= pos.getColumn() < MAX_COLUMNS
      * The character 'p' must be either 'X' or 'O' (representing the player's token)
      * No explicit precondition checking is done here, as the contracts for BoardPosition are expected to ensure this.
      *
@@ -153,7 +156,8 @@ public class GameBoard
      * @param p a character, representing either X or O depending on which player’s turn it is
      * @return Returns true if there are four consecutive identical pieces (vertically), false if not
      *
-     * @pre
+     * @pre 0 <= pos.getRow() < MAX_ROWS
+     *      0 <= pos.getColumn() < MAX_COLUMNS
      * The character 'p' must be either 'X' or 'O' (representing the player's token)
      * No explicit precondition checking is done here, as the contracts for BoardPosition are expected to ensure this.
      *
@@ -177,7 +181,8 @@ public class GameBoard
      * @param p a character, representing either X or O depending on which player’s turn it is
      * @return Returns true if there are four consecutive identical pieces (diagonally), false if not
      *
-     * @pre
+     * @pre 0 <= pos.getRow() < MAX_ROWS
+     *      0 <= pos.getColumn() < MAX_COLUMNS
      * The character 'p' must be either 'X' or 'O' (representing the player's token)
      * No explicit precondition checking is done here, as the contracts for BoardPosition are expected to ensure this.
      *
@@ -198,13 +203,15 @@ public class GameBoard
      *
      * @param pos The boardPosition object that specifies the row and column to examine
      *
-     * @pre 
-     * The boardPosition 'pos' provided to the function is assumed to be valid and not null.
-     * No explicit precondition checking is done here, as the contracts for BoardPosition are expected to ensure this.
+     * @pre pos is not null
+     *      0 <= pos.getRow() < MAX_ROWS
+     *      0 <= pos.getColumn() < MAX_COLUMNS
+     *      The boardPosition 'pos' provided to the function is assumed to be valid and not null.
+     *      No explicit precondition checking is done here, as the contracts for BoardPosition are expected to ensure this.
      *
      * @post This function returns the character (‘X’, ‘O’, ‘ ‘ ) located at the specific boardPosition
-     * This function returns blank space, if the specified boardPosition is unoccupied. 
-     * The state of the 'Board' remains unchanged after this method is called (self = #self)
+     *       This function returns blank space, if the specified boardPosition is unoccupied. 
+     *       The state of the 'Board' remains unchanged after this method is called (self = #self)
      *
      * @return The character (‘X’, ‘O’, ‘ ‘ )
      */
@@ -220,11 +227,12 @@ public class GameBoard
      * @param pos The boardPosition object that specifies the row and column to examine
      * @param player This character represents the player piece  (‘X’, ‘O’) to check for
      *
-     * @pre 
-     * The provided BoardPosition 'pos' must not be NULL
-     * The row and column values within the 'pos' object are expected to be within the valid range of rows 
-     * and columns on the game board.
-     * The 'player' character must be either 'X' or 'O'
+     * @pre pos is not null
+     *      0 <= pos.getRow() < MAX_ROWS
+     *      0 <= pos.getColumn() < MAX_COLUMNS
+     *      The row and column values within the 'pos' object are expected to be within the valid range of rows 
+     *      and columns on the game board.
+     *      The 'player' character must be either 'X' or 'O'
      *
      * @post
      * This function returns true if the selected player is at the given position, false if not
