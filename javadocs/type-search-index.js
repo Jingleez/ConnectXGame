@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"cpsc2150.extendedConnectX.models","l":"BoardPosition"},{"p":"cpsc2150.extendedConnectX.models","l":"GameBoard"},{"p":"cpsc2150.extendedConnects","l":"GameScreen"}];updateSearchResults();
