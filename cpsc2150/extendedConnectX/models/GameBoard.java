@@ -15,10 +15,11 @@ public class GameBoard extends AbsGameBoard
 {
     int maxRow = 6;
     int maxColumn = 7;
+    int winNum = 4;
     char[][] Board;
 
 
-    /*
+    /**
      * Constructs a game board that is empty.
      * This constructor initializes a new instance of the gameboard class with a 2D array of blank spaces
      * The game board is being represented as a grid with rows and columns, where each position is initially empty.
@@ -34,6 +35,7 @@ public class GameBoard extends AbsGameBoard
     }
 
 
+    // remove if it is not overridden
     /**
      * This function checks if a specified column on the gameBoard is availble for placing a token
      *
@@ -76,6 +78,7 @@ public class GameBoard extends AbsGameBoard
     }
 
 
+    // remove if it is not overridden
     /**
      * checks if the last placed token wins the game, calls the other three check functions to do that
      *
@@ -101,6 +104,7 @@ public class GameBoard extends AbsGameBoard
     }
 
 
+    // remove if it is not overridden
     /**
      * This function checks if the game has resulted in a tie. A Game is considered tie if there are no free board positions remaining.
      * It returns true if the game is tied and false otherwise
@@ -122,6 +126,7 @@ public class GameBoard extends AbsGameBoard
     }
 
 
+    // remove if it is not overridden
     /**
      * This function checks if there are four identical pieces adjacent to the specified position in a horizontal direction
      *
@@ -146,6 +151,7 @@ public class GameBoard extends AbsGameBoard
     }
 
 
+    // remove if it is not overridden
     /**
      * This function checks if there are four identical pieces adjacent to the specified position in a vertical direction
      *
@@ -170,6 +176,7 @@ public class GameBoard extends AbsGameBoard
     }
 
 
+    // remove if it is not overridden
     /**
      * This function checks if there are four identical pieces diagonally aligned with the specified position
      *
@@ -195,6 +202,7 @@ public class GameBoard extends AbsGameBoard
     }
 
 
+
     /**
      * This function retrieves a character from at a specified boardPosition on the game board
      *
@@ -214,6 +222,7 @@ public class GameBoard extends AbsGameBoard
     }
 
 
+    // remove if it is not overridden
     /**
      * This function decides whether the selected player's token ('X' or 'O') occupies the specified position on the gameboard
      *
