@@ -11,7 +11,7 @@ Rowan Froeschner (Rojofroe)
 /**
  * this class holds the gameboard and its functions like checking for wins
  */
-public class GameBoard
+public class GameBoard extends AbsGameBoard
 {
     int maxRow = 6;
     int maxColumn = 7;
@@ -240,6 +240,7 @@ public class GameBoard
     }
 
 
+    // remove toString unless override again for some reason
     /**
      * This function returns a string representing the entire gameboard, including row and column labels
      *

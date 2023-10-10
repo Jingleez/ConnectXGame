@@ -10,10 +10,12 @@ Rowan Froeschner (Rojofroe)
 /**
  * This class is a position on the board. It is the row, and column position on the board.
  *
- *
+ * @invariant maxRows < Row >= 0 and maxColumns < Column >= 0
  */
 public class BoardPosition
 {
+    private int maxRows = 6;
+    private int maxColumns = 7;
     private int Row;
     private int Column;
 
@@ -23,7 +25,7 @@ public class BoardPosition
      * @param aRow value for Row to be set to
      * @param aColumn value for Column to be set to
      *
-     * @pre none
+     * @pre maxRows < Rows >= 0 and maxColumns < column >= 0
      *
      * @post Row = aRow AND Column = aColumn
      */
@@ -39,7 +41,7 @@ public class BoardPosition
      *
      * @pre none
      *
-     * @post Row = #Row AND Column = #Column AND [return Row]
+     * @post Row = #Row AND Column = #Column AND getRow = Row
      */
     public int getRow()
     {
@@ -53,7 +55,7 @@ public class BoardPosition
      *
      * @pre none
      *
-     * @post Row = #Row AND Column = #Column AND [return Column]
+     * @post Row = #Row AND Column = #Column AND getColumn = Column
      */
     public int getColumn()
     {
@@ -85,7 +87,7 @@ public class BoardPosition
      *
      * @pre none
      *
-     * @post Row = #Row AND Column = #Column AND return Row and Column [in the format: <Row>,<Column>]
+     * @post Row = #Row AND Column = #Column AND toString = <Row>,<Column>
      */
     @Override
     public String toString()
