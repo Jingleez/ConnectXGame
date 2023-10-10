@@ -248,6 +248,33 @@ public class GameBoard extends AbsGameBoard
      */
     }
 
+    /**
+     *
+     * @return
+     */
+    @Override
+    public int getNumRows() {
+        return 0;
+    }
+
+    /**
+     *
+     * @return
+     */
+    @Override
+    public int getNumColumns() {
+        return 0;
+    }
+
+    /**
+     *
+     * @return
+     */
+    @Override
+    public int getNumToWin() {
+        return 0;
+    }
+
 
     // remove toString unless override again for some reason
     /**
