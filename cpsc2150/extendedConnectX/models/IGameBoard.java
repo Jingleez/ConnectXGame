@@ -1,5 +1,12 @@
 package cpsc2150.extendedConnectX.models;
 
+/*GROUP MEMBER NAMES AND GITHUB USERNAMES SHOULD GO HERE
+Terance Harrison (Teranceh)
+Graham Frazier (Cgfrazi)
+Kalyaan Narnamalpuram Srinivasan (Jingleez)
+Rowan Froeschner (Rojofroe)
+ */
+
 public interface IGameBoard {
     /**
      * This function checks if a specified column on the gameBoard is availble for placing a token

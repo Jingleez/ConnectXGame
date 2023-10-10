@@ -1,5 +1,12 @@
 package cpsc2150.extendedConnectX.models;
 
+/*GROUP MEMBER NAMES AND GITHUB USERNAMES SHOULD GO HERE
+Terance Harrison (Teranceh)
+Graham Frazier (Cgfrazi)
+Kalyaan Narnamalpuram Srinivasan (Jingleez)
+Rowan Froeschner (Rojofroe)
+ */
+
 abstract class AbsGameBoard implements IGameBoard {
     /**
      * This function returns a string representing the entire gameboard, including row and column labels
