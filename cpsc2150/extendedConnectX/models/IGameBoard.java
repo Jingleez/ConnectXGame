@@ -33,7 +33,6 @@ public interface IGameBoard {
      * @return
      */
     default boolean checkForWin(int c) {
-
     }
 
     /**
@@ -55,7 +54,15 @@ public interface IGameBoard {
      * @return
      */
     default boolean checkHorizWin(BoardPosition pos, char p) {
-
+        if ((Board[pos.Row][pos.Col] == p) && (Board[pos.Row+1][pos.Col] == p) && (Board[pos.Row+2][pos.Col] == p) && (Board[pos.Row+3][pos.Col] == p)) {
+            return true;
+        }
+        else if ((Board[pos.Row][pos.Col] == p) && (Board[pos.Row-1][pos.Col] == p) && (Board[pos.Row-2][pos.Col] == p) && (Board[pos.Row-3][pos.Col] == p)) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     /**
@@ -67,7 +74,15 @@ public interface IGameBoard {
      * @return
      */
     default boolean checkVertWin(BoardPosition pos, char p) {
-
+        if ((Board[pos.Row][pos.Col] == p) && (Board[pos.Row][pos.Col+1] == p) && (Board[pos.Row][pos.Col+2] == p) && (Board[pos.Row][pos.Col+3] == p)) {
+            return true;
+        }
+        else if ((Board[pos.Row][pos.Col] == p) && (Board[pos.Row][pos.Col-1] == p) && (Board[pos.Row][pos.Col-2] == p) && (Board[pos.Row][pos.Col-3] == p)) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     /**
