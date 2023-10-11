@@ -135,20 +135,19 @@ public class GameBoard implements IGameBoard
             return "The 'board' is either empty or doesn't have rows and columns.";
         }
         StringBuilder boardString = new StringBuilder(); // Create a StringBuilder for the string representation.
-        // This loop adds column labels
-        boardString.append("  "); // Empty space for the top-left corner
-        for (int col = 0; col < Board[0].length; col++) {
-            boardString.append(" " + col + " "); // Appending column labels
-        }
         // Before going to next row, adding a newline first
-        boardString.append("\n"); 
-    
+        boardString.append("|");
+        for (int col=0; col <Board[0].length; col++) {
+            boardString.append(col + "|");
+        }
+        boardString.append("\n");
+        
         // This loop adds row labels and board contents
         for (int row = 0; row < Board.length; row++) {
-            boardString.append(row + " "); // Adding row labels
             for (int col = 0; col < Board[0].length; col++) {
-                boardString.append("|" + Board[row][col] + "|"); // Appending contents of cell
+                boardString.append("|" + Board[row][col] ); // Appending contents of cell
             }
+            boardString.append("|");
             // Before going to next row, adding a newline first
             boardString.append("\n");
         }
