@@ -62,7 +62,7 @@ public class BoardPosition
         //returns the column
     }
 
-    /**
+   /**
      * checks if this BoardPosition and another BoardPosition are equal
      *
      * @param obj another BoardPosition object that is being checked if it is equal to this BoardPosition
@@ -75,8 +75,11 @@ public class BoardPosition
      * and Column or false if the two are not the same]
      */
     @Override
-    public boolean equals(Object obj)
-    {
+    public boolean equals(Object obj) {
+        if (this == obj) { return true; }
+        if (obj == null || getClass() != obj.getClass() ) { return false; }
+        BoardPosition other = (BoardPosition) obj;
+        return this.getRow() == other.getRow() && this.getColumn() == other.getColumn();
 
     }
 
@@ -90,8 +93,7 @@ public class BoardPosition
      * @post Row = #Row AND Column = #Column AND toString = <Row>,<Column>
      */
     @Override
-    public String toString()
-    {
-
+    public String toString() {
+        return this.getRow() + "," + this.getColumn();
     }
 }
