@@ -138,15 +138,16 @@ public class GameBoard implements IGameBoard
         // Before going to next row, adding a newline first
         boardString.append("|");
         for (int col=0; col <Board[0].length; col++) {
-            boardString.append(" " + col + " " + "|");
+            boardString.append(col + "|");
         }
         boardString.append("\n");
         
         // This loop adds row labels and board contents
         for (int row = 0; row < Board.length; row++) {
             for (int col = 0; col < Board[0].length; col++) {
-                boardString.append("|" + Board[row][col] + "|"); // Appending contents of cell
+                boardString.append("|" + Board[row][col] ); // Appending contents of cell
             }
+            boardString.append("|");
             // Before going to next row, adding a newline first
             boardString.append("\n");
         }
