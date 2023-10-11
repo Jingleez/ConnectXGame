@@ -13,7 +13,7 @@ Rowan Froeschner (Rojofroe)
  */
 public class GameBoard implements IGameBoard
 {
-    int maxRow = 6;
+    int maxRow = 9;
     int maxColumn = 7;
     int winNum = 5;
     char[][] Board;
@@ -227,7 +227,7 @@ public class GameBoard implements IGameBoard
      */
     public char whatsAtPos(BoardPosition pos)
     {
-        //Returns the character at the specified boardPosition on the gameboard. If no marker is there, it returns a blank space character
+       return Board[pos.Row][pos.Column];
     }
 
 
@@ -263,7 +263,7 @@ public class GameBoard implements IGameBoard
      */
     @Override
     public int getNumRows() {
-        return 0;
+        return maxRow;
     }
 
     /**
@@ -272,7 +272,7 @@ public class GameBoard implements IGameBoard
      */
     @Override
     public int getNumColumns() {
-        return 0;
+        return maxColumn;
     }
 
     /**
@@ -281,7 +281,7 @@ public class GameBoard implements IGameBoard
      */
     @Override
     public int getNumToWin() {
-        return 0;
+        return winNum;
     }
 
 
