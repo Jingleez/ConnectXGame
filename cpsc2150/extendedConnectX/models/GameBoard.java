@@ -11,9 +11,9 @@ Rowan Froeschner (Rojofroe)
 /**
  * this class holds the gameboard and its functions like checking for wins
  */
-public class GameBoard extends AbsGameBoard
+public class GameBoard implements IGameBoard
 {
-    int maxRow = 9;
+    int maxRow = 6;
     int maxColumn = 7;
     int winNum = 5;
     char[][] Board;
@@ -74,6 +74,15 @@ public class GameBoard extends AbsGameBoard
      */
     public void dropToken(char p, int c)
     {
+        BoardPosition insert = new BoardPosition(maxRow, c);
+        for (int i = 0; i < maxRow; i++) {
+            if (whatsAtPos(insert) == ' ') {
+                insert.Row -= 1;
+            }
+            else {
+                Board[insert.Row][c] = p;
+            }
+        }
         //Places the character 'p' in column 'c'. The token will be placed in the lowest available row in column 'c'.
     }
 
