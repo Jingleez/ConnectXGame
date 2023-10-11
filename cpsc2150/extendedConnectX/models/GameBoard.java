@@ -138,7 +138,7 @@ public class GameBoard implements IGameBoard
         // Before going to next row, adding a newline first
         boardString.append("|");
         for (int col=0; col <Board[0].length; col++) {
-            boardString.append(col + "|");
+            boardString.append(" " + col + "|");
         }
         boardString.append("\n");
         
