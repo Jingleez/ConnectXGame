@@ -15,7 +15,12 @@ public interface IGameBoard {
      * @return
      */
     default boolean checkIfFree(int c) {
-
+        if (Board[maxRow][c] == ' ') { 
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     /**
@@ -42,7 +47,14 @@ public interface IGameBoard {
      * @return
      */
     default boolean checkTie() {
-
+        for (int i = 0; i < maxRow; i++) {
+            for (int j = 0; j < maxColumn; j++) {
+                if (Board[i][j] != ' ') {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     /**
@@ -93,7 +105,21 @@ public interface IGameBoard {
      * @return
      */
     default boolean checkDiagWin(BoardPosition pos, char p) {
-
+        if ((Board[pos.Row][pos.Col] == p) && (Board[pos.Row+1][pos.Col+1] == p) && (Board[pos.Row+2][pos.Col+2] == p) && (Board[pos.Row+3][pos.Col+3] == p)) {
+            return true;
+        }
+        else if ((Board[pos.Row][pos.Col] == p) && (Board[pos.Row-1][pos.Col-1] == p) && (Board[pos.Row-2][pos.Col-2] == p) && (Board[pos.Row-3][pos.Col-3] == p)) {
+            return true;
+        }
+        else if ((Board[pos.Row][pos.Col] == p) && (Board[pos.Row-1][pos.Col+1] == p) && (Board[pos.Row-2][pos.Col+2] == p) && (Board[pos.Row-3][pos.Col+3] == p)) {
+            return true;
+        }
+        else if ((Board[pos.Row][pos.Col] == p) && (Board[pos.Row+1][pos.Col-1] == p) && (Board[pos.Row+2][pos.Col-2] == p) && (Board[pos.Row+3][pos.Col-3] == p)) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     /**
