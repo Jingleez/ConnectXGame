@@ -144,7 +144,6 @@ public class GameBoard implements IGameBoard
         
         // This loop adds row labels and board contents
         for (int row = 0; row < Board.length; row++) {
-            boardString.append("|" + row + "|"); // Adding row labels
             for (int col = 0; col < Board[0].length; col++) {
                 boardString.append("|" + Board[row][col] + "|"); // Appending contents of cell
             }
