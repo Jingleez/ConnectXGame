@@ -31,6 +31,8 @@ public class BoardPosition
      */
     public BoardPosition(int aRow, int aColumn)
     {
+        Row = aRow;
+        Column = aColumn;
         //parameterized constructor for BoardPosition
     }
 
@@ -45,6 +47,7 @@ public class BoardPosition
      */
     public int getRow()
     {
+        return Row;
         //returns the row
     }
 
@@ -59,6 +62,7 @@ public class BoardPosition
      */
     public int getColumn()
     {
+        return Column;
         //returns the column
     }
 
