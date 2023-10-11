@@ -39,11 +39,12 @@ public class GameScreen
                 }
                 else if (!newBoard.checkIfFree(userChoice))
                 {
-                    System.out.println("Column is full" + newBoard.getNumColumns());
+                    System.out.println("Column is full");
                 }
                 System.out.println("Player X, what column do you want to place your marker in?");
                 userChoice = keyboard.nextInt();
             }
+            newBoard.dropToken('X',userChoice);
             System.out.println(newBoard.toString());
             System.out.println("Player O, what column do you want to place your marker in?");
             userChoice = keyboard.nextInt();
@@ -59,11 +60,12 @@ public class GameScreen
                 }
                 else if (!newBoard.checkIfFree(userChoice))
                 {
-                    System.out.println("Column is full" + newBoard.getNumColumns());
+                    System.out.println("Column is full");
                 }
                 System.out.println("Player O, what column do you want to place your marker in?");
                 userChoice = keyboard.nextInt();
             }
+            newBoard.dropToken('X',userChoice);
         }
     }
 }
