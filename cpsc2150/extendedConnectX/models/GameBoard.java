@@ -63,10 +63,14 @@ public class GameBoard implements IGameBoard
      */
     public void dropToken(char p, int c)
     {
+        BoardPosition insert = new BoardPosition(0, c);
         for (int i = 0; i < maxRow; i++) {
-            BoardPosition insert = new BoardPosition(i, c);
             if (whatsAtPos(insert) == ' ') {
-                Board[i][c] = p;
+                insert = new BoardPosition(insert.getRow() + 1, insert.getColumn());
+                break;
+            }
+            else {
+                Board[insert.getRow()][c] = p;
             }
         }
         //Places the character 'p' in column 'c'. The token will be placed in the lowest available row in column 'c'.
