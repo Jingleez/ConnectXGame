@@ -22,20 +22,29 @@ abstract class AbsGameBoard implements IGameBoard {
     public String toString(){
         /*This function returns a string representation of the entire game board, including labels for rows and columns,
          without altering the board's state. */
-        BoardPosition pos;
-        String board = "";
-        for (int i = 0; i < getNumColumns(); i++) {
-            board = board.concat("|" + i + "|");
+        // Initial check to see if the 'board' has rows and columns
+        if (Board == null || Board.length == 0 || Board[0] == null) {
+            return "The 'board' is either empty or doesn't have rows and columns.";
         }
-        board = board.concat("\n");
-        for (int i = (getNumRows() - 1); i > -1; i--) {
-            for (int j = 0; j < getNumColumns(); j++) {
-                pos = new BoardPosition(i, j);
-                board = board.concat("|" + whatsAtPos(pos) + "|");
+        StringBuilder boardString = new StringBuilder(); // Create a StringBuilder for the string representation.
+        // Before going to next row, adding a newline first
+        boardString.append("|");
+        for (int col=0; col <Board[0].length; col++) {
+            boardString.append(col + "|");
+        }
+        boardString.append("\n");
+        
+        // This loop adds row labels and board contents
+        for (int row = 0; row < Board.length; row++) {
+            for (int col = 0; col < Board[0].length; col++) {
+                boardString.append("|" + Board[row][col]); // Appending contents of cell
             }
-            board = board.concat("\n");
+            boardString.append("|");
+            // Before going to next row, adding a newline first
+            boardString.append("\n");
         }
-
-        return board;
+    
+        // This converts the StringBuilder to a string and returns the final string representing the board.
+       return boardString.toString();
     }
 }
