@@ -67,10 +67,10 @@ public class GameBoard implements IGameBoard
         for (int i = 0; i < maxRow; i++) {
             if (whatsAtPos(insert) == ' ') {
                 insert = new BoardPosition(insert.getRow() + 1, insert.getColumn());
-                break;
             }
             else {
                 Board[insert.getRow()][c] = p;
+                break;
             }
         }
         //Places the character 'p' in column 'c'. The token will be placed in the lowest available row in column 'c'.
