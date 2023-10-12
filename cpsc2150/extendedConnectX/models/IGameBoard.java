@@ -111,7 +111,15 @@ public interface IGameBoard {
      * there is not enough tokens in a row horizontally to win]
      */
     default boolean checkHorizWin(BoardPosition pos, char p) {
-
+        if ((Board[pos.getRow()][pos.getColumn()] == p) && (Board[pos.getRow()() + 1][pos.getColumn()] == p) && (Board[pos.getRow() + 2][pos.getColumn()] == p) && (Board[pos.getRow() + 3][pos.getColumn()] == p) && (Board[pos.getRow() + 4][pos.getColumn()] == p)) {
+            return true;
+        } 
+        else if ((Board[pos.getRow()][pos.getColumn()] == p) && (Board[pos.getRow() - 1][pos.getColumn()] == p) && (Board[pos.getRow() - 2][pos.getColumn()] == p) && (Board[pos.getRow() - 3][pos.getColumn()] == p) && (Board[pos.getRow() - 4][pos.getColumn()] == p)) {
+            return true;
+        } 
+        else {
+            return false;
+        }
     }
 
     /**
@@ -128,7 +136,15 @@ public interface IGameBoard {
      * there is not enough tokens in a row vertically to win]
      */
     default boolean checkVertWin(BoardPosition pos, char p) {
-
+        if ((Board[pos.getRow()][pos.getColumn()] == p) && (Board[pos.getRow()][pos.getColumn() + 1] == p) && (Board[pos.getRow()][pos.getColumn() + 2] == p) && (Board[pos.getRow()][pos.getColumn() + 3] == p) && (Board[pos.getRow()][pos.getColumn() + 4] == p)) {
+            return true;
+        } 
+        else if ((Board[pos.getRow()][pos.getColumn()] == p) && (Board[pos.getRow()][pos.getColumn() - 1] == p) && (Board[pos.getRow()][pos.getColumn() - 2] == p) && (Board[pos.getRow()][pos.getColumn() - 3] == p) && (Board[pos.getRow()][pos.getColumn() - 4] == p)) {
+            return true;
+        } 
+        else {
+            return false;
+        }
     }
 
     /**
@@ -145,7 +161,21 @@ public interface IGameBoard {
      * there is not enough tokens in a row diagonally to win]
      */
     default boolean checkDiagWin(BoardPosition pos, char p) {
-
+        if ((Board[pos.getRow()][pos.getColumn()] == p) && (Board[pos.getRow() + 1][pos.getColumn() + 1] == p) && (Board[pos.getRow() + 2][pos.getColumn() + 2] == p) && (Board[pos.getRow() + 3][pos.getColumn() + 3] == p) && (Board[pos.getRow() + 4][pos.getColumn() + 4] == p)) {
+            return true;
+        } 
+        else if ((Board[pos.getRow()][pos.getColumn()] == p) && (Board[pos.getRow() - 1][pos.getColumn() - 1] == p) && (Board[pos.getRow() - 2][pos.getColumn() - 2] == p) && (Board[pos.getRow() - 3][pos.getColumn() - 3] == p) && (Board[pos.getRow() - 4][pos.getColumn() - 4] == p)) {
+            return true;
+        } 
+        else if ((Board[pos.getRow()][pos.getColumn()] == p) && (Board[pos.getRow() - 1][pos.getColumn() + 1] == p) && (Board[pos.getRow() - 2][pos.getColumn() + 2] == p) && (Board[pos.getRow() - 3][pos.getColumn() + 3] == p) && (Board[pos.getRow() - 4][pos.getColumn() + 4] == p)) {
+            return true;
+        } 
+        else if ((Board[pos.getRow()][pos.getColumn()] == p) && (Board[pos.getRow() + 1][pos.getColumn() - 1] == p) && (Board[pos.getRow() + 2][pos.getColumn() - 2] == p) && (Board[pos.getRow() + 3][pos.getColumn() - 3] == p) && (Board[pos.getRow() + 4][pos.getColumn() - 4] == p)) {
+            return true;
+        } 
+        else {
+            return false;
+        }
     }
 
     /**
