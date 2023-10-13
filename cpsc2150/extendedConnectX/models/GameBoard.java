@@ -86,7 +86,10 @@ public class GameBoard extends AbsGameBoard
      */
     public char whatsAtPos(BoardPosition pos)
     {
-       return Board[pos.getRow()][pos.getColumn()];
+        if (pos.getRow() < 0 || pos.getRow() >= getNumRows() || pos.getColumn() < 0 || pos.getColumn() >= getNumColumns()) {
+            return ' ';
+        }
+        return Board[pos.getRow()][pos.getColumn()];
     }
 
     /**
