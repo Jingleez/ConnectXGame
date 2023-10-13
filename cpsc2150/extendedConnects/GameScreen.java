@@ -1,11 +1,4 @@
-package cpsc2150.extendedConnects; /******************************************************************************
-
-Welcome to GDB Online.
-  GDB online is an online compiler and debugger tool for C, C++, Python, PHP, Ruby, 
-  C#, OCaml, VB, Perl, Swift, Prolog, Javascript, Pascal, COBOL, HTML, CSS, JS
-  Code, Compile, Run and Debug online from anywhere in world.
-
-*******************************************************************************/
+package cpsc2150.extendedConnects;
 import cpsc2150.extendedConnectX.models.GameBoard;
 import cpsc2150.extendedConnectX.models.IGameBoard;
 
@@ -21,17 +14,15 @@ public class GameScreen
         //Variable Creation/Initialization
         boolean playAgain = true;
 
-        IGameBoard newBoard;
-
         //While loop for the option to play the game again
         while (playAgain) {
             //Variable start/reset to begin match
-            newBoard = new GameBoard(); // Creates a game-board at start of match
+           IGameBoard newBoard = new GameBoard(); // Creates a game-board at start of match
             int userChoice = 0;
             char currentPlayer = 'X';
+            System.out.println(newBoard.toString()); //shows the first (empty) game-board
             //while loop that identifies if play again is true, and runs the game again if so
             while (true) {
-                System.out.println(newBoard.toString()); //shows the first (empty) game-board
                 System.out.println("Player " + currentPlayer + ", what column do you want to place your marker in?");
                 userChoice = keyboard.nextInt(); //user input
                 //input verification
@@ -56,11 +47,15 @@ public class GameScreen
                     break;
                 }
                 //tie statement that breaks to the previous while loop
-                if (newBoard.checkTie()) {
+                else if (newBoard.checkTie()) {
                     System.out.println(newBoard.toString());
                     System.out.println("Tie!");
                     break;
                 }
+                else {
+                    System.out.println(newBoard.toString()); //shows the game-board
+                }
+
                 //ternary statement that is used to determine which player has the next turn
                 currentPlayer = (currentPlayer == 'X') ? 'O' : 'X';
             }
