@@ -16,8 +16,7 @@ Due: 10-13 @ 11:59 PM \
 --------------------------------------------------------
 ## Contribution Statements:
 
-Graham Frazier: created our driver/gamescreen.java file, and fixed the requirements analysis from project one for this project.
-Kalyaan Narnamalpuram ( Jingleez ) - 
-Terance Harrison (Teranceh) - 
-Rowan Froeschner (Rojofroe) - 
-...
+Graham Frazier: created our driver/gamescreen.java file, and fixed the requirements analysis from project one for this project. \
+Kalyaan Narnamalpuram ( Jingleez ) - \
+Terance Harrison (Teranceh) - \
+Rowan Froeschner (Rojofroe) - \
