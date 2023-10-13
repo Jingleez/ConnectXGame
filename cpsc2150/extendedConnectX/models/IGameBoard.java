@@ -1,3 +1,4 @@
+package cpsc2150.extendedConnectX.models;
 /*GROUP MEMBER NAMES AND GITHUB USERNAMES SHOULD GO HERE
 Terance Harrison (Teranceh)
 Graham Frazier (Cgfrazi)

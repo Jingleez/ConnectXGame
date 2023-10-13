@@ -7,60 +7,78 @@ Welcome to GDB Online.
 
 *******************************************************************************/
 import cpsc2150.extendedConnectX.models.GameBoard;
+import cpsc2150.extendedConnectX.models.IGameBoard;
+
 import java.util.Scanner;
 public class GameScreen
 {
 
     public static void main(String[] args)
     {
+        //Scanner creation
         Scanner keyboard = new Scanner(System.in);
-        GameBoard newBoard = new GameBoard();
-        int userChoice = 0;
-        while (!newBoard.checkForWin(userChoice))
-        {
-            System.out.println(newBoard.toString());
-            System.out.println("Player X, what column do you want to place your marker in?");
-            userChoice = keyboard.nextInt();
-            while (userChoice < 0 || userChoice > newBoard.getNumColumns())
-            {
-                if (userChoice < 0)
-                {
+
+        //Variable Creation/Initialization
+        boolean playAgain = true;
+
+        IGameBoard newBoard;
+
+        //While loop for the option to play the game again
+        while (playAgain) {
+            //Variable start/reset to begin match
+            newBoard = new GameBoard(); // Creates a game-board at start of match
+            int userChoice = 0;
+            char currentPlayer = 'X';
+            //while loop that identifies if play again is true, and runs the game again if so
+            while (true) {
+                System.out.println(newBoard.toString()); //shows the first (empty) game-board
+                System.out.println("Player " + currentPlayer + ", what column do you want to place your marker in?");
+                userChoice = keyboard.nextInt(); //user input
+                //input verification
+                if (userChoice < 0) {
                     System.out.println("Column cannot be less than 0");
-                }
-                else if (userChoice > newBoard.getNumColumns())
-                {
-                    System.out.println("Column cannot be greater than ");
-                }
-                else if (!newBoard.checkIfFree(userChoice))
-                {
+                    continue;
+                } else if (userChoice > newBoard.getNumColumns()) {
+                    System.out.println("Column cannot be greater than " + newBoard.getNumColumns());
+                    continue;
+
+                } else if (!newBoard.checkIfFree(userChoice)) {
                     System.out.println("Column is full");
+                    continue;
+
                 }
-                System.out.println("Player X, what column do you want to place your marker in?");
-                userChoice = keyboard.nextInt();
+                //token drop function
+                newBoard.dropToken(currentPlayer, userChoice);
+                //win statement that breaks to the previous while loop
+                if (newBoard.checkForWin(userChoice)) {
+                    System.out.println(newBoard.toString());
+                    System.out.println("Player " + currentPlayer + " Won!");
+                    break;
+                }
+                //tie statement that breaks to the previous while loop
+                if (newBoard.checkTie()) {
+                    System.out.println(newBoard.toString());
+                    System.out.println("Tie!");
+                    break;
+                }
+                //ternary statement that is used to determine which player has the next turn
+                currentPlayer = (currentPlayer == 'X') ? 'O' : 'X';
             }
-            newBoard.dropToken('X', userChoice);
-            //System.out.println("c" + newBoard.Board[8][userChoice] + "c");
-            System.out.println(newBoard.toString());
-            System.out.println("Player O, what column do you want to place your marker in?");
-            userChoice = keyboard.nextInt();
-            while (userChoice < 0 || userChoice > newBoard.getNumColumns())
-            {
-                if (userChoice < 0)
-                {
-                    System.out.println("Column cannot be less than 0");
+            //start of do while loop
+            do {
+                System.out.println("Would you like to play again? Y/N");
+                String playAgainChoice = keyboard.next().toLowerCase();
+
+                if (playAgainChoice.equals("y")) {
+                    playAgain = true;
+                    break;
+                } else if (playAgainChoice.equals("n")) {
+                    playAgain = false;
+                    break;
+                } else {
+                    System.out.println("Would you like to play again? Y/N");
                 }
-                else if (userChoice > newBoard.getNumColumns())
-                {
-                    System.out.println("Column cannot be greater than ");
-                }
-                else if (!newBoard.checkIfFree(userChoice))
-                {
-                    System.out.println("Column is full");
-                }
-                System.out.println("Player O, what column do you want to place your marker in?");
-                userChoice = keyboard.nextInt();
-            }
-            newBoard.dropToken('O', userChoice);
+            } while (true);
         }
     }
 }
