@@ -1,4 +1,4 @@
-package cpsc2150.extendedConnectX.models;
+
 
 /*GROUP MEMBER NAMES AND GITHUB USERNAMES SHOULD GO HERE
 Terance Harrison (Teranceh)
@@ -10,17 +10,13 @@ Rowan Froeschner (Rojofroe)
 
 /**
  * this class holds the gameboard and its functions like checking for wins
- *
- * @invariant maxRow = 9 AND maxColumn = 7 AND winNum = 5
- *
- * @corresponds maxRow = maxRows AND maxColumn = maxCols AND winNum = winNum
  */
 public class GameBoard implements IGameBoard
 {
-    private int maxRow = 9;
-    private int maxColumn = 7;
-    private int winNum = 5;
-    private char[][] Board;
+    int maxRow = 9;
+    int maxColumn = 7;
+    int winNum = 5;
+    char[][] Board;
 
 
     /**
@@ -30,18 +26,21 @@ public class GameBoard implements IGameBoard
      *
      * @pre None
      *
-     * @post Initializes a new game board with all the positions containing a blank space.
+     * @post Initializes a new game board with all the positions containing blank spaces.
      * 
      */
     public GameBoard()
     {
         Board = new char[maxRow][maxColumn];
-        for (int i = 0; i < maxRow; i++) {
-            for (int j = 0; j < maxColumn; j++) {
-                Board[i][j] = ' ';
+        for (int row = 0; row < maxRow; row++) {
+            for (int col = 0; col < maxColumn; col++) {
+                Board[row][col] = ' ';
             }
         }
     }
+
+
+    // remove if it is not overridden
 
 
     /**
@@ -63,16 +62,15 @@ public class GameBoard implements IGameBoard
      */
     public void dropToken(char p, int c)
     {
-        BoardPosition insert = new BoardPosition(0, c);
+        BoardPosition insert = new BoardPosition(maxRow - 1, c); // Start from the bottom row in column 'c'.
         for (int i = 0; i < maxRow; i++) {
-            if (whatsAtPos(insert) == ' ') {
-                insert = new BoardPosition(insert.getRow() + 1, insert.getColumn());
-            }
-            else {
-                Board[insert.getRow()][c] = p;
-                break;
-            }
+        if (whatsAtPos(insert) == ' ') {
+            Board[insert.getRow()][insert.getColumn()] = p; // Place the token at the current position.
+            break; // Exit the loop after placing the token.
         }
+        insert = new BoardPosition(insert.getRow() - 1, insert.getColumn());
+        }
+        System.out.println(Board[insert.getRow()][insert.getColumn()]);
         //Places the character 'p' in column 'c'. The token will be placed in the lowest available row in column 'c'.
     }
 
@@ -119,6 +117,48 @@ public class GameBoard implements IGameBoard
     @Override
     public int getNumToWin() {
         return winNum;
+    }
+
+
+    // remove toString unless override again for some reason
+    /**
+     * This function returns a string representing the entire gameboard, including row and column labels
+     *
+     * @pre None Required
+     *
+     * @post 
+     * 
+     *
+     * @return The string representation of the entire gameboard
+     */
+    @Override
+     public String toString(){
+        /*This function returns a string representation of the entire game board, including labels for rows and columns,
+         without altering the board's state. */
+        // Initial check to see if the 'board' has rows and columns
+        if (Board == null || Board.length == 0 || Board[0] == null) {
+            return "The 'board' is either empty or doesn't have rows and columns.";
+        }
+        StringBuilder boardString = new StringBuilder(); // Create a StringBuilder for the string representation.
+        // Before going to next row, adding a newline first
+        boardString.append("|");
+        for (int col=0; col <Board[0].length; col++) {
+            boardString.append(col + "|");
+        }
+        boardString.append("\n");
+        
+        // This loop adds row labels and board contents
+        for (int row = 0; row < Board.length; row++) {
+            for (int col = 0; col < Board[0].length; col++) {
+                boardString.append("|" + Board[row][col]); // Appending contents of cell
+            }
+            boardString.append("|");
+            // Before going to next row, adding a newline first
+            boardString.append("\n");
+        }
+    
+        // This converts the StringBuilder to a string and returns the final string representing the board.
+       return boardString.toString();
     }
 
 
