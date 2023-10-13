@@ -32,7 +32,7 @@ abstract class AbsGameBoard implements IGameBoard {
         boardString.append("\n");
 
         // This loop adds row labels and board contents
-        for (int row = 0; row < getNumRows(); row++) {
+        for (int row = getNumRows() - 1; row > -1; row--) {
             for (int col = 0; col < getNumColumns(); col++) {
                 BoardPosition pos = new BoardPosition(row, col);
                 boardString.append("|" + whatsAtPos(pos)); // Appending contents of cell

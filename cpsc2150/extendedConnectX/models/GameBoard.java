@@ -59,13 +59,13 @@ public class GameBoard extends AbsGameBoard
      */
     public void dropToken(char p, int c)
     {
-        BoardPosition insert = new BoardPosition(maxRow - 1, c); // Start from the bottom row in column 'c'.
+        BoardPosition insert = new BoardPosition(0, c); // Start from the bottom row in column 'c'.
         for (int i = 0; i < maxRow; i++) {
         if (whatsAtPos(insert) == ' ') {
             Board[insert.getRow()][insert.getColumn()] = p; // Place the token at the current position.
             break; // Exit the loop after placing the token.
         }
-        insert = new BoardPosition(insert.getRow() - 1, insert.getColumn());
+        insert = new BoardPosition(insert.getRow() + 1, insert.getColumn());
         }
         System.out.println(Board[insert.getRow()][insert.getColumn()]);
         //Places the character 'p' in column 'c'. The token will be placed in the lowest available row in column 'c'.
