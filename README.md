@@ -12,11 +12,11 @@ Rowan Froeschner (Rojofroe) Completed most of requirements and urls (just format
 Graham Frazier (Cgfrazi) - helped review BoardPositiion and GameBoard, Went back and fixed up issues with our part 1 document, also checked for smaller problems with spelling or flow of the contracts.
 
 # Project Two
-Due: 10-13 @ 11:59 PM \
+Due: 10-13 @ 11:59 PM 
 --------------------------------------------------------
 ## Contribution Statements:
 
 Graham Frazier: created our driver/gamescreen.java file, and fixed the requirements analysis from project one for this project. \
 Kalyaan Narnamalpuram ( Jingleez ) - \
 Terance Harrison (Teranceh) - \
-Rowan Froeschner (Rojofroe) - \
+Rowan Froeschner (Rojofroe) - 
