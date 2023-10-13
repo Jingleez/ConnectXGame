@@ -1,4 +1,4 @@
-
+package cpsc2150.extendedConnectX.models;
 
 /*GROUP MEMBER NAMES AND GITHUB USERNAMES SHOULD GO HERE
 Terance Harrison (Teranceh)
@@ -14,12 +14,9 @@ public interface IGameBoard {
      * @param c
      * @return
      */
-    int maxRow = 9;
-    int maxColumn = 7;
-    public char[][] Board = new char[maxRow][maxColumn];
-    int winNum = 5;
     default boolean checkIfFree(int c) {
-        if (Board[1][c] == ' ') { 
+        BoardPosition check = new BoardPosition(getNumRows() - 1, c);
+        if (whatsAtPos(check) == ' ') {
             return true;
         }
         else {
@@ -44,7 +41,7 @@ public interface IGameBoard {
     default boolean checkForWin(int c) {
     BoardPosition insert = new BoardPosition(0, c);
     char piece = ' ';
-    for (int i = 0; i < maxRow; i++) {
+    for (int i = 0; i < getNumRows(); i++) {
         int row = insert.getRow();
         if (whatsAtPos(insert) == 'O') {
             piece = 'O';
@@ -73,16 +70,17 @@ public interface IGameBoard {
      *
      * @return
      */
-    /*default boolean checkTie() {
-        for (int i = 0; i < maxRow; i++) {
-            for (int j = 0; j < maxColumn; j++) {
-                if (Board[i][j] == ' ') {
+    default boolean checkTie() {
+        for (int i = 0; i < getNumRows(); i++) {
+            for (int j = 0; j < getNumColumns(); j++) {
+                BoardPosition pos = new BoardPosition(i, j);
+                if (whatsAtPos(pos) == ' ') {
                     return false;
                 }
             }
         }
         return true;
-    }*/
+    }
 
     /**
      * This function checks if there are four identical pieces adjacent to the specified position in a horizontal
@@ -96,13 +94,20 @@ public interface IGameBoard {
 default boolean checkHorizWin(BoardPosition pos, char p) {
     int row = pos.getRow();
     int col = pos.getColumn();
-    if (row < 0 || row >= maxRow || col < 0 || col + 3 >= maxColumn) {
+    if (row < 0 || row >= getNumRows() || col < 0 || col + 3 >= getNumColumns()) {
         return false; // Invalid indices, no win possible
     }
 
-    if ((Board[row][col] == p) && (Board[row + 1][col] == p) && (Board[row + 2][col] == p) && (Board[row + 3][col] == p)) {
+    BoardPosition pos1 = new BoardPosition(row, col);
+    BoardPosition pos2 = new BoardPosition(row + 1, col);
+    BoardPosition pos3 = new BoardPosition(row + 2, col);
+    BoardPosition pos4 = new BoardPosition(row + 3, col);
+    BoardPosition pos5 = new BoardPosition(row - 1, col);
+    BoardPosition pos6 = new BoardPosition(row - 2, col);
+    BoardPosition pos7 = new BoardPosition(row - 3, col);
+    if ((whatsAtPos(pos1) == p) && (whatsAtPos(pos2) == p) && (whatsAtPos(pos3) == p) && (whatsAtPos(pos4) == p)) {
         return true;
-    } else if ((Board[row][col] == p) && (Board[row - 1][col] == p) && (Board[row - 2][col] == p) && (Board[row - 3][col] == p)) {
+    } else if ((whatsAtPos(pos1) == p) && (whatsAtPos(pos5) == p) && (whatsAtPos(pos6) == p) && (whatsAtPos(pos7) == p)) {
         return true;
     } else {
         return false;
@@ -112,13 +117,22 @@ default boolean checkHorizWin(BoardPosition pos, char p) {
 default boolean checkVertWin(BoardPosition pos, char p) {
     int row = pos.getRow();
     int col = pos.getColumn();
-    if (row < 0 || row + 3 >= maxRow || col < 0 || col >= maxColumn) {
+    if (row < 0 || row + 3 >= getNumRows() || col < 0 || col >= getNumColumns()) {
         return false; // Invalid indices, no win possible
     }
+    /*
     System.out.println(Board[row][col]);
     System.out.println(Board[row+1][col]);
     System.out.println(Board[row+2][col]);
     System.out.println(Board[row+3][col]);
+     */
+    BoardPosition pos1 = new BoardPosition(row, col);
+    BoardPosition pos2 = new BoardPosition(row + 1, col);
+    BoardPosition pos3 = new BoardPosition(row + 2, col);
+    BoardPosition pos4 = new BoardPosition(row + 3, col);
+    BoardPosition pos5 = new BoardPosition(row - 1, col);
+    BoardPosition pos6 = new BoardPosition(row - 2, col);
+    BoardPosition pos7 = new BoardPosition(row - 3, col);
     if ((Board[row][col] == p) && (Board[row + 1][col] == p) && (Board[row + 2][col] == p) && (Board[row + 3][col] == p)) {
         return true;
     } else {
@@ -129,10 +143,17 @@ default boolean checkVertWin(BoardPosition pos, char p) {
 default boolean checkDiagWin(BoardPosition pos, char p) {
     int row = pos.getRow();
     int col = pos.getColumn();
-    if (row < 0 || row >= maxRow || col < 0 || col + 3 >= maxColumn) {
+    if (row < 0 || row >= getNumRows() || col < 0 || col + 3 >= getNumColumns()) {
         return false; // Invalid indices, no win possible
     }
 
+    BoardPosition pos1 = new BoardPosition(row, col);
+    BoardPosition pos2 = new BoardPosition(row + 1, col);
+    BoardPosition pos3 = new BoardPosition(row + 2, col);
+    BoardPosition pos4 = new BoardPosition(row + 3, col);
+    BoardPosition pos5 = new BoardPosition(row - 1, col);
+    BoardPosition pos6 = new BoardPosition(row - 2, col);
+    BoardPosition pos7 = new BoardPosition(row - 3, col);
     if ((Board[row][col] == p) && (Board[row + 1][col + 1] == p) && (Board[row + 2][col + 2] == p) && (Board[row + 3][col + 3] == p)) {
         return true;
     } else if ((Board[row][col] == p) && (Board[row - 1][col - 1] == p) && (Board[row - 2][col - 2] == p) && (Board[row - 3][col - 3] == p)) {
@@ -169,12 +190,7 @@ default boolean checkDiagWin(BoardPosition pos, char p) {
      * @return
      */
     default boolean isPlayerAtPos(BoardPosition pos, char player) {
-        if (Board[pos.getRow()][pos.getColumn()] == player) {
-            return true;
-        }
-        else {
-            return false;
-        } 
+        return whatsAtPos(pos) == player;
     }
 
     /**

@@ -1,4 +1,4 @@
-/******************************************************************************
+package cpsc2150.extendedConnects; /******************************************************************************
 
 Welcome to GDB Online.
   GDB online is an online compiler and debugger tool for C, C++, Python, PHP, Ruby, 
@@ -6,6 +6,7 @@ Welcome to GDB Online.
   Code, Compile, Run and Debug online from anywhere in world.
 
 *******************************************************************************/
+import cpsc2150.extendedConnectX.models.GameBoard;
 import java.util.Scanner;
 public class GameScreen
 {
@@ -38,7 +39,7 @@ public class GameScreen
                 userChoice = keyboard.nextInt();
             }
             newBoard.dropToken('X', userChoice);
-            System.out.println("c" + newBoard.Board[8][userChoice] + "c");
+            //System.out.println("c" + newBoard.Board[8][userChoice] + "c");
             System.out.println(newBoard.toString());
             System.out.println("Player O, what column do you want to place your marker in?");
             userChoice = keyboard.nextInt();
@@ -56,7 +57,7 @@ public class GameScreen
                 {
                     System.out.println("Column is full");
                 }
-                System.out.println("Player X, what column do you want to place your marker in?");
+                System.out.println("Player O, what column do you want to place your marker in?");
                 userChoice = keyboard.nextInt();
             }
             newBoard.dropToken('O', userChoice);
