@@ -191,10 +191,10 @@ default boolean checkDiagWin(BoardPosition pos, char p) {
     BoardPosition pos11 = new BoardPosition(row - 3, col + 3);
     BoardPosition pos12 = new BoardPosition(row - 2, col + 2);
     BoardPosition pos13 = new BoardPosition(row - 1, col + 1);
-    BoardPosition pos14 = new BoardPosition(row - 1, col + 1);
-    BoardPosition pos15 = new BoardPosition(row - 2, col + 2);
-    BoardPosition pos16 = new BoardPosition(row - 3, col + 3);
-    BoardPosition pos17 = new BoardPosition(row - 4, col + 4);
+    BoardPosition pos14 = new BoardPosition(row + 1, col - 1);
+    BoardPosition pos15 = new BoardPosition(row + 2, col - 2);
+    BoardPosition pos16 = new BoardPosition(row + 3, col - 3);
+    BoardPosition pos17 = new BoardPosition(row + 4, col - 4);
     if ((whatsAtPos(pos1) == p) && (whatsAtPos(pos2) == p) && (whatsAtPos(pos3) == p) && (whatsAtPos(pos4) == p) && (whatsAtPos(pos5) == p)) {
         return true;
     } 
