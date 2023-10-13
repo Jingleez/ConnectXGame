@@ -1,5 +1,3 @@
-package cpsc2150.extendedConnectX.models;
-
 /*GROUP MEMBER NAMES AND GITHUB USERNAMES SHOULD GO HERE
 Terance Harrison (Teranceh)
 Graham Frazier (Cgfrazi)
@@ -94,31 +92,8 @@ public interface IGameBoard {
 default boolean checkHorizWin(BoardPosition pos, char p) {
     int row = pos.getRow();
     int col = pos.getColumn();
-    if (row < 0 || row >= getNumRows() || col < 0 || col + 3 >= getNumColumns()) {
-        return false; // Invalid indices, no win possible
-    }
-
-    BoardPosition pos1 = new BoardPosition(row, col);
-    BoardPosition pos2 = new BoardPosition(row + 1, col);
-    BoardPosition pos3 = new BoardPosition(row + 2, col);
-    BoardPosition pos4 = new BoardPosition(row + 3, col);
-    BoardPosition pos5 = new BoardPosition(row - 1, col);
-    BoardPosition pos6 = new BoardPosition(row - 2, col);
-    BoardPosition pos7 = new BoardPosition(row - 3, col);
-    if ((whatsAtPos(pos1) == p) && (whatsAtPos(pos2) == p) && (whatsAtPos(pos3) == p) && (whatsAtPos(pos4) == p)) {
-        return true;
-    } else if ((whatsAtPos(pos1) == p) && (whatsAtPos(pos5) == p) && (whatsAtPos(pos6) == p) && (whatsAtPos(pos7) == p)) {
-        return true;
-    } else {
+    if (row < 0 || row + 4 >= getNumRows() || col < 0 || col >= getNumColumns()) {
         return false;
-    }
-}
-
-default boolean checkVertWin(BoardPosition pos, char p) {
-    int row = pos.getRow();
-    int col = pos.getColumn();
-    if (row < 0 || row + 3 >= getNumRows() || col < 0 || col >= getNumColumns()) {
-        return false; // Invalid indices, no win possible
     }
     /*
     System.out.println(Board[row][col]);
@@ -126,16 +101,72 @@ default boolean checkVertWin(BoardPosition pos, char p) {
     System.out.println(Board[row+2][col]);
     System.out.println(Board[row+3][col]);
      */
-    BoardPosition pos1 = new BoardPosition(row, col);
-    BoardPosition pos2 = new BoardPosition(row + 1, col);
-    BoardPosition pos3 = new BoardPosition(row + 2, col);
-    BoardPosition pos4 = new BoardPosition(row + 3, col);
-    BoardPosition pos5 = new BoardPosition(row - 1, col);
-    BoardPosition pos6 = new BoardPosition(row - 2, col);
-    BoardPosition pos7 = new BoardPosition(row - 3, col);
-    if ((Board[row][col] == p) && (Board[row + 1][col] == p) && (Board[row + 2][col] == p) && (Board[row + 3][col] == p)) {
+    BoardPosition pos1 = new BoardPosition(row, col - 4);
+    BoardPosition pos2 = new BoardPosition(row, col - 3);
+    BoardPosition pos3 = new BoardPosition(row, col - 2);
+    BoardPosition pos4 = new BoardPosition(row, col - 1);
+    BoardPosition pos5 = new BoardPosition(row, col);
+    BoardPosition pos6 = new BoardPosition(row, col + 1);
+    BoardPosition pos7 = new BoardPosition(row, col + 2);
+    BoardPosition pos8 = new BoardPosition(row, col + 3);
+    BoardPosition pos9 = new BoardPosition(row, col + 4);
+    if ((whatsAtPos(pos1) == p) && (whatsAtPos(pos2) == p) && (whatsAtPos(pos3) == p) && (whatsAtPos(pos4) == p) && (whatsAtPos(pos5) == p)) {
         return true;
-    } else {
+    } 
+    else if ((whatsAtPos(pos2) == p) && (whatsAtPos(pos3) == p) && (whatsAtPos(pos4) == p) && (whatsAtPos(pos5) == p) && (whatsAtPos(pos6) == p)) {
+        return true;
+    } 
+    else if ((whatsAtPos(pos3) == p) && (whatsAtPos(pos4) == p) && (whatsAtPos(pos5) == p) && (whatsAtPos(pos6) == p) && (whatsAtPos(pos7) == p)) {
+        return true;
+    }
+    else if ((whatsAtPos(pos4) == p) && (whatsAtPos(pos5) == p) && (whatsAtPos(pos6) == p) && (whatsAtPos(pos7) == p) && (whatsAtPos(pos8) == p)) {
+        return true;
+    } 
+    else if ((whatsAtPos(pos5) == p) && (whatsAtPos(pos6) == p) && (whatsAtPos(pos7) == p) && (whatsAtPos(pos8) == p) && (whatsAtPos(pos9) == p)) {
+        return true;
+    } 
+    else {
+        return false;
+    }
+}
+
+default boolean checkVertWin(BoardPosition pos, char p) {
+    int row = pos.getRow();
+    int col = pos.getColumn();
+    if (row < 0 || row + 4 >= getNumRows() || col < 0 || col >= getNumColumns()) {
+        return false;
+    }
+    /*
+    System.out.println(Board[row][col]);
+    System.out.println(Board[row+1][col]);
+    System.out.println(Board[row+2][col]);
+    System.out.println(Board[row+3][col]);
+     */
+    BoardPosition pos1 = new BoardPosition(row - 4, col);
+    BoardPosition pos2 = new BoardPosition(row - 3, col);
+    BoardPosition pos3 = new BoardPosition(row - 2, col);
+    BoardPosition pos4 = new BoardPosition(row - 1, col);
+    BoardPosition pos5 = new BoardPosition(row, col);
+    BoardPosition pos6 = new BoardPosition(row + 1, col);
+    BoardPosition pos7 = new BoardPosition(row + 2, col);
+    BoardPosition pos8 = new BoardPosition(row + 3, col);
+    BoardPosition pos9 = new BoardPosition(row + 4, col);
+    if ((whatsAtPos(pos1) == p) && (whatsAtPos(pos2) == p) && (whatsAtPos(pos3) == p) && (whatsAtPos(pos4) == p) && (whatsAtPos(pos5) == p)) {
+        return true;
+    } 
+    else if ((whatsAtPos(pos2) == p) && (whatsAtPos(pos3) == p) && (whatsAtPos(pos4) == p) && (whatsAtPos(pos5) == p) && (whatsAtPos(pos6) == p)) {
+        return true;
+    } 
+    else if ((whatsAtPos(pos3) == p) && (whatsAtPos(pos4) == p) && (whatsAtPos(pos5) == p) && (whatsAtPos(pos6) == p) && (whatsAtPos(pos7) == p)) {
+        return true;
+    }
+    else if ((whatsAtPos(pos4) == p) && (whatsAtPos(pos5) == p) && (whatsAtPos(pos6) == p) && (whatsAtPos(pos7) == p) && (whatsAtPos(pos8) == p)) {
+        return true;
+    } 
+    else if ((whatsAtPos(pos5) == p) && (whatsAtPos(pos6) == p) && (whatsAtPos(pos7) == p) && (whatsAtPos(pos8) == p) && (whatsAtPos(pos9) == p)) {
+        return true;
+    } 
+    else {
         return false;
     }
 }
@@ -143,26 +174,57 @@ default boolean checkVertWin(BoardPosition pos, char p) {
 default boolean checkDiagWin(BoardPosition pos, char p) {
     int row = pos.getRow();
     int col = pos.getColumn();
-    if (row < 0 || row >= getNumRows() || col < 0 || col + 3 >= getNumColumns()) {
-        return false; // Invalid indices, no win possible
+    if (row < 0 || row + 4 >= getNumRows() || col < 0 || col + 4 >= getNumColumns()) {
+        return false; 
     }
-
-    BoardPosition pos1 = new BoardPosition(row, col);
-    BoardPosition pos2 = new BoardPosition(row + 1, col);
-    BoardPosition pos3 = new BoardPosition(row + 2, col);
-    BoardPosition pos4 = new BoardPosition(row + 3, col);
-    BoardPosition pos5 = new BoardPosition(row - 1, col);
-    BoardPosition pos6 = new BoardPosition(row - 2, col);
-    BoardPosition pos7 = new BoardPosition(row - 3, col);
-    if ((Board[row][col] == p) && (Board[row + 1][col + 1] == p) && (Board[row + 2][col + 2] == p) && (Board[row + 3][col + 3] == p)) {
+    BoardPosition pos1 = new BoardPosition(row - 4, col - 4);
+    BoardPosition pos2 = new BoardPosition(row - 3, col - 3);
+    BoardPosition pos3 = new BoardPosition(row - 2, col - 2);
+    BoardPosition pos4 = new BoardPosition(row - 1, col - 1);
+    BoardPosition pos5 = new BoardPosition(row, col);
+    BoardPosition pos6 = new BoardPosition(row + 1, col + 1);
+    BoardPosition pos7 = new BoardPosition(row + 2, col + 2);
+    BoardPosition pos8 = new BoardPosition(row + 3, col + 3);
+    BoardPosition pos9 = new BoardPosition(row + 4, col + 4);
+    BoardPosition pos10 = new BoardPosition(row - 4, col + 4);
+    BoardPosition pos11 = new BoardPosition(row - 3, col + 3);
+    BoardPosition pos12 = new BoardPosition(row - 2, col + 2);
+    BoardPosition pos13 = new BoardPosition(row - 1, col + 1);
+    BoardPosition pos14 = new BoardPosition(row - 1, col + 1);
+    BoardPosition pos15 = new BoardPosition(row - 2, col + 2);
+    BoardPosition pos16 = new BoardPosition(row - 3, col + 3);
+    BoardPosition pos17 = new BoardPosition(row - 4, col + 4);
+    if ((whatsAtPos(pos1) == p) && (whatsAtPos(pos2) == p) && (whatsAtPos(pos3) == p) && (whatsAtPos(pos4) == p) && (whatsAtPos(pos5) == p)) {
         return true;
-    } else if ((Board[row][col] == p) && (Board[row - 1][col - 1] == p) && (Board[row - 2][col - 2] == p) && (Board[row - 3][col - 3] == p)) {
+    } 
+    else if ((whatsAtPos(pos2) == p) && (whatsAtPos(pos3) == p) && (whatsAtPos(pos4) == p) && (whatsAtPos(pos5) == p) && (whatsAtPos(pos6) == p)) {
         return true;
-    } else if ((Board[row][col] == p) && (Board[row - 1][col + 1] == p) && (Board[row - 2][col + 2] == p) && (Board[row - 3][col + 3] == p)) {
+    } 
+    else if ((whatsAtPos(pos3) == p) && (whatsAtPos(pos4) == p) && (whatsAtPos(pos5) == p) && (whatsAtPos(pos6) == p) && (whatsAtPos(pos7) == p)) {
         return true;
-    } else if ((Board[row][col] == p) && (Board[row + 1][col - 1] == p) && (Board[row + 2][col - 2] == p) && (Board[row + 3][col - 3] == p)) {
+    }
+    else if ((whatsAtPos(pos4) == p) && (whatsAtPos(pos5) == p) && (whatsAtPos(pos6) == p) && (whatsAtPos(pos7) == p) && (whatsAtPos(pos8) == p)) {
         return true;
-    } else {
+    } 
+    else if ((whatsAtPos(pos5) == p) && (whatsAtPos(pos6) == p) && (whatsAtPos(pos7) == p) && (whatsAtPos(pos8) == p) && (whatsAtPos(pos9) == p)) {
+        return true;
+    } 
+    else if ((whatsAtPos(pos10) == p) && (whatsAtPos(pos11) == p) && (whatsAtPos(pos12) == p) && (whatsAtPos(pos13) == p) && (whatsAtPos(pos5) == p)) {
+        return true;
+    } 
+    else if ((whatsAtPos(pos11) == p) && (whatsAtPos(pos12) == p) && (whatsAtPos(pos13) == p) && (whatsAtPos(pos5) == p) && (whatsAtPos(pos14) == p)) {
+        return true;
+    } 
+    else if ((whatsAtPos(pos12) == p) && (whatsAtPos(pos13) == p) && (whatsAtPos(pos5) == p) && (whatsAtPos(pos14) == p) && (whatsAtPos(pos15) == p)) {
+        return true;
+    }
+    else if ((whatsAtPos(pos13) == p) && (whatsAtPos(pos5) == p) && (whatsAtPos(pos14) == p) && (whatsAtPos(pos15) == p) && (whatsAtPos(pos16) == p)) {
+        return true;
+    } 
+    else if ((whatsAtPos(pos5) == p) && (whatsAtPos(pos14) == p) && (whatsAtPos(pos15) == p) && (whatsAtPos(pos16) == p) && (whatsAtPos(pos17) == p)) {
+        return true;
+    } 
+    else {
         return false;
     }
 }
