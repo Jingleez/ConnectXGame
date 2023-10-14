@@ -13,8 +13,7 @@ abstract class AbsGameBoard implements IGameBoard {
      *
      * @pre None Required
      *
-     * @post
-     *
+     * @post str accurately represents the arrangement of tokens on the board, with the row and column labels, without altering the game board's state (self = #self).
      *
      * @return The string representation of the entire gameboard
      */
@@ -26,11 +25,8 @@ abstract class AbsGameBoard implements IGameBoard {
         StringBuilder boardString = new StringBuilder(); // Create a StringBuilder for the string representation.
         // Before going to next row, adding a newline first
         boardString.append("|");
-        for (int col=0; col < getNumColumns(); col++) {
-            boardString.append(col + "|");
-        }
+        for (int col=0; col < getNumColumns(); col++) { boardString.append(col + "|"); }
         boardString.append("\n");
-
         // This loop adds row labels and board contents
         for (int row = getNumRows() - 1; row > -1; row--) {
             for (int col = 0; col < getNumColumns(); col++) {
@@ -41,7 +37,6 @@ abstract class AbsGameBoard implements IGameBoard {
             // Before going to next row, adding a newline first
             boardString.append("\n");
         }
-
         // This converts the StringBuilder to a string and returns the final string representing the board.
         return boardString.toString();
     }
