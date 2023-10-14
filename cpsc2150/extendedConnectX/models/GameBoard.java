@@ -10,7 +10,9 @@ Rowan Froeschner (Rojofroe)
 
 /**
  * this class holds the gameboard and its functions like checking for wins
- * @
+ * @Invariant maxRow > 0 AND maxColumn > 0 AND winNum > 0
+ *
+ * @corresponds maxRow = maxRow AND maxCol = maxCol AND winNum = winNum AND Board = board
  */
 public class GameBoard extends AbsGameBoard
 {
@@ -93,28 +95,17 @@ public class GameBoard extends AbsGameBoard
         return Board[pos.getRow()][pos.getColumn()];
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public int getNumRows() {
         return maxRow;
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public int getNumColumns() {
         return maxColumn;
     }
 
-    /**
-     *
-     * @return
-     */
+
     @Override
     public int getNumToWin() {
         return winNum;

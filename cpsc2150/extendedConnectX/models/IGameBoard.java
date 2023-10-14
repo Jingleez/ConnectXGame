@@ -43,7 +43,7 @@ public interface IGameBoard {
      * @param c the column to drop the token in
      *
      * @pre [board is not full]
-     * @post  maxCol = #maxCol AND maxRow = #maxRow AND board = [the first free spot of column c gets set to player p's
+     * @post  maxCol = #maxCol AND maxRow = #maxRow AND board = #board + [the first free spot of column c gets set to player p's
      * token]
      */
     public void dropToken(char p, int c);
@@ -290,12 +290,16 @@ default boolean checkForWin(int c) {
     public char whatsAtPos(BoardPosition pos);
 
     /**
-     * This function decides whether the selected player's token ('X' or 'O') occupies the specified position on the
+     * This function shows whether the selected player's token ('X' or 'O') occupies the specified position on the
      * gameboard
      *
-     * @param pos
-     * @param player
-     * @return
+     * @param pos the position to check for which player
+     * @param player the character co check for
+     * @return true OR false
+     *
+     * @pre none
+     * @post board = #board  AND maxCol = #maxCol AND maxRow = #maxRow AND winNum = #winNum AND isPlayerAtPos = (true
+     * [if player matches the token in board[pos]] OR false [if the two don't match])
      */
     default boolean isPlayerAtPos(BoardPosition pos, char player) {
         return whatsAtPos(pos) == player;
@@ -304,21 +308,30 @@ default boolean checkForWin(int c) {
     /**
      * returns the number of rows in the GameBoard
      *
-     * @return
+     * @return the number of rows in the board
+     *
+     * @pre none
+     * @post board = #board  AND maxCol = #maxCol AND maxRow = #maxRow AND winNum = #winNum AND getNumRows = maxRow
      */
     public int getNumRows();
 
     /**
      * returns the number of columns in the GameBoard
      *
-     * @return
+     * @return the number of cols in the board
+     *
+     * @pre none
+     * @post board = #board  AND maxCol = #maxCol AND maxRow = #maxRow AND winNum = #winNum AND getNumColumns = maxCol
      */
     public int getNumColumns();
 
     /**
      * returns the number of tokens in a row needed to win the game
      *
-     * @return
+     * @return the number of tokens in a row required to win
+     *
+     * @pre none
+     * @post board = #board  AND maxCol = #maxCol AND maxRow = #maxRow AND winNum = #winNum AND getNumToWin = winNum
      */
     public int getNumToWin();
 }

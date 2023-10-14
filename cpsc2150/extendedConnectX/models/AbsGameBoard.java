@@ -13,7 +13,8 @@ abstract class AbsGameBoard implements IGameBoard {
      *
      * @pre None Required
      *
-     * @post str accurately represents the arrangement of tokens on the board, with the row and column labels, without altering the game board's state (self = #self).
+     * @post str accurately represents the arrangement of tokens on the board, with the row and column labels, without
+     * altering the game board's state (self = #self).
      *
      * @return The string representation of the entire gameboard
      */
