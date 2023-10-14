@@ -58,29 +58,32 @@ public interface IGameBoard {
      * @post board = #board  AND maxCol = #maxCol AND maxRow = #maxRow AND winNum = #winNum AND checkForWin = (trye [if
      * the last token caused someone to win] OR false [if no one won so far])
      */
-    default boolean checkForWin(int c) {
+default boolean checkForWin(int c) {
     BoardPosition insert = new BoardPosition(0, c);
     char piece = ' ';
+    int row = 0;
     for (int i = 0; i < getNumRows(); i++) {
-        int row = insert.getRow();
+        row = insert.getRow();
         if (whatsAtPos(insert) == 'O') {
-            piece = 'O';
-            break;
-        } else if (whatsAtPos(insert) == 'X') {
-            piece = 'X';
+            row++;
+            insert = new BoardPosition(row, insert.getColumn());
+        } 
+        else if (whatsAtPos(insert) == 'X') {
+            row++;
+            insert = new BoardPosition(row, insert.getColumn());
+        }
+        else {
+            insert = new BoardPosition(row - 1, insert.getColumn());
+            piece = whatsAtPos(insert);
             break;
         }
-        row = insert.getRow() + 1; // Update the row separately
-        insert = new BoardPosition(row, insert.getColumn());
     }
-    System.out.println(insert.getRow());
-    
     if (checkHorizWin(insert, piece) || checkVertWin(insert, piece) || checkDiagWin(insert, piece)) {
         return true;
     } else {
         return false;
     }
-    }
+}
 
 
 
@@ -220,7 +223,7 @@ public interface IGameBoard {
     default boolean checkDiagWin(BoardPosition pos, char p) {
         int row = pos.getRow();
         int col = pos.getColumn();
-        if (row < 0 || row + 4 >= getNumRows() || col < 0 || col + 4 >= getNumColumns()) {
+        if (row < 0 || row >= getNumRows() || col < 0 || col >= getNumColumns()) {
             return false;
         }
         BoardPosition pos1 = new BoardPosition(row - 4, col - 4);
