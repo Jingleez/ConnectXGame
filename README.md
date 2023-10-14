@@ -19,4 +19,4 @@ Due: 10-13 @ 11:59 PM
 Graham Frazier: created our driver/gamescreen.java file, and fixed the requirements analysis from project one for this project. \
 Kalyaan Narnamalpuram ( Jingleez ) - Wrote code for toString() in AbsGameBoard.java, Helped with writing UML class diagrams, Wrote code for equals(Object) and toString() in BoardPosition.java\
 Terance Harrison (Teranceh) - \
-Rowan Froeschner (Rojofroe) - 
+Rowan Froeschner (Rojofroe) - Played some role in completing or debugging most of the functions, got program running, most work completed was in Gameboard with functions like dropToken, and the checkers.
