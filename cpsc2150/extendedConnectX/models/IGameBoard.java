@@ -238,7 +238,7 @@ default boolean checkForWin(int c) {
         BoardPosition pos10 = new BoardPosition(row - 4, col + 4);
         BoardPosition pos11 = new BoardPosition(row - 3, col + 3);
         BoardPosition pos12 = new BoardPosition(row - 2, col + 2);
-        BoardPosition pos13 = new BoardPosition(row + 1, col - 1);
+        BoardPosition pos13 = new BoardPosition(row - 1, col + 1);
         BoardPosition pos14 = new BoardPosition(row + 1, col - 1);
         BoardPosition pos15 = new BoardPosition(row + 2, col - 2);
         BoardPosition pos16 = new BoardPosition(row + 3, col - 3);
