@@ -10,7 +10,7 @@ Rowan Froeschner (Rojofroe)
 
 /**
  * this class holds the gameboard and its functions like checking for wins
- * @Invariant maxRow > 0 AND maxColumn > 0 AND winNum > 0
+ * @Invariant maxRow > 0 AND maxColumn > 0 AND winNum > 0 AND [no blank spaces below a token]
  *
  * @corresponds maxRow = maxRow AND maxCol = maxCol AND winNum = winNum AND Board = board
  */

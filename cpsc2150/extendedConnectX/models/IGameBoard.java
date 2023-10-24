@@ -7,13 +7,13 @@ Rowan Froeschner (Rojofroe)
  */
 
 /**
- * @initialization ensures: an  empty board of size maxRow x maxColumn
+ * @initialization ensures: an empty board of size maxRow x maxColumn
  *
  * @defines maxRow: z
  * @defines maxCol: z
  * @defines winNum: z
  *
- * @constraints maxRow > 0 AND maxCol > 0
+ * @constraints maxRow > 0 AND maxCol > 0 AND [no empty spaces below a player token]
  */
 public interface IGameBoard {
     /**
