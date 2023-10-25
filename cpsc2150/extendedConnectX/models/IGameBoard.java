@@ -58,32 +58,42 @@ public interface IGameBoard {
      * @post board = #board  AND maxCol = #maxCol AND maxRow = #maxRow AND winNum = #winNum AND checkForWin = (trye [if
      * the last token caused someone to win] OR false [if no one won so far])
      */
-default boolean checkForWin(int c) {
-    BoardPosition insert = new BoardPosition(0, c);
-    char piece = ' ';
-    int row = 0;
-    for (int i = 0; i < getNumRows(); i++) {
-        row = insert.getRow();
-        if (whatsAtPos(insert) == 'O') {
-            row++;
-            insert = new BoardPosition(row, insert.getColumn());
-        } 
-        else if (whatsAtPos(insert) == 'X') {
-            row++;
-            insert = new BoardPosition(row, insert.getColumn());
+    default boolean checkForWin(int c) {
+        BoardPosition insert = new BoardPosition(0, c);
+        char piece = ' ';
+        int row = 0;
+        for (int i = 0; i < getNumRows(); i++) {
+            row = insert.getRow();
+            if (whatsAtPos(insert) != ' ') {
+                row++;
+                insert = new BoardPosition(row, insert.getColumn());
+            }
+            else {
+                insert = new BoardPosition((row - 1), insert.getColumn());
+                piece = whatsAtPos(insert);
+                break;
+            }
+            /*
+            if (whatsAtPos(insert) == 'O') {
+                row++;
+                insert = new BoardPosition(row, insert.getColumn());
+            }
+            else if (whatsAtPos(insert) == 'X') {
+                row++;
+                insert = new BoardPosition(row, insert.getColumn());
+            }
+            else {
+                insert = new BoardPosition(row - 1, insert.getColumn());
+                piece = whatsAtPos(insert);
+                break;
+            }*/
         }
-        else {
-            insert = new BoardPosition(row - 1, insert.getColumn());
-            piece = whatsAtPos(insert);
-            break;
+        if (checkHorizWin(insert, piece) || checkVertWin(insert, piece) || checkDiagWin(insert, piece)) {
+            return true;
+        } else {
+            return false;
         }
     }
-    if (checkHorizWin(insert, piece) || checkVertWin(insert, piece) || checkDiagWin(insert, piece)) {
-        return true;
-    } else {
-        return false;
-    }
-}
 
 
 
@@ -98,6 +108,13 @@ default boolean checkForWin(int c) {
      * board is full] or False [if board is not full])
      */
     default boolean checkTie() {
+        for (int i = 0; i < getNumColumns(); i++) {
+            if (checkIfFree(i)) {
+                return false;
+            }
+        }
+        return true;
+        /*
         for (int i = 0; i < getNumRows(); i++) {
             for (int j = 0; j < getNumColumns(); j++) {
                 BoardPosition pos = new BoardPosition(i, j);
@@ -107,6 +124,7 @@ default boolean checkForWin(int c) {
             }
         }
         return true;
+         */
     }
 
     /**
