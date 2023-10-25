@@ -141,6 +141,29 @@ public interface IGameBoard {
      * horizontally])
      */
     default boolean checkHorizWin(BoardPosition pos, char p) {
+        boolean won = true;
+        int win = getNumToWin() - 1;
+        BoardPosition check = new BoardPosition(pos.getRow(), pos.getColumn());
+        for (int i = 0; i < getNumToWin(); i++) {
+            won = true;
+            check = new BoardPosition(pos.getRow(), pos.getColumn());
+            if (((pos.getColumn() - win) + i) >= 0 && ((pos.getColumn() - win) + i) < getNumColumns()) {
+                for (int j = 0; j < getNumToWin(); j++) {
+                    check = new BoardPosition(pos.getRow(), ((pos.getColumn() - win) + i + j));
+                    if ((check.getColumn() + 1) > getNumColumns() || !isPlayerAtPos(check, p)) {
+                        won = false;
+                        break;
+                    }
+                }
+            }
+            else { won = false; }
+            if (won) {
+                break;
+            }
+        }
+
+        return won;
+        /*
         int row = pos.getRow();
         int col = pos.getColumn();
         if (row < 0 || row + 4 >= getNumRows() || col < 0 || col >= getNumColumns()) {
@@ -174,6 +197,7 @@ public interface IGameBoard {
         else {
             return false;
         }
+         */
     }
 
     /**
@@ -190,6 +214,28 @@ public interface IGameBoard {
      * vertically])
      */
     default boolean checkVertWin(BoardPosition pos, char p) {
+        boolean won = true;
+        int win = getNumToWin() - 1;
+        BoardPosition check = new BoardPosition(pos.getRow(), pos.getColumn());
+        for (int i = 0; i < getNumToWin(); i++) {
+            won = true;
+            check = new BoardPosition(pos.getRow(), pos.getColumn());
+            if (((pos.getRow() - win) + i) >= 0 && ((pos.getRow() - win) + i) < getNumRows()) {
+                for (int j = 0; j < getNumToWin(); j++) {
+                    check = new BoardPosition(((pos.getRow() - win) + i + j), pos.getColumn());
+                    if ((check.getRow() + 1) > getNumRows() || !isPlayerAtPos(check, p)) {
+                        won = false;
+                        break;
+                    }
+                }
+            }
+            else { won = false; }
+            if (won) {
+                break;
+            }
+        }
+        return won;
+        /*
         int row = pos.getRow();
         int col = pos.getColumn();
         if (row < 0 || row + 4 >= getNumRows() || col < 0 || col >= getNumColumns()) {
@@ -223,6 +269,7 @@ public interface IGameBoard {
         else {
             return false;
         }
+         */
     }
 
     /**
