@@ -7,13 +7,13 @@ Rowan Froeschner (Rojofroe)
  */
 
 /**
- * @initialization ensures: an empty board of size maxRow x maxColumn
+ * @initialization ensures: an empty board of size Row x Column
  *
- * @defines maxRow: z
- * @defines maxCol: z
- * @defines winNum: z
+ * @defines Row: z
+ * @defines Col: z
+ * @defines Win: z
  *
- * @constraints maxRow > 0 AND maxCol > 0 AND [no empty spaces below a player token]
+ * @constraints Row > 0 AND Col > 0 AND [no empty spaces below a player token]
  */
 public interface IGameBoard {
     /**
@@ -23,7 +23,7 @@ public interface IGameBoard {
      * @return true or false
      *
      * @pre none
-     * @post board = #board  AND maxCol = #maxCol AND maxRow = #maxRow AND winNum = #winNum AND checkifFree = (true [if
+     * @post board = #board  AND Col = #Col AND Row = #Row AND win = #Win AND checkifFree = (true [if
      * the column has space for another token] OR false [if the column is full])
      */
     default boolean checkIfFree(int c) {
@@ -43,8 +43,8 @@ public interface IGameBoard {
      * @param c the column to drop the token in
      *
      * @pre [board is not full]
-     * @post  maxCol = #maxCol AND maxRow = #maxRow AND board = #board + [the first free spot of column c gets set to player p's
-     * token]
+     * @post  Col = #Col AND Row = #Row AND Win = #Win AND board = #board + [the first free spot of column c gets set to
+     * player p's token]
      */
     public void dropToken(char p, int c);
 
@@ -55,7 +55,7 @@ public interface IGameBoard {
      * @return true or false
      *
      * @pre none
-     * @post board = #board  AND maxCol = #maxCol AND maxRow = #maxRow AND winNum = #winNum AND checkForWin = (trye [if
+     * @post board = #board  AND Col = #Col AND Row = #Row AND Win = #Win AND checkForWin = (true [if
      * the last token caused someone to win] OR false [if no one won so far])
      */
     default boolean checkForWin(int c) {
@@ -104,8 +104,8 @@ public interface IGameBoard {
      * @return true or false
      *
      * @pre none
-     * @post board = #board  AND maxCol = #maxCol AND maxRow = #maxRow AND winNum = #winNum AND checkTie = (true [if the
-     * board is full] or False [if board is not full])
+     * @post board = #board  AND Col = #Col AND Row = #Row AND Win = #Win AND checkTie = (true [if the
+     * board is full] OR False [if board is not full])
      */
     default boolean checkTie() {
         for (int i = 0; i < getNumColumns(); i++) {
@@ -136,8 +136,8 @@ public interface IGameBoard {
      * @return true or false
      *
      * @pre none
-     * @post board = #board  AND maxCol = #maxCol AND maxRow = #maxRow AND winNum = #winNum and checkHorizWin = (true
-     * [if there are winNum of the same tokens in a row horizontally] OR false [if there is not winNum tokens in a row
+     * @post board = #board  AND Col = #Col AND Row = #Row AND Win = #Win and checkHorizWin = (true
+     * [if there are Win of the same tokens in a row horizontally] OR false [if there is not Win tokens in a row
      * horizontally])
      */
     default boolean checkHorizWin(BoardPosition pos, char p) {
@@ -185,8 +185,8 @@ public interface IGameBoard {
      * @return true or false
      *
      * @pre none
-     * @post board = #board  AND maxCol = #maxCol AND maxRow = #maxRow AND winNum = #winNum and checkVertWin = (true
-     * [if there are winNum of the same tokens in a row vertically] OR false [if there is not winNum tokens in a row
+     * @post board = #board  AND Col = #Col AND Row = #Row AND Win = #Win and checkVertWin = (true
+     * [if there are Win of the same tokens in a row vertically] OR false [if there is not Win tokens in a row
      * vertically])
      */
     default boolean checkVertWin(BoardPosition pos, char p) {
@@ -234,8 +234,8 @@ public interface IGameBoard {
      * @return true or false
      *
      * @pre none
-     * @post board = #board  AND maxCol = #maxCol AND maxRow = #maxRow AND winNum = #winNum and checkHorizWin = (true
-     * [if there are winNum of the same tokens in a row diagonally] OR false [if there is not winNum tokens in a row
+     * @post board = #board  AND Col = #Col AND Row = #Row AND Win = #Win and checkHorizWin = (true
+     * [if there are Win of the same tokens in a row diagonally] OR false [if there is not Win tokens in a row
      * diagonally])
      */
     default boolean checkDiagWin(BoardPosition pos, char p) {
@@ -303,7 +303,7 @@ public interface IGameBoard {
      * @return what is at the board position pos
      *
      * @pre none
-     * @post board = #board  AND maxCol = #maxCol AND maxRow = #maxRow AND winNum = #winNum AND whatsAtPos = board[pos]
+     * @post board = #board  AND Col = #Col AND Row = #Row AND Win = #Win AND whatsAtPos = board[pos]
      */
     public char whatsAtPos(BoardPosition pos);
 
@@ -316,7 +316,7 @@ public interface IGameBoard {
      * @return true OR false
      *
      * @pre none
-     * @post board = #board  AND maxCol = #maxCol AND maxRow = #maxRow AND winNum = #winNum AND isPlayerAtPos = (true
+     * @post board = #board  AND Col = #Col AND Row = #Row AND Win = #Win AND isPlayerAtPos = (true
      * [if player matches the token in board[pos]] OR false [if the two don't match])
      */
     default boolean isPlayerAtPos(BoardPosition pos, char player) {
@@ -329,7 +329,7 @@ public interface IGameBoard {
      * @return the number of rows in the board
      *
      * @pre none
-     * @post board = #board  AND maxCol = #maxCol AND maxRow = #maxRow AND winNum = #winNum AND getNumRows = maxRow
+     * @post board = #board  AND Col = #Col AND Row = #Row AND Win = #Win AND getNumRows = Row
      */
     public int getNumRows();
 
@@ -339,7 +339,7 @@ public interface IGameBoard {
      * @return the number of cols in the board
      *
      * @pre none
-     * @post board = #board  AND maxCol = #maxCol AND maxRow = #maxRow AND winNum = #winNum AND getNumColumns = maxCol
+     * @post board = #board  AND Col = #Col AND Row = #Row AND Win = #Win AND getNumColumns = Col
      */
     public int getNumColumns();
 
@@ -349,7 +349,7 @@ public interface IGameBoard {
      * @return the number of tokens in a row required to win
      *
      * @pre none
-     * @post board = #board  AND maxCol = #maxCol AND maxRow = #maxRow AND winNum = #winNum AND getNumToWin = winNum
+     * @post board = #board  AND Col = #Col AND Row = #Row AND Win = #Win AND getNumToWin = Win
      */
     public int getNumToWin();
 }

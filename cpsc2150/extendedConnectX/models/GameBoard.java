@@ -12,7 +12,7 @@ Rowan Froeschner (Rojofroe)
  * this class holds the gameboard and its functions like checking for wins
  * @Invariant maxRow > 0 AND maxColumn > 0 AND winNum > 0 AND [no blank spaces below a token]
  *
- * @corresponds maxRow = maxRow AND maxCol = maxCol AND winNum = winNum AND Board = board
+ * @corresponds maxRow = Row AND maxCol = Col AND winNum = Win AND Board = board
  */
 public class GameBoard extends AbsGameBoard
 {
@@ -32,8 +32,12 @@ public class GameBoard extends AbsGameBoard
      * @post Initializes a new game board with all the positions containing blank spaces.
      * 
      */
+    //public GameBoard(int Row, int Col, int win)
     public GameBoard()
     {
+        //maxRow = Row;
+        //maxColumn = Col;
+        //winNum = Win
         Board = new char[maxRow][maxColumn];
         for (int row = 0; row < maxRow; row++) {
             for (int col = 0; col < maxColumn; col++) {
