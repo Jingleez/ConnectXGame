@@ -10,9 +10,9 @@ Rowan Froeschner (Rojofroe)
 
 /**
  * this class holds the gameboard and its functions like checking for wins
- * @Invariant maxRow > 0 AND maxColumn > 0 AND winNum > 0 AND [no blank spaces below a token]
+ * @Invariant maxRow > 0 AND maxColumn > 0 AND winNum > 0 AND [no empty spaces below a token]
  *
- * @corresponds maxRow = Row AND maxCol = Col AND winNum = Win AND Board = board
+ * @corresponds maxRow = Row AND maxCol = Col AND winNum = Win AND Board = self
  */
 public class GameBoard extends AbsGameBoard
 {

@@ -7,7 +7,7 @@ Rowan Froeschner (Rojofroe)
  */
 
 /**
- * @initialization ensures: an empty board of size Row x Column
+ * @initialization ensures: a game board of size Row x Column initialized to empty characters
  *
  * @defines Row: z
  * @defines Col: z
@@ -23,7 +23,7 @@ public interface IGameBoard {
      * @return true or false
      *
      * @pre none
-     * @post board = #board  AND Col = #Col AND Row = #Row AND win = #Win AND checkifFree = (true [if
+     * @post self = #self  AND Col = #Col AND Row = #Row AND win = #Win AND checkifFree = (true [if
      * the column has space for another token] OR false [if the column is full])
      */
     default boolean checkIfFree(int c) {
@@ -37,13 +37,13 @@ public interface IGameBoard {
     }
 
     /**
-     * This function places a token in a specific column, allowing it to drop until it collides with amother token
+     * This function places a token in a specific column, allowing it to drop until it collides with another token
      *
      * @param p the character representing the player
      * @param c the column to drop the token in
      *
-     * @pre [board is not full]
-     * @post  Col = #Col AND Row = #Row AND Win = #Win AND board = #board + [the first free spot of column c gets set to
+     * @pre [the game board is not full]
+     * @post  Col = #Col AND Row = #Row AND Win = #Win AND self = #self + [the first free spot of column c gets set to
      * player p's token]
      */
     public void dropToken(char p, int c);
@@ -54,25 +54,25 @@ public interface IGameBoard {
      * @param c the column of the last placed token
      * @return true or false
      *
-     * @pre none
-     * @post board = #board  AND Col = #Col AND Row = #Row AND Win = #Win AND checkForWin = (true [if
+     * @pre [the game board can not be empty]
+     * @post self = #self  AND Col = #Col AND Row = #Row AND Win = #Win AND checkForWin = (true [if
      * the last token caused someone to win] OR false [if no one won so far])
      */
     default boolean checkForWin(int c) {
         BoardPosition insert = new BoardPosition(0, c);
         char piece = ' ';
         int row = 0;
-        for (int i = 0; i < getNumRows(); i++) {
-            row = insert.getRow();
-            if (whatsAtPos(insert) != ' ') {
-                row++;
-                insert = new BoardPosition(row, insert.getColumn());
-            }
-            else {
-                insert = new BoardPosition((row - 1), insert.getColumn());
-                piece = whatsAtPos(insert);
-                break;
-            }
+        if (checkIfFree(c)) {
+            for (int i = 0; i < getNumRows(); i++) {
+                row = insert.getRow();
+                if (whatsAtPos(insert) != ' ') {
+                    row++;
+                    insert = new BoardPosition(row, insert.getColumn());
+                } else {
+                    insert = new BoardPosition((row - 1), insert.getColumn());
+                    piece = whatsAtPos(insert);
+                    break;
+                }
             /*
             if (whatsAtPos(insert) == 'O') {
                 row++;
@@ -87,7 +87,9 @@ public interface IGameBoard {
                 piece = whatsAtPos(insert);
                 break;
             }*/
+            }
         }
+        else { insert = new BoardPosition((getNumRows() - 1), c); }
         if (checkHorizWin(insert, piece) || checkVertWin(insert, piece) || checkDiagWin(insert, piece)) {
             return true;
         } else {
@@ -104,8 +106,8 @@ public interface IGameBoard {
      * @return true or false
      *
      * @pre none
-     * @post board = #board  AND Col = #Col AND Row = #Row AND Win = #Win AND checkTie = (true [if the
-     * board is full] OR False [if board is not full])
+     * @post self = #self  AND Col = #Col AND Row = #Row AND Win = #Win AND checkTie = (true [if the game board is full]
+     * OR False [if game board is not full])
      */
     default boolean checkTie() {
         for (int i = 0; i < getNumColumns(); i++) {
@@ -136,18 +138,18 @@ public interface IGameBoard {
      * @return true or false
      *
      * @pre none
-     * @post board = #board  AND Col = #Col AND Row = #Row AND Win = #Win and checkHorizWin = (true
-     * [if there are Win of the same tokens in a row horizontally] OR false [if there is not Win tokens in a row
-     * horizontally])
+     * @post self = #self  AND Col = #Col AND Row = #Row AND Win = #Win and checkHorizWin = (true
+     * [if there are Win of the same tokens consecutively horizontally] OR false [if there are not Win tokens
+     * consecutively horizontally])
      */
     default boolean checkHorizWin(BoardPosition pos, char p) {
-        boolean won = true;
+        boolean won = false;
         int win = getNumToWin() - 1;
         BoardPosition check = new BoardPosition(pos.getRow(), pos.getColumn());
         for (int i = 0; i < getNumToWin(); i++) {
             won = true;
             check = new BoardPosition(pos.getRow(), pos.getColumn());
-            if (((pos.getColumn() - win) + i) >= 0 && ((pos.getColumn() - win) + i) < getNumColumns()) {
+            if (((pos.getColumn() - win) + i) >= 0 && (pos.getColumn() + i) < getNumColumns()) {
                 for (int j = 0; j < getNumToWin(); j++) {
                     check = new BoardPosition(pos.getRow(), ((pos.getColumn() - win) + i + j));
                     if ((check.getColumn() + 1) > getNumColumns() || !isPlayerAtPos(check, p)) {
@@ -209,8 +211,8 @@ public interface IGameBoard {
      * @return true or false
      *
      * @pre none
-     * @post board = #board  AND Col = #Col AND Row = #Row AND Win = #Win and checkVertWin = (true
-     * [if there are Win of the same tokens in a row vertically] OR false [if there is not Win tokens in a row
+     * @post self = #self  AND Col = #Col AND Row = #Row AND Win = #Win and checkVertWin = (true
+     * [if there are Win of the same tokens consecutively vertically] OR false [if there is not Win tokens consecutively
      * vertically])
      */
     default boolean checkVertWin(BoardPosition pos, char p) {
@@ -220,7 +222,7 @@ public interface IGameBoard {
         for (int i = 0; i < getNumToWin(); i++) {
             won = true;
             check = new BoardPosition(pos.getRow(), pos.getColumn());
-            if (((pos.getRow() - win) + i) >= 0 && ((pos.getRow() - win) + i) < getNumRows()) {
+            if (((pos.getRow() - win) + i) >= 0 && (pos.getRow() + i) < getNumRows()) {
                 for (int j = 0; j < getNumToWin(); j++) {
                     check = new BoardPosition(((pos.getRow() - win) + i + j), pos.getColumn());
                     if ((check.getRow() + 1) > getNumRows() || !isPlayerAtPos(check, p)) {
@@ -281,11 +283,92 @@ public interface IGameBoard {
      * @return true or false
      *
      * @pre none
-     * @post board = #board  AND Col = #Col AND Row = #Row AND Win = #Win and checkHorizWin = (true
-     * [if there are Win of the same tokens in a row diagonally] OR false [if there is not Win tokens in a row
+     * @post self = #self  AND Col = #Col AND Row = #Row AND Win = #Win and checkHorizWin = (true
+     * [if there are Win of the same tokens consecutively diagonally] OR false [if there is not Win tokens consecutively
      * diagonally])
      */
     default boolean checkDiagWin(BoardPosition pos, char p) {
+        boolean won = true;
+        int win = getNumToWin() - 1;
+        BoardPosition check = new BoardPosition(pos.getRow(), pos.getColumn());
+        // checks down and to the left
+        for (int i = 0; i < getNumToWin(); i++) {
+            won = true;
+            check = new BoardPosition(pos.getRow(), pos.getColumn());
+            if (((pos.getRow() - win) + i) >= 0 && (pos.getRow() + i) < getNumRows() && ((pos.getColumn() - win) + i) >= 0 && (pos.getColumn() + i) < getNumColumns()) {
+                for (int j = 0; j < getNumToWin(); j++) {
+                    check = new BoardPosition(((pos.getRow() - win) + i + j), ((pos.getColumn() - win) + i + j));
+                    if ((check.getRow() + 1) > getNumRows() || !isPlayerAtPos(check, p)) {
+                        won = false;
+                        break;
+                    }
+                }
+            }
+            else { won = false; }
+            if (won) {
+                return true;
+            }
+        }
+
+        // checks down and to the right
+        for (int i = 0; i < getNumToWin(); i++) {
+            won = true;
+            check = new BoardPosition(pos.getRow(), pos.getColumn());
+            if (((pos.getRow() - win) + i) >= 0 && (pos.getRow() + i) < getNumRows() && ((pos.getColumn() + win) - i) <getNumColumns() && (pos.getColumn() - i) >= 0) {
+                for (int j = 0; j < getNumToWin(); j++) {
+                    check = new BoardPosition(((pos.getRow() - win) + i + j), ((pos.getColumn() + win) - i - j));
+                    if ((check.getRow() + 1) > getNumRows() || !isPlayerAtPos(check, p)) {
+                        won = false;
+                        break;
+                    }
+                }
+            }
+            else { won = false; }
+            if (won) {
+                return true;
+            }
+        }
+
+        //checks up to the left
+        for (int i = 0; i < getNumToWin(); i++) {
+            won = true;
+            check = new BoardPosition(pos.getRow(), pos.getColumn());
+            if (((pos.getRow() + win) - i) < getNumRows() && (pos.getRow() - i) >= 0 && ((pos.getColumn() - win) + i) >= 0 && (pos.getColumn() + i) < getNumColumns()) {
+                for (int j = 0; j < getNumToWin(); j++) {
+                    check = new BoardPosition(((pos.getRow() + win) - i - j), ((pos.getColumn() - win) + i + j));
+                    if ((check.getRow() + 1) > getNumRows() || !isPlayerAtPos(check, p)) {
+                        won = false;
+                        break;
+                    }
+                }
+            }
+            else { won = false; }
+            if (won) {
+                return true;
+            }
+        }
+
+        //checks up to the right
+        for (int i = 0; i < getNumToWin(); i++) {
+            won = true;
+            check = new BoardPosition(pos.getRow(), pos.getColumn());
+            if (((pos.getRow() + win) - i) < getNumRows() && (pos.getRow() - i) >= 0 && ((pos.getColumn() + win) - i) <getNumColumns() && (pos.getColumn() - i) >= 0) {
+                for (int j = 0; j < getNumToWin(); j++) {
+                    check = new BoardPosition(((pos.getRow() + win) - i - j), ((pos.getColumn() + win) - i - j));
+                    if ((check.getRow() + 1) > getNumRows() || !isPlayerAtPos(check, p)) {
+                        won = false;
+                        break;
+                    }
+                }
+            }
+            else { won = false; }
+            if (won) {
+                return true;
+            }
+        }
+
+        return won;
+        /*
         int row = pos.getRow();
         int col = pos.getColumn();
         if (row < 0 || row >= getNumRows() || col < 0 || col >= getNumColumns()) {
@@ -341,6 +424,7 @@ public interface IGameBoard {
         else {
             return false;
         }
+         */
     }
 
     /**
@@ -350,7 +434,7 @@ public interface IGameBoard {
      * @return what is at the board position pos
      *
      * @pre none
-     * @post board = #board  AND Col = #Col AND Row = #Row AND Win = #Win AND whatsAtPos = board[pos]
+     * @post self = #self  AND Col = #Col AND Row = #Row AND Win = #Win AND whatsAtPos = [what is at position pos]
      */
     public char whatsAtPos(BoardPosition pos);
 
@@ -363,8 +447,8 @@ public interface IGameBoard {
      * @return true OR false
      *
      * @pre none
-     * @post board = #board  AND Col = #Col AND Row = #Row AND Win = #Win AND isPlayerAtPos = (true
-     * [if player matches the token in board[pos]] OR false [if the two don't match])
+     * @post self = #self  AND Col = #Col AND Row = #Row AND Win = #Win AND isPlayerAtPos = (true
+     * [if player matches the token in position pos] OR false [if the two don't match])
      */
     default boolean isPlayerAtPos(BoardPosition pos, char player) {
         return whatsAtPos(pos) == player;
@@ -373,30 +457,30 @@ public interface IGameBoard {
     /**
      * returns the number of rows in the GameBoard
      *
-     * @return the number of rows in the board
+     * @return the number of rows in the game board
      *
      * @pre none
-     * @post board = #board  AND Col = #Col AND Row = #Row AND Win = #Win AND getNumRows = Row
+     * @post self = #self  AND Col = #Col AND Row = #Row AND Win = #Win AND getNumRows = Row
      */
     public int getNumRows();
 
     /**
      * returns the number of columns in the GameBoard
      *
-     * @return the number of cols in the board
+     * @return the number of cols in the game board
      *
      * @pre none
-     * @post board = #board  AND Col = #Col AND Row = #Row AND Win = #Win AND getNumColumns = Col
+     * @post self = #self  AND Col = #Col AND Row = #Row AND Win = #Win AND getNumColumns = Col
      */
     public int getNumColumns();
 
     /**
-     * returns the number of tokens in a row needed to win the game
+     * returns the number of tokens needed consecutively to win the game
      *
-     * @return the number of tokens in a row required to win
+     * @return the number of tokens required consecutively to win
      *
      * @pre none
-     * @post board = #board  AND Col = #Col AND Row = #Row AND Win = #Win AND getNumToWin = Win
+     * @post self = #self  AND Col = #Col AND Row = #Row AND Win = #Win AND getNumToWin = Win
      */
     public int getNumToWin();
 }
