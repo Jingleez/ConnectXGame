@@ -73,20 +73,6 @@ public interface IGameBoard {
                     piece = whatsAtPos(insert);
                     break;
                 }
-            /*
-            if (whatsAtPos(insert) == 'O') {
-                row++;
-                insert = new BoardPosition(row, insert.getColumn());
-            }
-            else if (whatsAtPos(insert) == 'X') {
-                row++;
-                insert = new BoardPosition(row, insert.getColumn());
-            }
-            else {
-                insert = new BoardPosition(row - 1, insert.getColumn());
-                piece = whatsAtPos(insert);
-                break;
-            }*/
             }
         }
         else { insert = new BoardPosition((getNumRows() - 1), c); }
@@ -116,17 +102,6 @@ public interface IGameBoard {
             }
         }
         return true;
-        /*
-        for (int i = 0; i < getNumRows(); i++) {
-            for (int j = 0; j < getNumColumns(); j++) {
-                BoardPosition pos = new BoardPosition(i, j);
-                if (whatsAtPos(pos) == ' ') {
-                    return false;
-                }
-            }
-        }
-        return true;
-         */
     }
 
     /**
@@ -165,41 +140,6 @@ public interface IGameBoard {
         }
 
         return won;
-        /*
-        int row = pos.getRow();
-        int col = pos.getColumn();
-        if (row < 0 || row + 4 >= getNumRows() || col < 0 || col >= getNumColumns()) {
-            return false;
-        }
-
-        BoardPosition pos1 = new BoardPosition(row, col - 4);
-        BoardPosition pos2 = new BoardPosition(row, col - 3);
-        BoardPosition pos3 = new BoardPosition(row, col - 2);
-        BoardPosition pos4 = new BoardPosition(row, col - 1);
-        BoardPosition pos5 = new BoardPosition(row, col);
-        BoardPosition pos6 = new BoardPosition(row, col + 1);
-        BoardPosition pos7 = new BoardPosition(row, col + 2);
-        BoardPosition pos8 = new BoardPosition(row, col + 3);
-        BoardPosition pos9 = new BoardPosition(row, col + 4);
-        if ((whatsAtPos(pos1) == p) && (whatsAtPos(pos2) == p) && (whatsAtPos(pos3) == p) && (whatsAtPos(pos4) == p) && (whatsAtPos(pos5) == p)) {
-            return true;
-        }
-        else if ((whatsAtPos(pos2) == p) && (whatsAtPos(pos3) == p) && (whatsAtPos(pos4) == p) && (whatsAtPos(pos5) == p) && (whatsAtPos(pos6) == p)) {
-            return true;
-        }
-        else if ((whatsAtPos(pos3) == p) && (whatsAtPos(pos4) == p) && (whatsAtPos(pos5) == p) && (whatsAtPos(pos6) == p) && (whatsAtPos(pos7) == p)) {
-            return true;
-        }
-        else if ((whatsAtPos(pos4) == p) && (whatsAtPos(pos5) == p) && (whatsAtPos(pos6) == p) && (whatsAtPos(pos7) == p) && (whatsAtPos(pos8) == p)) {
-            return true;
-        }
-        else if ((whatsAtPos(pos5) == p) && (whatsAtPos(pos6) == p) && (whatsAtPos(pos7) == p) && (whatsAtPos(pos8) == p) && (whatsAtPos(pos9) == p)) {
-            return true;
-        }
-        else {
-            return false;
-        }
-         */
     }
 
     /**
@@ -237,41 +177,6 @@ public interface IGameBoard {
             }
         }
         return won;
-        /*
-        int row = pos.getRow();
-        int col = pos.getColumn();
-        if (row < 0 || row + 4 >= getNumRows() || col < 0 || col >= getNumColumns()) {
-            return false;
-        }
-
-        BoardPosition pos1 = new BoardPosition(row - 4, col);
-        BoardPosition pos2 = new BoardPosition(row - 3, col);
-        BoardPosition pos3 = new BoardPosition(row - 2, col);
-        BoardPosition pos4 = new BoardPosition(row - 1, col);
-        BoardPosition pos5 = new BoardPosition(row, col);
-        BoardPosition pos6 = new BoardPosition(row + 1, col);
-        BoardPosition pos7 = new BoardPosition(row + 2, col);
-        BoardPosition pos8 = new BoardPosition(row + 3, col);
-        BoardPosition pos9 = new BoardPosition(row + 4, col);
-        if ((whatsAtPos(pos1) == p) && (whatsAtPos(pos2) == p) && (whatsAtPos(pos3) == p) && (whatsAtPos(pos4) == p) && (whatsAtPos(pos5) == p)) {
-            return true;
-        }
-        else if ((whatsAtPos(pos2) == p) && (whatsAtPos(pos3) == p) && (whatsAtPos(pos4) == p) && (whatsAtPos(pos5) == p) && (whatsAtPos(pos6) == p)) {
-            return true;
-        }
-        else if ((whatsAtPos(pos3) == p) && (whatsAtPos(pos4) == p) && (whatsAtPos(pos5) == p) && (whatsAtPos(pos6) == p) && (whatsAtPos(pos7) == p)) {
-            return true;
-        }
-        else if ((whatsAtPos(pos4) == p) && (whatsAtPos(pos5) == p) && (whatsAtPos(pos6) == p) && (whatsAtPos(pos7) == p) && (whatsAtPos(pos8) == p)) {
-            return true;
-        }
-        else if ((whatsAtPos(pos5) == p) && (whatsAtPos(pos6) == p) && (whatsAtPos(pos7) == p) && (whatsAtPos(pos8) == p) && (whatsAtPos(pos9) == p)) {
-            return true;
-        }
-        else {
-            return false;
-        }
-         */
     }
 
     /**
@@ -368,63 +273,6 @@ public interface IGameBoard {
         }
 
         return won;
-        /*
-        int row = pos.getRow();
-        int col = pos.getColumn();
-        if (row < 0 || row >= getNumRows() || col < 0 || col >= getNumColumns()) {
-            return false;
-        }
-        BoardPosition pos1 = new BoardPosition(row - 4, col - 4);
-        BoardPosition pos2 = new BoardPosition(row - 3, col - 3);
-        BoardPosition pos3 = new BoardPosition(row - 2, col - 2);
-        BoardPosition pos4 = new BoardPosition(row - 1, col - 1);
-        BoardPosition pos5 = new BoardPosition(row, col);
-        BoardPosition pos6 = new BoardPosition(row + 1, col + 1);
-        BoardPosition pos7 = new BoardPosition(row + 2, col + 2);
-        BoardPosition pos8 = new BoardPosition(row + 3, col + 3);
-        BoardPosition pos9 = new BoardPosition(row + 4, col + 4);
-        BoardPosition pos10 = new BoardPosition(row - 4, col + 4);
-        BoardPosition pos11 = new BoardPosition(row - 3, col + 3);
-        BoardPosition pos12 = new BoardPosition(row - 2, col + 2);
-        BoardPosition pos13 = new BoardPosition(row - 1, col + 1);
-        BoardPosition pos14 = new BoardPosition(row + 1, col - 1);
-        BoardPosition pos15 = new BoardPosition(row + 2, col - 2);
-        BoardPosition pos16 = new BoardPosition(row + 3, col - 3);
-        BoardPosition pos17 = new BoardPosition(row + 4, col - 4);
-        if ((whatsAtPos(pos1) == p) && (whatsAtPos(pos2) == p) && (whatsAtPos(pos3) == p) && (whatsAtPos(pos4) == p) && (whatsAtPos(pos5) == p)) {
-            return true;
-        }
-        else if ((whatsAtPos(pos2) == p) && (whatsAtPos(pos3) == p) && (whatsAtPos(pos4) == p) && (whatsAtPos(pos5) == p) && (whatsAtPos(pos6) == p)) {
-            return true;
-        }
-        else if ((whatsAtPos(pos3) == p) && (whatsAtPos(pos4) == p) && (whatsAtPos(pos5) == p) && (whatsAtPos(pos6) == p) && (whatsAtPos(pos7) == p)) {
-            return true;
-        }
-        else if ((whatsAtPos(pos4) == p) && (whatsAtPos(pos5) == p) && (whatsAtPos(pos6) == p) && (whatsAtPos(pos7) == p) && (whatsAtPos(pos8) == p)) {
-            return true;
-        }
-        else if ((whatsAtPos(pos5) == p) && (whatsAtPos(pos6) == p) && (whatsAtPos(pos7) == p) && (whatsAtPos(pos8) == p) && (whatsAtPos(pos9) == p)) {
-            return true;
-        }
-        else if ((whatsAtPos(pos10) == p) && (whatsAtPos(pos11) == p) && (whatsAtPos(pos12) == p) && (whatsAtPos(pos13) == p) && (whatsAtPos(pos5) == p)) {
-            return true;
-        }
-        else if ((whatsAtPos(pos11) == p) && (whatsAtPos(pos12) == p) && (whatsAtPos(pos13) == p) && (whatsAtPos(pos5) == p) && (whatsAtPos(pos14) == p)) {
-            return true;
-        }
-        else if ((whatsAtPos(pos12) == p) && (whatsAtPos(pos13) == p) && (whatsAtPos(pos5) == p) && (whatsAtPos(pos14) == p) && (whatsAtPos(pos15) == p)) {
-            return true;
-        }
-        else if ((whatsAtPos(pos13) == p) && (whatsAtPos(pos5) == p) && (whatsAtPos(pos14) == p) && (whatsAtPos(pos15) == p) && (whatsAtPos(pos16) == p)) {
-            return true;
-        }
-        else if ((whatsAtPos(pos5) == p) && (whatsAtPos(pos14) == p) && (whatsAtPos(pos15) == p) && (whatsAtPos(pos16) == p) && (whatsAtPos(pos17) == p)) {
-            return true;
-        }
-        else {
-            return false;
-        }
-         */
     }
 
     /**
