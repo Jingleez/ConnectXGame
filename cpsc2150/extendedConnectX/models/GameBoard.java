@@ -32,12 +32,11 @@ public class GameBoard extends AbsGameBoard
      * @post Initializes a new game board with all the positions containing blank spaces.
      * 
      */
-    //public GameBoard(int Row, int Col, int win)
-    public GameBoard()
+    public GameBoard(int Row, int Col, int Win)
     {
-        //maxRow = Row;
-        //maxColumn = Col;
-        //winNum = Win
+        maxRow = Row;
+        maxColumn = Col;
+        winNum = Win;
         Board = new char[maxRow][maxColumn];
         for (int row = 0; row < maxRow; row++) {
             for (int col = 0; col < maxColumn; col++) {
