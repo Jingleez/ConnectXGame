@@ -3,6 +3,8 @@ import cpsc2150.extendedConnectX.models.GameBoard;
 import cpsc2150.extendedConnectX.models.IGameBoard;
 
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 public class GameScreen
 {
 
@@ -16,10 +18,26 @@ public class GameScreen
 
         //While loop for the option to play the game again
         while (playAgain) {
-            //Variable start/reset to begin match
-           IGameBoard newBoard = new GameBoard(); // Creates a game-board at start of match
             int userChoice = 0;
-            char currentPlayer = 'X';
+            //Variable start/reset to begin match
+            int numRows, numCols, numPlay, numToWin;
+            char player;
+            System.out.println("How many rows would you like the board to have?");
+            numRows = keyboard.nextInt();
+            System.out.println("How many columns would you like the board to have?");
+            numCols = keyboard.nextInt();
+            System.out.println("How many in a row needed to win?");
+            numToWin = keyboard.nextInt();
+            System.out.println("How many players would you like to have?");
+            numPlay = keyboard.nextInt();
+            List<Character> players = new ArrayList<>();
+            for (int i = 1; i <= numPlay; i++) {
+                System.out.println("Choose your character player " + i);
+                player = keyboard.next().charAt(0);
+                players.add(player);             
+            }
+            IGameBoard newBoard = new GameBoard(); // Creates a game-board at start of match
+            char currentPlayer = players.get(0);
             System.out.println(newBoard.toString()); //shows the first (empty) game-board
             //while loop that identifies if play again is true, and runs the game again if so
             while (true) {
@@ -57,7 +75,7 @@ public class GameScreen
                 }
 
                 //ternary statement that is used to determine which player has the next turn
-                currentPlayer = (currentPlayer == 'X') ? 'O' : 'X';
+                currentPlayer = (currentPlayer == players.get(players.size() - 1)) ? players.get(0) : players.get(players.indexOf(currentPlayer) + 1);
             }
             //start of do while loop
             do {
