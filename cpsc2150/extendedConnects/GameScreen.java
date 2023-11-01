@@ -20,42 +20,50 @@ public class GameScreen
         while (playAgain) {
             int userChoice = 0;
             //Variable start/reset to begin match
-            IGameBoard newBoard;
+            IGameBoard newBoard = null;
             int numRows, numCols, numPlay, numToWin;
             char player;
-            String boardType;
+            String boardType, in;
             System.out.println("How many players would you like to have?");
-            numPlay = keyboard.nextInt();
+            in = keyboard.nextLine();
+            numPlay = Integer.parseInt(in);
 
             List<Character> players = new ArrayList<>();
             for (int i = 1; i <= numPlay; i++) {
                 System.out.println("Choose your character player " + i);
-                player = keyboard.next().charAt(0);
+                player = keyboard.nextLine().charAt(0);
                 players.add(player);
             }
 
             System.out.println("How many rows would you like the board to have?");
-            numRows = keyboard.nextInt();
+            in = keyboard.nextLine();
+            numRows = Integer.parseInt(in);
 
             System.out.println("How many columns would you like the board to have?");
-            numCols = keyboard.nextInt();
+            in = keyboard.nextLine();
+            numCols = Integer.parseInt(in);
 
             System.out.println("How many in a row needed to win?");
-            numToWin = keyboard.nextInt();
-            
+            in = keyboard.nextLine();
+            numToWin = Integer.parseInt(in);
+
+
             System.out.println("Would you like a Fast Game (F/f) or a Memory Efficient Game (M/m)?");
-            boardType = keyboard.next().toLowerCase();
+            boardType = keyboard.nextLine().toLowerCase();
             if (boardType.equals("f")) {
                 newBoard = new GameBoard(numRows, numCols, numToWin); // Creates a game-board at start of match
             } else if (boardType.equals("m")) {
                 //newBoard = new GameBoardMem(numRows, numCols, numToWin);
+                newBoard = new GameBoard(numRows, numCols, numToWin);
             }
+
             char currentPlayer = players.get(0);
             System.out.println(newBoard.toString()); //shows the first (empty) game-board
             //while loop that identifies if play again is true, and runs the game again if so
             while (true) {
                 System.out.println("Player " + currentPlayer + ", what column do you want to place your marker in?");
-                userChoice = keyboard.nextInt(); //user input
+                in = keyboard.nextLine();
+                userChoice = Integer.parseInt(in); //user input
                 //input verification
                 if (userChoice < 0) {
                     System.out.println("Column cannot be less than 0");
@@ -93,7 +101,7 @@ public class GameScreen
             //start of do while loop
             do {
                 System.out.println("Would you like to play again? Y/N");
-                String playAgainChoice = keyboard.next().toLowerCase();
+                String playAgainChoice = keyboard.nextLine().toLowerCase();
 
                 if (playAgainChoice.equals("y")) {
                     playAgain = true;
