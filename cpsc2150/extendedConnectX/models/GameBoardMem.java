@@ -20,7 +20,20 @@ public class GameBoardMem extends AbsGameBoard{
     }
     @Override
     public void dropToken(char p, int c) {
-
+        // If the player is not already in the list of players, this adds them to the list.
+        if (!players.contains(p)) {
+            players.add(p);
+            board.put(p, new ArrayList<>()); 
+        }
+        // Retrieving the list of positions for the player from the board map
+        List<BoardPosition> positions = board.get(p);
+        for (int r=maxRow-1; r>=0; r--) {
+            BoardPosition pos = new BoardPosition(r,c);
+            if (!isPlayerAtPos(pos, p)) {
+                positions.add(pos);
+                return;
+            }
+        }
     }
 
     @Override
