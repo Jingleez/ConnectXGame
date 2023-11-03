@@ -29,7 +29,7 @@ public class GameBoardMem extends AbsGameBoard{
         List<BoardPosition> positions = board.get(p);
         for (int r=maxRow-1; r>=0; r--) {
             BoardPosition pos = new BoardPosition(r,c);
-            if (!isPlayerAtPos(pos, p)) {
+            if (!isPlayerAtPos(pos, ' ')) {
                 positions.add(pos);
                 return;
             }
