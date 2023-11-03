@@ -63,13 +63,32 @@ public class GameScreen
                 }
             } while(numRows < minNum || numRows > maxNum);
 
-            System.out.println("How many columns would you like the board to have?");
-            in = keyboard.nextLine();
-            numCols = Integer.parseInt(in);
+            do {
+                System.out.println("How many columns would you like the board to have?");
+                in = keyboard.nextLine();
+                numCols = Integer.parseInt(in);
+                if (numCols < minNum) {
+                    System.out.println("Must be at least " + minNum + " columns");
+                }
+                if (numCols > maxNum) {
+                    System.out.println("Must be " + maxNum + " or fewer columns");
+                }
+            } while(numCols < minNum || numCols > maxNum);
 
-            System.out.println("How many in a row needed to win?");
-            in = keyboard.nextLine();
-            numToWin = Integer.parseInt(in);
+            do {
+                System.out.println("How many in a row needed to win?");
+                in = keyboard.nextLine();
+                numToWin = Integer.parseInt(in);
+                if (numToWin < minNum) {
+                    System.out.println("Must be at least " + minNum);
+                }
+                if (numToWin > maxNum) {
+                    System.out.println("Must be " + maxNum + " or fewer");
+                }
+                if (numToWin > numCols || numToWin > numRows) {
+                    System.out.println("must be fewer than the number of columns and rows");
+                }
+            } while (numToWin < minNum || numToWin > maxNum || numToWin > numCols || numToWin > numRows );
 
 
             System.out.println("Would you like a Fast Game (F/f) or a Memory Efficient Game (M/m)?");
