@@ -75,7 +75,10 @@ public interface IGameBoard {
                 }
             }
         }
-        else { insert = new BoardPosition((getNumRows() - 1), c); }
+        else {
+            insert = new BoardPosition((getNumRows() - 1), c);
+            piece = whatsAtPos(insert);
+        }
         if (checkHorizWin(insert, piece) || checkVertWin(insert, piece) || checkDiagWin(insert, piece)) {
             return true;
         } else {
