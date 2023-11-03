@@ -34,7 +34,7 @@ public class GameScreen
                 if (numPlay < minPlayers) {
                     System.out.println("Must be at least 2 players");
                 }
-                if (numPlay > maxPlayers) {
+                else if (numPlay > maxPlayers) {
                     System.out.println("Must be 10 players or fewer");
                 }
             }while (numPlay < minPlayers || numPlay > maxPlayers);
@@ -59,7 +59,7 @@ public class GameScreen
                 if (numRows < minNum) {
                     System.out.println("Must be at least " + minNum + " rows");
                 }
-                if (numRows > maxNum) {
+                else if (numRows > maxNum) {
                     System.out.println("Must be " + maxNum + " or fewer rows");
                 }
             } while(numRows < minNum || numRows > maxNum);
@@ -71,7 +71,7 @@ public class GameScreen
                 if (numCols < minNum) {
                     System.out.println("Must be at least " + minNum + " columns");
                 }
-                if (numCols > maxNum) {
+                else if (numCols > maxNum) {
                     System.out.println("Must be " + maxNum + " or fewer columns");
                 }
             } while(numCols < minNum || numCols > maxNum);
@@ -83,22 +83,23 @@ public class GameScreen
                 if (numToWin < minNum) {
                     System.out.println("Must be at least " + minNum);
                 }
-                if (numToWin > maxNum) {
-                    System.out.println("Must be " + maxNum + " or fewer");
+                else if (numToWin > maxWin) {
+                    System.out.println("Must be " + maxWin + " or fewer");
                 }
-                if (numToWin > numCols || numToWin > numRows) {
+                else if (numToWin > numCols || numToWin > numRows) {
                     System.out.println("must be fewer than the number of columns and rows");
                 }
-            } while (numToWin < minNum || numToWin > maxNum || numToWin > numCols || numToWin > numRows );
+            } while (numToWin < minNum || numToWin > maxWin || numToWin > numCols || numToWin > numRows );
 
-
-            System.out.println("Would you like a Fast Game (F/f) or a Memory Efficient Game (M/m)?");
-            boardType = keyboard.nextLine().toLowerCase();
-            if (boardType.equals("f")) {
-                newBoard = new GameBoard(numRows, numCols, numToWin); // Creates a game-board at start of match
-            } else if (boardType.equals("m")) {
-                newBoard = new GameBoardMem(numRows, numCols, numToWin);
-            }
+            do {
+                System.out.println("Would you like a Fast Game (F/f) or a Memory Efficient Game (M/m)?");
+                boardType = keyboard.nextLine().toLowerCase();
+                if (boardType.equals("f")) {
+                    newBoard = new GameBoard(numRows, numCols, numToWin); // Creates a game-board at start of match
+                } else if (boardType.equals("m")) {
+                    newBoard = new GameBoardMem(numRows, numCols, numToWin);
+                }
+            } while (!boardType.equals("f") && !boardType.equals("m"));
 
             char currentPlayer = players.get(0);
             System.out.println(newBoard.toString()); //shows the first (empty) game-board

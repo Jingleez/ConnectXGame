@@ -26,13 +26,18 @@ abstract class AbsGameBoard implements IGameBoard {
         StringBuilder boardString = new StringBuilder(); // Create a StringBuilder for the string representation.
         // Before going to next row, adding a newline first
         boardString.append("|");
-        for (int col=0; col < getNumColumns(); col++) { boardString.append(col + "|"); }
+        for (int col=0; col < getNumColumns(); col++) {
+            if (col < 10) {
+                boardString.append(" ");
+            }
+            boardString.append(col + "|");
+        }
         boardString.append("\n");
         // This loop adds row labels and board contents
         for (int row = getNumRows() - 1; row > -1; row--) {
             for (int col = 0; col < getNumColumns(); col++) {
                 BoardPosition pos = new BoardPosition(row, col);
-                boardString.append("|" + whatsAtPos(pos)); // Appending contents of cell
+                boardString.append("|" + whatsAtPos(pos) + " "); // Appending contents of cell
             }
             boardString.append("|");
             // Before going to next row, adding a newline first
