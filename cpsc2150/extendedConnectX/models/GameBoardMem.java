@@ -27,7 +27,7 @@ public class GameBoardMem extends AbsGameBoard{
         }
         // Retrieving the list of positions for the player from the board map
         List<BoardPosition> positions = board.get(p);
-        for (int r=0; r>maxRow; r++) {
+        for (int r=0; r < maxRow; r++) {
             BoardPosition pos = new BoardPosition(r,c);
             if (whatsAtPos(pos) == ' ') {
                 positions.add(pos);
@@ -51,8 +51,10 @@ public class GameBoardMem extends AbsGameBoard{
     @Override
     public boolean isPlayerAtPos(BoardPosition pos, char player) {
         List<BoardPosition> positions = board.get(player);
-        for (BoardPosition position : positions) {
-            if (position.equals(pos)) { return true; }
+        for (int i = 0; i < positions.size(); i++) {
+            if (pos.equals(positions.get(i))){
+                return true;
+            }
         }
         return false;
     }

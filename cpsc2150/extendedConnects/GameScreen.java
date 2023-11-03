@@ -1,6 +1,7 @@
 package cpsc2150.extendedConnects;
 import cpsc2150.extendedConnectX.models.GameBoard;
 import cpsc2150.extendedConnectX.models.IGameBoard;
+import cpsc2150.extendedConnectX.models.GameBoardMem;
 
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -96,8 +97,7 @@ public class GameScreen
             if (boardType.equals("f")) {
                 newBoard = new GameBoard(numRows, numCols, numToWin); // Creates a game-board at start of match
             } else if (boardType.equals("m")) {
-                //newBoard = new GameBoardMem(numRows, numCols, numToWin);
-                newBoard = new GameBoard(numRows, numCols, numToWin);
+                newBoard = new GameBoardMem(numRows, numCols, numToWin);
             }
 
             char currentPlayer = players.get(0);
