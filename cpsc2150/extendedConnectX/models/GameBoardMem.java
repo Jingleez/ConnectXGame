@@ -23,7 +23,7 @@ public class GameBoardMem extends AbsGameBoard{
         // If the player is not already in the list of players, this adds them to the list.
         if (!players.contains(p)) {
             players.add(p);
-            board.put(p, new ArrayList<>()); 
+            board.put(p, new ArrayList<BoardPosition>());
         }
         // Retrieving the list of positions for the player from the board map
         List<BoardPosition> positions = board.get(p);
@@ -39,7 +39,7 @@ public class GameBoardMem extends AbsGameBoard{
     @Override
     public char whatsAtPos(BoardPosition pos) {
         for (Character player : board.keySet()) {
-            List<BoardPosition> ppositions = board.get(player);
+            List<BoardPosition> positions = board.get(player);
             for (BoardPosition position : positions) {
                 if (position.equals(pos)) { return player; }
             }
