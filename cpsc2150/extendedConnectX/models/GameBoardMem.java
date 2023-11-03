@@ -38,7 +38,14 @@ public class GameBoardMem extends AbsGameBoard{
 
     @Override
     public char whatsAtPos(BoardPosition pos) {
-        return 0;
+        for (Character player : board.keySet()) {
+            List<BoardPosition> ppositions = board.get(player);
+            for (BoardPosition position : positions) {
+                if (position.equals(pos)) { return player; }
+            }
+        }
+        // Returning blankspace character if no player occupies the given position
+        return ' ';
     }
 
     @Override
