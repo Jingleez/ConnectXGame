@@ -18,26 +18,50 @@ public class GameScreen
 
         //While loop for the option to play the game again
         while (playAgain) {
+            final int minPlayers = 2, maxPlayers = 10, minNum = 3, maxNum = 100, maxWin = 25;
             int userChoice = 0;
             //Variable start/reset to begin match
             IGameBoard newBoard = null;
             int numRows, numCols, numPlay, numToWin;
             char player;
-            String boardType, in;
-            System.out.println("How many players would you like to have?");
-            in = keyboard.nextLine();
-            numPlay = Integer.parseInt(in);
-
             List<Character> players = new ArrayList<>();
+            String boardType, in;
+            do {
+                System.out.println("How many players would you like to have?");
+                in = keyboard.nextLine();
+                numPlay = Integer.parseInt(in);
+                if (numPlay < minPlayers) {
+                    System.out.println("Must be at least 2 players");
+                }
+                if (numPlay > maxPlayers) {
+                    System.out.println("Must be 10 players or fewer");
+                }
+            }while (numPlay < minPlayers || numPlay > maxPlayers);
+
             for (int i = 1; i <= numPlay; i++) {
-                System.out.println("Choose your character player " + i);
-                player = keyboard.nextLine().charAt(0);
-                players.add(player);
+                do {
+                    System.out.println("Choose your character player " + i);
+                    player = keyboard.nextLine().charAt(0);
+                    if (players.contains(player)) {
+                        System.out.println(player + " is already taken as a player token!");
+                    }
+                    else {
+                        players.add(player);
+                    }
+                } while (players.size() < i);
             }
 
-            System.out.println("How many rows would you like the board to have?");
-            in = keyboard.nextLine();
-            numRows = Integer.parseInt(in);
+            do {
+                System.out.println("How many rows would you like the board to have?");
+                in = keyboard.nextLine();
+                numRows = Integer.parseInt(in);
+                if (numRows < minNum) {
+                    System.out.println("Must be at least " + minNum + " rows");
+                }
+                if (numRows > maxNum) {
+                    System.out.println("Must be " + maxNum + " or fewer rows");
+                }
+            } while(numRows < minNum || numRows > maxNum);
 
             System.out.println("How many columns would you like the board to have?");
             in = keyboard.nextLine();
