@@ -26,4 +26,4 @@ Rowan Froeschner (Rojofroe) - Played some role in completing or debugging most o
 Graham Frazier: 
 Kalyaan Narnamalpuram ( Jingleez ) - Wrote code for dropToken() and whatsAtPos() in GameBoardMem
 Terance Harrison (Teranceh) - 
-Rowan Froeschner (Rojofroe) - 
+Rowan Froeschner (Rojofroe) - Adjusted main in order to fit user input criteria such as board sizes, number of players and their characters, etc. I also added contracts to GameBoardMem.
