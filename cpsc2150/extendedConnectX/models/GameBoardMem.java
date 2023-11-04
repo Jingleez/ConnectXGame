@@ -2,7 +2,12 @@ package cpsc2150.extendedConnectX.models;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
+/**
+ * this class holds the hashmap version of the gameboard and its functions
+ * @Invariant maxRow > 0 AND maxColumn > 0 AND winNum > 0 AND [no empty spaces below a token]
+ *
+ * @corresponds maxRow = Row AND maxCol = Col AND winNum = Win AND Board = self
+ */
 public class GameBoardMem extends AbsGameBoard{
     private int maxRow;
     private int maxColumn;
@@ -10,7 +15,18 @@ public class GameBoardMem extends AbsGameBoard{
     private HashMap<Character, List<BoardPosition>> board;
     private List<Character> players;
 
-
+    /**
+     * Constructs a game board that is empty, but uses a map for better efficiency.
+     * This constructor initializes a new instance of the gameboard class with a map of blank spaces,
+     * in which each position is a value and is assigned to the key being the character representing the player
+     * who places their piece in that location.
+     * The game board is being represented as a grid with rows and columns, where each position is initially empty.
+     *
+     * @pre None
+     *
+     * @post Initializes a new game board with all the positions containing blank spaces.
+     * 
+     */
     public GameBoardMem(int row, int col, int win) {
         maxRow = row;
         maxColumn = col;
