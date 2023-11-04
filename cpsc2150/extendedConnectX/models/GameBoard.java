@@ -9,7 +9,7 @@ Rowan Froeschner (Rojofroe)
 
 
 /**
- * this class holds the gameboard and its functions like checking for wins
+ * this class holds the array version of gameboard and its functions like checking for wins
  * @Invariant maxRow > 0 AND maxColumn > 0 AND winNum > 0 AND [no empty spaces below a token]
  *
  * @corresponds maxRow = Row AND maxCol = Col AND winNum = Win AND Board = self
@@ -23,13 +23,14 @@ public class GameBoard extends AbsGameBoard
 
 
     /**
-     * Constructs a game board that is empty.
+     * Constructs a game board that is empty, and uses an array to make the board.
      * This constructor initializes a new instance of the gameboard class with a 2D array of blank spaces
      * The game board is being represented as a grid with rows and columns, where each position is initially empty.
      *
-     * @pre None
+     * @pre row > 0 AND col > 0 AND win > 0
      *
-     * @post Initializes a new game board with all the positions containing blank spaces.
+     * @post Initializes a new game board with all the positions containing blank spaces, AND maxRow = Row
+     * AND maxCol = Col AND winNum = Win
      * 
      */
     public GameBoard(int Row, int Col, int Win)

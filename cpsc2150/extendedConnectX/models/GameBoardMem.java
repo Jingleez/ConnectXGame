@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class GameBoardMem extends AbsGameBoard{
     private int maxRow;
-    private int maxColumn;
+    private int maxCol;
     private int winNum;
     private HashMap<Character, List<BoardPosition>> board;
     private List<Character> players;
@@ -24,12 +24,13 @@ public class GameBoardMem extends AbsGameBoard{
      *
      * @pre None
      *
-     * @post Initializes a new game board with all the positions containing blank spaces.
+     * @post Initializes a new game board with all the positions equal to blank spaces, AND maxRow = row
+     * AND maxCol = col AND winNum = win AND [players is initialized to an empty Character ArrayList]
      * 
      */
     public GameBoardMem(int row, int col, int win) {
         maxRow = row;
-        maxColumn = col;
+        maxCol = col;
         winNum = win;
         board = new HashMap<Character, List<BoardPosition>>();
         players = new ArrayList<Character>();
@@ -77,7 +78,7 @@ public class GameBoardMem extends AbsGameBoard{
 
     @Override
     public int getNumRows() {
-        return maxColumn;
+        return maxCol;
     }
 
     @Override
