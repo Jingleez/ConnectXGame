@@ -24,6 +24,6 @@ Rowan Froeschner (Rojofroe) - Played some role in completing or debugging most o
 # Project Three
 ---------------------------------------------------------
 Graham Frazier: 
-Kalyaan Narnamalpuram ( Jingleez ) - 
+Kalyaan Narnamalpuram ( Jingleez ) - Wrote code for dropToken() and whatsAtPos() in GameBoardMem
 Terance Harrison (Teranceh) - 
 Rowan Froeschner (Rojofroe) - 
