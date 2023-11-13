@@ -78,12 +78,12 @@ public class GameBoardMem extends AbsGameBoard{
 
     @Override
     public int getNumRows() {
-        return maxCol;
+        return maxRow;
     }
 
     @Override
     public int getNumColumns() {
-        return maxRow;
+        return maxCol;
     }
 
     @Override
