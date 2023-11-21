@@ -1,9 +1,13 @@
+package cpsc2150.extendedConnectX.tests;
+
+import cpsc2150.extendedConnectX.models.BoardPosition;
+import cpsc2150.extendedConnectX.models.GameBoard;
 import cpsc2150.extendedConnectX.models.IGameBoard;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
-public class GameBoardTester {
+public class testGameBoard {
 
     public static class GameBoardFactory {
         public static IGameBoard makeGameBoard(int numRows, int numColumns, int numToWin) {
