@@ -5,15 +5,15 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class GameBoardTester {
+public class testGameBoard {
 
     private IGameBoard makeGameBoard(int numRows, int numColumns, int numToWin) {
             return new GameBoard(numRows, numColumns, numToWin);
     }
     private IGameBoard makeGameBoard() {
-            return new GameBoard(SMALL, SMALL, SMALL);
+        int small = 3;
+        return new GameBoard(small, small, small);
     }
-    private final int SMALL = 3;
 
     //test cases for GameBoard Constructor
 
@@ -28,13 +28,6 @@ public class GameBoardTester {
     }
 
     //test case 2 - medium size board
-    
-    
-    @Test
-    public void testCheckIfFreeSmall() {
-        IGameBoard testBoard = makeGameBoard(3, 3, 3);
-        assertTrue(testBoard.checkIfFree()
-    }
     @Test
     public void testConstructorMedium() {
         int row = 8;
@@ -45,6 +38,11 @@ public class GameBoardTester {
         assertEquals(col, testBoard.getNumColumns());
         assertEquals(win, testBoard.getNumToWin());
     }
+    /* @Test
+    public void testCheckIfFreeSmall() {
+        IGameBoard testBoard = makeGameBoard(3, 3, 3);
+        assertTrue(testBoard.checkIfFree())
+    }*/
 
     //test case 3 - maximum size board
     @Test
@@ -485,7 +483,7 @@ public class GameBoardTester {
 
     //test case 4 - different num to win size
     @Test
-    public void testHorizontalWinMedium() {
+    public void testHorizontalWinDiffSize() {
         int row = 7;
         int col = 7;
         int win = 4;
@@ -511,6 +509,144 @@ public class GameBoardTester {
         testBoard.dropToken(p1, col4);
         assertTrue(testBoard.checkHorizWin(new BoardPosition(Wrow, col1), p1));
     }
+
+    // test cases for checkVertWin
+
+    //test case 1 - bottom to top
+    @Test
+    public void testVerticalWinBottomToTop() {
+        IGameBoard gb = makeGameBoard();
+        int row = 0;
+        int col = 0;
+        char p1 = 'X';
+        gb.dropToken(p1, col);
+        gb.dropToken(p1, col);
+        gb.dropToken(p1, col);
+        assertTrue(gb.checkVertWin(new BoardPosition(row,col), p1));
+    }
+
+    // test case 2 - top to bottom
+    @Test
+    public void testVerticalWinTopToBottom() {
+        IGameBoard gb = makeGameBoard();
+        int row = 2;
+        int col = 0;
+        char p1 = 'X';
+        gb.dropToken(p1, col);
+        gb.dropToken(p1, col);
+        gb.dropToken(p1, col);
+        assertTrue(gb.checkVertWin(new BoardPosition(row,col), p1));
+    }
+
+    //test case 3 - from middle
+    @Test
+    public void testVerticalWinFromMiddle() {
+        IGameBoard gb = makeGameBoard();
+        int row = 1;
+        int col = 0;
+        char p1 = 'X';
+        gb.dropToken(p1, col);
+        gb.dropToken(p1, col);
+        gb.dropToken(p1, col);
+        assertTrue(gb.checkVertWin(new BoardPosition(row,col), p1));
+    }
+
+    //test case 4 - different win size
+    @Test
+    public void testVerticalWinDifferentWinSize() {
+        int row = 7;
+        int col = 7;
+        int win = 4;
+        IGameBoard gb = makeGameBoard(row, col, win);
+        int Wrow = 0;
+        int Wcol = 3;
+        char p1 = 'X';
+        gb.dropToken(p1, Wcol);
+        gb.dropToken(p1, Wcol);
+        gb.dropToken(p1, Wcol);
+        gb.dropToken(p1, Wcol);
+        assertTrue(gb.checkVertWin(new BoardPosition(Wrow, Wcol), p1));
+    }
+
+    //test cases for Diagonal Win
+
+    //test case 1 - left to right and bottom to top
+    @Test
+    public void testDiagonalWinBottomLeftToUpperRight() {
+        IGameBoard testBoard = makeGameBoard();
+        char p1 = 'X';
+        char p2 = 'O';
+        int col1 = 0;
+        int col2 = 1;
+        int col3 = 2;
+        int row = 0;
+        testBoard.dropToken(p1, col1);
+        testBoard.dropToken(p2, col2);
+        testBoard.dropToken(p1, col2);
+        testBoard.dropToken(p2, col3);
+        testBoard.dropToken(p2, col3);
+        testBoard.dropToken(p1, col3);
+        assertTrue(testBoard.checkDiagWin(new BoardPosition(row, col1), p1));
+    }
+
+    //test case 2 - right to left and top to bottom
+    @Test
+    public void testDiagonalWinUpperRightToBottomLeft() {
+        IGameBoard testBoard = makeGameBoard();
+        char p1 = 'X';
+        char p2 = 'O';
+        int col1 = 0;
+        int col2 = 1;
+        int col3 = 2;
+        int row = 2;
+        testBoard.dropToken(p1, col1);
+        testBoard.dropToken(p2, col2);
+        testBoard.dropToken(p1, col2);
+        testBoard.dropToken(p2, col3);
+        testBoard.dropToken(p2, col3);
+        testBoard.dropToken(p1, col3);
+        assertTrue(testBoard.checkDiagWin(new BoardPosition(row, col3), p1));
+    }
+
+    //test case 3 - right to left and bottom to top
+    @Test
+    public void testDiagonalWinlowerRightToUpperLeft() {
+        IGameBoard testBoard = makeGameBoard();
+        char p1 = 'X';
+        char p2 = 'O';
+        int col1 = 0;
+        int col2 = 1;
+        int col3 = 2;
+        int row = 0;
+        testBoard.dropToken(p1, col3);
+        testBoard.dropToken(p2, col2);
+        testBoard.dropToken(p1, col2);
+        testBoard.dropToken(p2, col1);
+        testBoard.dropToken(p2, col1);
+        testBoard.dropToken(p1, col1);
+        assertTrue(testBoard.checkDiagWin(new BoardPosition(row, col3), p1));
+    }
+
+    //test case 4 - left to right and top to bottom
+    @Test
+    public void testDiagonalWinUpperLeftToLowerRight() {
+        IGameBoard testBoard = makeGameBoard();
+        char p1 = 'X';
+        char p2 = 'O';
+        int col1 = 0;
+        int col2 = 1;
+        int col3 = 2;
+        int row = 2;
+        testBoard.dropToken(p1, col3);
+        testBoard.dropToken(p2, col2);
+        testBoard.dropToken(p1, col2);
+        testBoard.dropToken(p2, col1);
+        testBoard.dropToken(p2, col1);
+        testBoard.dropToken(p1, col1);
+        assertTrue(testBoard.checkDiagWin(new BoardPosition(row, col1), p1));
+    }
+
+    /*
     @Test
     public void testHorizontalWinHard() {
         IGameBoard testBoard = makeGameBoard(10, 10, 7);
@@ -890,7 +1026,7 @@ public class GameBoardTester {
         assertFalse(gb.checkIfFree(new BoardPosition(1, 1)));
     }
 
-    /*@Test
+    @Test
     public void testDropTokenFillColumn() {
         IGameBoard gb = makeGameBoard(3, 3, 3);
         gb.dropToken('X', 0);
@@ -905,7 +1041,7 @@ public class GameBoardTester {
         gb.dropToken('O', 2);
         assertEquals('O', gb.whatsAtPos(new BoardPosition(1, 2)));
         assertFalse(gb.checkIfFree(new BoardPosition(1, 2)));
-    }*/
+    }
 
     @Test
     public void testDropTokenFillMultipleColumns() {
@@ -929,5 +1065,5 @@ public class GameBoardTester {
         assertEquals('O', gb.whatsAtPos(new BoardPosition(1, 2)));
         assertFalse(gb.checkIfFree(new BoardPosition(1, 2)));
     }
-    
+    */
 }
