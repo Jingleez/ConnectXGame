@@ -98,18 +98,16 @@ public class testGameBoardMem {
     public void testDropTokenFillRow() {
         IGameBoard gb = makeGameBoard();
         char p1 = 'X';
-        char p2 = 'O';
         int col1 = 0;
         int col2 = 1;
         int col3 = 2;
         int row = 0;
-        int row2 = 1;
         gb.dropToken(p1, col1);
         gb.dropToken(p1, col2);
         gb.dropToken(p1, col3);
         assertEquals(p1, gb.whatsAtPos(new BoardPosition(row, col1)));
         assertEquals(p1, gb.whatsAtPos(new BoardPosition(row, col2)));
-        assertEquals(p1, gb.whatsAtPos(new BoardPosition(row2, col3)));
+        assertEquals(p1, gb.whatsAtPos(new BoardPosition(row, col3)));
     }
 
     // Test case 4 - Filling a column
@@ -641,7 +639,7 @@ public class testGameBoardMem {
         testBoard.dropToken(p1, col1);
         assertTrue(testBoard.checkDiagWin(new BoardPosition(row, col1), p1));
     }
-    
+
     //test case 5 -
     @Test
     public void testDiagonalWinMedium1() {
@@ -711,8 +709,7 @@ public class testGameBoardMem {
         int col9 = 8;
         int col8 = 7;
         int col7 = 6;
-        int col5 = 5;
-        int row = 6;
+        int row = 4;
         IGameBoard testBoard = makeGameBoard(rows, cols, win);
         for (int j = 0; j < win; j++) {
             for (int i = 0; i < rows; i++) {
@@ -722,14 +719,14 @@ public class testGameBoardMem {
         testBoard.dropToken(p1, col10);
         testBoard.dropToken(p1, col10);
         testBoard.dropToken(p1, col10);
-        testBoard.dropToken(p2, col9);
+        testBoard.dropToken(p2, col10);
         testBoard.dropToken(p1, col9);
         testBoard.dropToken(p1, col9);
         testBoard.dropToken(p2, col9);
         testBoard.dropToken(p1, col8);
         testBoard.dropToken(p2, col8);
         testBoard.dropToken(p2, col7);
-        assertTrue(testBoard.checkDiagWin(new BoardPosition(row, col5), p2));
+        assertTrue(testBoard.checkDiagWin(new BoardPosition(row, col7), p2));
     }
 
     /*

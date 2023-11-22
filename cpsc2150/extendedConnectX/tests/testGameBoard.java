@@ -715,8 +715,7 @@ public class testGameBoard {
         int col9 = 8;
         int col8 = 7;
         int col7 = 6;
-        int col5 = 5;
-        int row = 6;
+        int row = 4;
         IGameBoard testBoard = makeGameBoard(rows, cols, win);
         for (int j = 0; j < win; j++) {
             for (int i = 0; i < rows; i++) {
@@ -726,7 +725,7 @@ public class testGameBoard {
         testBoard.dropToken(p1, col10);
         testBoard.dropToken(p1, col10);
         testBoard.dropToken(p1, col10);
-        testBoard.dropToken(p2, col9);
+        testBoard.dropToken(p2, col10);
         testBoard.dropToken(p1, col9);
         testBoard.dropToken(p1, col9);
         testBoard.dropToken(p2, col9);
