@@ -676,7 +676,7 @@ public class testGameBoard {
         assertTrue(testBoard.checkDiagWin(new BoardPosition(row, col1), p1));
     }
 
-    //test case 5 -
+    //test case 5 - Checks with a board that has had multiple inputs in all columns
     @Test
     public void testDiagonalWinMedium1() {
         int rows = 10;
@@ -708,7 +708,7 @@ public class testGameBoard {
         assertTrue(testBoard.checkDiagWin(new BoardPosition(row, col5), p2));
     }
 
-    //test case 6 -
+    //test case 6 - checks a board that is close to a win to make sure we don't get a false positive
     @Test
     public void testDiagonalWinfalse() {
         int rows = 7;
@@ -733,7 +733,7 @@ public class testGameBoard {
         assertFalse(testBoard.checkDiagWin(new BoardPosition(row, col2), p1));
     }
 
-    //test case 7 -
+    //test case 7 - Checks with a bigger board and a bigger win num and check against the right side of the board
     @Test
     public void testDiagonalWinMedium2() {
         int rows = 10;
