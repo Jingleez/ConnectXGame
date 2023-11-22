@@ -674,7 +674,7 @@ public class testGameBoardMem {
 
     //test case 6 -
     @Test
-    public void testDiagonalWinHard1() {
+    public void testDiagonalWinFalse() {
         int rows = 7;
         int cols = 7;
         int win = 4;

@@ -678,7 +678,7 @@ public class testGameBoard {
 
     //test case 6 -
     @Test
-    public void testDiagonalWinHard1() {
+    public void testDiagonalWinfalse() {
         int rows = 7;
         int cols = 7;
         int win = 4;
