@@ -31,6 +31,6 @@ Rowan Froeschner (Rojofroe) - Adjusted main in order to fit user input criteria 
 # Project four
 ---------------------------------------------------------
 Graham Frazier: 
-Kalyaan Narnamalpuram ( Jingleez ) - 
+Kalyaan Narnamalpuram ( Jingleez ) - Wrote test cases for checkIfFree, Helped with writing test cases for functions in testGameBoardMem, 
 Terance Harrison (Teranceh) - 
 Rowan Froeschner (Rojofroe) - 
