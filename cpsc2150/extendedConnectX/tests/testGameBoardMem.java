@@ -769,71 +769,127 @@ public class testGameBoardMem {
     }
 
 
-    // Test case for checkTie
-// Test case 1 - No tie, game in progress
+
+
+    // FOUR TEST CASES FOR CHECKTIE FUNCTION
+    
     @Test
-    public void testCheckTieNoTie() {
-        IGameBoard gb = factory1.makeGameBoard();
-        gb.dropToken('X', 0);
-        gb.dropToken('O', 1);
-        gb.dropToken('X', 0);
-        gb.dropToken('O', 1);
-        gb.dropToken('X', 0);
-        gb.dropToken('O', 1);
-        gb.dropToken('X', 2);
-        gb.dropToken('O', 2);
-        gb.dropToken('X', 2);
-        gb.dropToken('O', 2);
-        gb.dropToken('X', 2);
-        assertFalse(gb.checkTie());
+    public void testCheckTie1() {
+    
+        IGameBoard gb = factory1.makeGameBoard(4,6,3);
+        char[][] egb = makeExpectedBoard(4,6);
+        
+        gb.placeToken('X',1);
+        egb[0][1] = 'X';
+        gb.placeToken('O',2);
+        egb[0][2] = 'O';
+        gb.placeToken('X',1);
+        egb[1][1] = 'X';
+        gb.placeToken('O',1);
+        egb[2][1] = 'O';
+        gb.placeToken('X',2);
+        egb[1][2] = 'X';
+        gb.placeToken('O',3);
+        egb[0][3] = 'O';
+        gb.placeToken('X',3);
+        egb[1][3] = 'X';
+
+        assertEquals(gb.checkTie(), false);
     }
 
-    // Test case 2 - No tie, game in progress
     @Test
-    public void testCheckTieNoTieInProgress() {
-        IGameBoard gb = factory1.makeGameBoard();
-        gb.dropToken('X', 0);
-        gb.dropToken('O', 1);
-        gb.dropToken('X', 0);
-        gb.dropToken('O', 1);
-        gb.dropToken('X', 0);
-        gb.dropToken('O', 1);
-        gb.dropToken('X', 1);
-        gb.dropToken('O', 2);
-        gb.dropToken('X', 2);
-        assertFalse(gb.checkTie());
+    public void testCheckTie2() {
+        IGameBoard gb = factory1.makeGameBoard(4,6,3);
+        char[][] egb = makeExpectedBoard(4,6);
+
+        gb.placeToken('O',0);
+        egb[0][0] = 'O';
+        gb.placeToken('O',1);
+        egb[0][1] = 'O';
+        gb.placeToken('O',2);
+        egb[0][2] = 'O';
+        gb.placeToken('O',0);
+        egb[1][0] = 'O';
+        gb.placeToken('O',1);
+        egb[1][1] = 'O';
+        gb.placeToken('O',2);
+        egb[1][2] = 'O';
+        gb.placeToken('O',0);
+        egb[2][0] = 'O';
+        gb.placeToken('O',1);
+        egb[2][1] = 'O';
+        gb.placeToken('O',2);
+        egb[2][2] = 'O';
+        gb.placeToken('X',0);
+        egb[3][0] = 'X';
+        gb.placeToken('X',1);
+        egb[3][1] = 'X';
+        gb.placeToken('X',2);
+        egb[3][2] = 'X';
+        gb.placeToken('O',3);
+        egb[0][3] = 'O';
+        gb.placeToken('O',4);
+        egb[0][4] = 'O';
+        gb.placeToken('O',5);
+        egb[0][5] = 'O';
+        gb.placeToken('O',3);
+        egb[1][3] = 'O';
+        gb.placeToken('O',4);
+        egb[1][4] = 'O';
+        gb.placeToken('O',5);
+        egb[1][5] = 'O';
+        gb.placeToken('O',3);
+        egb[2][3] = 'O';
+        gb.placeToken('O',4);
+        egb[2][4] = 'O';
+        gb.placeToken('O',5);
+        egb[2][5] = 'O';
+        gb.placeToken('X',3);
+        egb[3][3] = 'X';
+        gb.placeToken('X',4);
+        egb[3][4] = 'X';
+        gb.placeToken('X',5);
+        egb[3][5] = 'X';
+        
+        assertEquals(gb.checkTie(),true);
     }
 
-    // Test case 3 - Tie, board filled without a win
     @Test
-    public void testCheckTieTie() {
-        IGameBoard gb = factory1.makeGameBoard();
-        gb.dropToken('X', 0);
-        gb.dropToken('O', 1);
-        gb.dropToken('X', 0);
-        gb.dropToken('O', 1);
-        gb.dropToken('X', 0);
-        gb.dropToken('O', 1);
-        gb.dropToken('X', 1);
-        gb.dropToken('O', 2);
-        gb.dropToken('X', 2);
-        gb.dropToken('O', 2);
-        assertTrue(gb.checkTie());
+    public void testCheckTie3() {
+        IGameBoard gb = factory.makeStack(4,6,3);
+        char[][] egb = makeExpectedBoard(4,6);
+
+        gb.placeToken('X',5);
+        egb[0][5] = 'X';
+        gb.placeToken('O',5);
+        egb[1][5] = 'O';
+        gb.placeToken('O',5);
+        egb[2][5] = 'O';
+        gb.placeToken('O',5);
+        egb[3][5] = 'O';
+
+        assertEquals(gb.checkTie(),false);
     }
 
-    // Test case 4 - No tie, game in progress
     @Test
-    public void testCheckTieNoTieInProgress2() {
-        IGameBoard gb = factory1.makeGameBoard();
-        gb.dropToken('X', 0);
-        gb.dropToken('O', 1);
-        gb.dropToken('X', 0);
-        gb.dropToken('O', 1);
-        gb.dropToken('X', 0);
-        gb.dropToken('O', 1);
-        gb.dropToken('X', 1);
-        gb.dropToken('O', 2);
-        assertFalse(gb.checkTie());
+    public void testCheckTie4() {
+        IGameBoard gb = factory.makeStack(4,6,3);
+        char[][] egb = makeExpectedBoard(4,6);
+
+        gb.placeToken('X',0);
+        egb[0][0] = 'X';
+        gb.placeToken('X',1);
+        egb[0][1] = 'X';
+        gb.placeToken('X',2);
+        egb[0][2] = 'X';
+        gb.placeToken('X',3);
+        egb[0][3] = 'X';
+        gb.placeToken('X',4);
+        egb[0][4] = 'X';
+        gb.placeToken('X',5);
+        egb[0][5] = 'X';
+
+        assertEquals(gb.checkTie(),false);
     }
 
 
