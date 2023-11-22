@@ -694,7 +694,7 @@ public class testGameBoardMem {
         testBoard.dropToken(p1, col1);
         testBoard.dropToken(p2, col2);
         testBoard.dropToken(p1, col3);
-        assertTrue(testBoard.checkDiagWin(new BoardPosition(row, col2), p1));
+        assertFalse(testBoard.checkDiagWin(new BoardPosition(row, col2), p1));
     }
 
     //test case 7 -
