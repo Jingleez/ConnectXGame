@@ -4,13 +4,13 @@ import cpsc2150.extendedConnectX.models.*;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
 
-public class testGameBoard {
+public class TestGameBoardMem {
 
     private IGameBoard makeGameBoard(int numRows, int numColumns, int numToWin) {
-        return new GameBoard(numRows, numColumns, numToWin);
+        return new GameBoardMem(numRows, numColumns, numToWin);
     }
-
     private IGameBoard makeGameBoard() {
         int small = 3;
         return new GameBoard(small, small, small);
@@ -513,7 +513,7 @@ public class testGameBoard {
 
     //test case 4 - different num to win size
     @Test
-    public void testHorizontalWinDiffSize() {
+    public void testHorizontalWinMedium() {
         int row = 7;
         int col = 7;
         int win = 4;
@@ -552,7 +552,7 @@ public class testGameBoard {
         gb.dropToken(p1, col);
         gb.dropToken(p1, col);
         gb.dropToken(p1, col);
-        assertTrue(gb.checkVertWin(new BoardPosition(row, col), p1));
+        assertTrue(gb.checkVertWin(new BoardPosition(row,col), p1));
     }
 
     // test case 2 - top to bottom
@@ -565,7 +565,7 @@ public class testGameBoard {
         gb.dropToken(p1, col);
         gb.dropToken(p1, col);
         gb.dropToken(p1, col);
-        assertTrue(gb.checkVertWin(new BoardPosition(row, col), p1));
+        assertTrue(gb.checkVertWin(new BoardPosition(row,col), p1));
     }
 
     //test case 3 - from middle
@@ -578,7 +578,7 @@ public class testGameBoard {
         gb.dropToken(p1, col);
         gb.dropToken(p1, col);
         gb.dropToken(p1, col);
-        assertTrue(gb.checkVertWin(new BoardPosition(row, col), p1));
+        assertTrue(gb.checkVertWin(new BoardPosition(row,col), p1));
     }
 
     //test case 4 - different win size
@@ -710,7 +710,7 @@ public class testGameBoard {
 
     //test case 6 - checks a board that is close to a win to make sure we don't get a false positive
     @Test
-    public void testDiagonalWinfalse() {
+    public void testDiagonalWinFalse() {
         int rows = 7;
         int cols = 7;
         int win = 4;
@@ -764,4 +764,5 @@ public class testGameBoard {
         testBoard.dropToken(p2, col7);
         assertTrue(testBoard.checkDiagWin(new BoardPosition(row, col7), p2));
     }
+
 }
