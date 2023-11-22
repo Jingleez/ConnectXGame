@@ -27,20 +27,15 @@ abstract class AbsGameBoard implements IGameBoard {
         // Before going to next row, adding a newline first
         boardString.append("|");
         for (int col=0; col < getNumColumns(); col++) {
-        //for (int row = 0; row < getNumRows(); row++) {
             if (col < 10) {
-            //if (row < 10) {
                 boardString.append(" ");
             }
             boardString.append(col + "|");
-            //boardString.append(row + "|");
         }
         boardString.append("\n");
         // This loop adds row labels and board contents
         for (int row = getNumRows() - 1; row > -1; row--) {
-        //for (int col = getNumColumns() - 1; col > -1; col--) {
             for (int col = 0; col < getNumColumns(); col++) {
-            //for (int row = 0; row < getNumRows(); row++) {
                 BoardPosition pos = new BoardPosition(row, col);
                 boardString.append("|" + whatsAtPos(pos) + " "); // Appending contents of cell
             }

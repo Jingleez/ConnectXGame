@@ -12,9 +12,39 @@ public class testGameBoardMem {
         return new GameBoardMem(numRows, numColumns, numToWin);
     }
     private IGameBoard makeGameBoard() {
-        return new GameBoard(SMALL, SMALL, SMALL);
+        int small = 3;
+        return new GameBoard(small, small, small);
     }
-    private final int SMALL = 3;
+
+    private String buildBoard(int r, int c) {
+        StringBuilder boardString = new StringBuilder(); // Create a StringBuilder for the string representation.
+        // Before going to next row, adding a newline first
+        boardString.append("|");
+        for (int col=0; col < c; col++) {
+            //for (int row = 0; row < getNumRows(); row++) {
+            if (col < 10) {
+                //if (row < 10) {
+                boardString.append(" ");
+            }
+            boardString.append(col + "|");
+            //boardString.append(row + "|");
+        }
+        boardString.append("\n");
+        // This loop adds row labels and board contents
+        for (int row = r - 1; row > -1; row--) {
+            //for (int col = getNumColumns() - 1; col > -1; col--) {
+            for (int col = 0; col < c; col++) {
+                //for (int row = 0; row < getNumRows(); row++) {
+                BoardPosition pos = new BoardPosition(row, col);
+                boardString.append("|" +"  "); // Appending contents of cell
+            }
+            boardString.append("|");
+            // Before going to next row, adding a newline first
+            boardString.append("\n");
+        }
+        // This converts the StringBuilder to a string and returns the final string representing the board.
+        return boardString.toString();
+    }
 
     //test cases for GameBoard Constructor
 
@@ -22,10 +52,12 @@ public class testGameBoardMem {
     @Test
     public void testConstructorMinimum() {
         int small = 3;
+        String expBoard = buildBoard(small, small);
         IGameBoard testBoard = makeGameBoard(small, small, small);
         assertEquals(small, testBoard.getNumRows());
         assertEquals(small, testBoard.getNumColumns());
         assertEquals(small, testBoard.getNumToWin());
+        assertEquals(expBoard, testBoard.toString());
     }
 
     //test case 2 - medium size board
@@ -34,10 +66,12 @@ public class testGameBoardMem {
         int row = 8;
         int col = 17;
         int win = 7;
+        String expBoard = buildBoard(row, col);
         IGameBoard testBoard = makeGameBoard(row, col, win);
         assertEquals(row, testBoard.getNumRows());
         assertEquals(col, testBoard.getNumColumns());
         assertEquals(win, testBoard.getNumToWin());
+        assertEquals(expBoard, testBoard.toString());
     }
 
     //test case 3 - maximum size board
@@ -46,10 +80,12 @@ public class testGameBoardMem {
         int row = 100;
         int col = 100;
         int win = 25;
+        String expBoard = buildBoard(row, col);
         IGameBoard testBoard = makeGameBoard(row, col, win);
         assertEquals(row, testBoard.getNumRows());
         assertEquals(col, testBoard.getNumColumns());
         assertEquals(win, testBoard.getNumToWin());
+        assertEquals(expBoard, testBoard.toString());
     }
 
     // Test cases for dropToken
@@ -728,5 +764,5 @@ public class testGameBoardMem {
         testBoard.dropToken(p2, col7);
         assertTrue(testBoard.checkDiagWin(new BoardPosition(row, col7), p2));
     }
-    
+
 }
