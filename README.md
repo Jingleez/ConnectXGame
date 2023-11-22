@@ -28,9 +28,9 @@ Kalyaan Narnamalpuram ( Jingleez ) - Wrote code for dropToken() and whatsAtPos()
 Terance Harrison (Teranceh) - updated GameBoard constructor, did isPlayerAtpos for GameBoardMem, did UML Diagrams
 Rowan Froeschner (Rojofroe) - Adjusted main in order to fit user input criteria such as board sizes, number of players and their characters, etc. I also added contracts to GameBoardMem.
 
-# Project four
+# Project Four
 ---------------------------------------------------------
 Graham Frazier: 
 Kalyaan Narnamalpuram ( Jingleez ) - Wrote test cases for checkIfFree, Helped with writing test cases for functions in testGameBoardMem, 
 Terance Harrison (Teranceh) - 
-Rowan Froeschner (Rojofroe) - 
+Rowan Froeschner (Rojofroe) - Wrote most of the test cases in testGameBoard.java (the ones before Terrance's edits), and did the reports for the constuctor, drop token, whats at pos, and is player at pos tests/
