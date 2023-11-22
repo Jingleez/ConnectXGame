@@ -767,7 +767,7 @@ public class testGameBoardMem {
     //TEST CASES FOR CHECKTIE FUNCTION
     
     @Test
-    public void testCheckTie1() {
+    public void testCheckTie_noTie() {
         IGameBoard gb = factory1.makeGameBoard(4,6,3);
         char[][] egb = makeExpectedBoard(4,6);
         
@@ -790,7 +790,7 @@ public class testGameBoardMem {
     }
 
     @Test
-    public void testCheckTie2() {
+    public void testCheckTie_boardIsFull() {
         IGameBoard gb = factory1.makeGameBoard(4,6,3);
         char[][] egb = makeExpectedBoard(4,6);
 
@@ -847,7 +847,7 @@ public class testGameBoardMem {
     }
 
     @Test
-    public void testCheckTie3() {
+    public void testCheckTie_oneColumnFull() {
         IGameBoard gb = factory.makeStack(4,6,3);
         char[][] egb = makeExpectedBoard(4,6);
 
@@ -864,7 +864,7 @@ public class testGameBoardMem {
     }
 
     @Test
-    public void testCheckTie4() {
+    public void testCheckTie_oneRowFull() {
         IGameBoard gb = factory.makeStack(4,6,3);
         char[][] egb = makeExpectedBoard(4,6);
 
