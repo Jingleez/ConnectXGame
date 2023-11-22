@@ -102,18 +102,16 @@ public class testGameBoard {
     public void testDropTokenFillRow() {
         IGameBoard gb = makeGameBoard();
         char p1 = 'X';
-        char p2 = 'O';
         int col1 = 0;
         int col2 = 1;
         int col3 = 2;
         int row = 0;
-        int row2 = 1;
         gb.dropToken(p1, col1);
         gb.dropToken(p1, col2);
         gb.dropToken(p1, col3);
         assertEquals(p1, gb.whatsAtPos(new BoardPosition(row, col1)));
         assertEquals(p1, gb.whatsAtPos(new BoardPosition(row, col2)));
-        assertEquals(p1, gb.whatsAtPos(new BoardPosition(row2, col3)));
+        assertEquals(p1, gb.whatsAtPos(new BoardPosition(row, col3)));
     }
 
     // Test case 4 - Filling a column
@@ -732,7 +730,7 @@ public class testGameBoard {
         testBoard.dropToken(p1, col8);
         testBoard.dropToken(p2, col8);
         testBoard.dropToken(p2, col7);
-        assertTrue(testBoard.checkDiagWin(new BoardPosition(row, col5), p2));
+        assertTrue(testBoard.checkDiagWin(new BoardPosition(row, col7), p2));
     }
 
     /*
