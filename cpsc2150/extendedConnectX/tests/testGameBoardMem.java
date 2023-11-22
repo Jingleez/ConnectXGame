@@ -641,7 +641,7 @@ public class testGameBoardMem {
         testBoard.dropToken(p1, col1);
         assertTrue(testBoard.checkDiagWin(new BoardPosition(row, col1), p1));
     }
-
+    
     //test case 5 -
     @Test
     public void testDiagonalWinMedium1() {
@@ -731,184 +731,308 @@ public class testGameBoardMem {
         testBoard.dropToken(p2, col7);
         assertTrue(testBoard.checkDiagWin(new BoardPosition(row, col5), p2));
     }
-    
+
     /*
-    public class GameBoardFactory {
-        public IGameBoard makeGameBoard(int numRows, int numColumns, int numToWin) {
-            return new GameBoardMem(numRows, numColumns, numToWin);
+    public class testGameboardMem {
+
+        String expectedString(char[][] board) {
+            int length = board[0].length;
+            int width = board.length;
+            String matrix = "| 0| 1| 2|";
+            for (int x = 3; x < length; x++) {
+                if (x < 10) {
+                    matrix += " ";
+                    matrix += x;
+                    matrix += "|";
+                } else {
+                    matrix += x;
+                    matrix += "|";
+                }
+            }
+            matrix += "\n";
+            for (int r = width-1; r >= 0; r--) {
+                matrix += "|";
+                for (int c = 0; c < length; c++) {
+                    matrix += board[r][c];
+                    matrix += " |";
+                }
+                matrix += "\n";
+            }
+        return matrix;
+    }
+
+        char[][] makeExpectedBoard(int row, int col) {
+            char[][] board = new char[row][col];
+            for (int r=0; r<row; r++) {
+                for (int c=0; c<col; c++) {
+                    board[r][c] = ' ';
+                }
+            }
+            return board;
         }
-        public IGameBoard makeGameBoard() {
-            return new GameBoardMem(SMALL, SMALL, SMALL);
+
+        private IGameBoardFactory factory = new FFactory();
+
+        //TEST CASES FOR CONSTRUCTOR
+
+        @Test
+        public void testConstructor_min() {
+            IGameBoard gb = factory.makeStack(3,3,3);
+            char[][] egb = makeExpectedBoard(3,3);
+            
+            assertEquals(gb.toString(),expectedString(egb));
         }
-    }
-    private static final int SMALL = 3;
-    GameBoardFactory factory1 = new GameBoardFactory();
 
-    // Test cases for constructor
+        @Test
+        public void testConstructor_max() {
+            IGameBoard gb = factory.makeStack(100,100,25);
+            char[][] egb = makeExpectedBoard(100,100);
+        
+            assertEquals(gb.toString(),expectedString(egb));
+        }
 
-    // Test case 1 - Check constructor with valid parameters
-    @Test
-    public void testConstructorCase1() {
-        IGameBoard gb = factory1.makeGameBoard();
-        assertNotNull(gb);
-        assertEquals(SMALL, gb.getNumRows());
-        assertEquals(SMALL, gb.getNumColumns());
-        assertEquals(SMALL, gb.getNumToWin());
-    }
+        @Test
+        public void testConstructor_minAndMax() {
+            IGameBoard gb = factory.makeStack(3,100,25);
+            char[][] egb = makeExpectedBoard(3,100);
+            
+            assertEquals(gb.toString(),expectedString(egb));
+        }
 
-    // Test case 2 - Check constructor with larger grid and win condition
-    @Test
-    public void testConstructorCase2() {
-        int med = 5;
-        int win = 4;
-        IGameBoard gb = factory1.makeGameBoard(med, med, win);
-        assertNotNull(gb);
-        assertEquals(med, gb.getNumRows());
-        assertEquals(med, gb.getNumColumns());
-        assertEquals(win, gb.getNumToWin());
-    }
+        //TEST CASES FOR CHECKIFFREE
 
-    // Test case 3 - Check constructor with minimum values
-    @Test
-    public void testConstructorCase3() {
-        IGameBoard gb = factory1.makeGameBoard(1, 1, 1);
-        assertNotNull(gb);
-        assertEquals(1, gb.getNumRows());
-        assertEquals(1, gb.getNumColumns());
-        assertEquals(1, gb.getNumToWin());
-    }
+        @Test
+        public void testCheckIfFree_emptyboard() {
+            IGameBoard gb = factory.makeStack(4,6,3);
+            char[][] egb = makeExpectedBoard(4,6);
+            
+            assertEquals(gb.checkIfFree(0),true);
+        }
 
+        @Test
+        public void testCheckIfFree_fullcolumn() {
+            IGameBoard gb = factory.makeStack(4,6,3);
+            char[][] egb = makeExpectedBoard(4,6);
 
-    // Test case for checkIfFree
-// Test case 1 - Check if a position is free
-    @Test
-    public void testCheckIfFreeCase1() {
-        IGameBoard gb = factory1.makeGameBoard();
-        assertTrue(gb.checkIfFree(0));
-    }
+            gb.placeToken('X',2);
+            egb[0][2] = 'X';
+            gb.placeToken('O',2);
+            egb[1][2] = 'O';
+            gb.placeToken('X',2);
+            egb[2][2] = 'X';
+            gb.placeToken('O',2);
+            egb[3][2] = 'O';
 
-    // Test case 2 - Check if a position is not free after dropping a token
-    @Test
-    public void testCheckIfFreeCase2() {
-        IGameBoard gb = factory1.makeGameBoard();
-        gb.dropToken('X', 0);
-        assertFalse(gb.checkIfFree(0));
-    }
+            assertEquals(gb.checkIfFree(2),false);
+        }
 
-    // Test case 3 - Check if a position is free after dropping tokens in other positions
-    @Test
-    public void testCheckIfFreeCase3() {
-        IGameBoard gb = factory1.makeGameBoard();
-        gb.dropToken('X', 1);
-        gb.dropToken('O', 2);
-        assertTrue(gb.checkIfFree(0));
-    }
+        @Test
+        public void testCheckIfFree_halffull() {
+            IGameBoard gb = factory.makeStack(4,6,3);
+            char[][] egb = makeExpectedBoard(4,6);
 
-    // Test case for checkHorizWin
-// Test case 1 - Horizontal win in the first row
-    @Test
-    public void testCheckHorizWinCase1() {
-        IGameBoard gb = factory1.makeGameBoard();
-        char p1 = 'X';
-        //char p2 = 'O';
-        BoardPosition win = new BoardPosition(0, 2);
-        gb.dropToken(p1, 0);
-        gb.dropToken(p1, 1);
-        gb.dropToken(p1, 2);
-        //gb.dropToken(p2, 1);
-        //gb.dropToken(p1, 1);
-        //gb.dropToken(p2, 2);
-        //gb.dropToken(p1, 2);
+            gb.placeToken('X',2);
+            egb[0][2] = 'X';
+            gb.placeToken('O',2);
+            egb[1][2] = 'O';
 
-        assertTrue(gb.checkHorizWin(win, p1));
-    }
+            assertEquals(gb.checkIfFree(2),true);
+        }
 
-    // Test case 2 - Horizontal win in the middle row
-    @Test
-    public void testCheckHorizWinCase2() {
-        IGameBoard gb = factory1.makeGameBoard();
-        gb.dropToken('X', 1);
-        gb.dropToken('O', 0);
-        gb.dropToken('X', 2);
-        gb.dropToken('O', 1);
-        gb.dropToken('X', 0);
-        assertTrue(gb.checkHorizWin());
-    }
+        //TEST CASES FOR CHECKHORIZWIN
 
-    // Test case 3 - No horizontal win in a larger board
-    @Test
-    public void testCheckHorizWinCase3() {
-        IGameBoard gb = factory1.makeGameBoard(4, 4, 3);
-        gb.dropToken('X', 0);
-        gb.dropToken('O', 1);
-        gb.dropToken('X', 1);
-        gb.dropToken('O', 2);
-        gb.dropToken('X', 2);
-        assertFalse(gb.checkHorizWin());
-    }
+        @Test
+        public void testCheckHorizWin_bottomrow() {
+            IGameBoard gb = factory.makeStack(4,6,3);
+            char[][] egb = makeExpectedBoard(4,6);
 
-    // Test case 4 - Horizontal win in the last row
-    @Test
-    public void testCheckHorizWinCase4() {
-        IGameBoard gb = factory1.makeGameBoard();
-        gb.dropToken('X', 0);
-        gb.dropToken('O', 1);
-        gb.dropToken('X', 1);
-        gb.dropToken('O', 2);
-        gb.dropToken('X', 0);
-        assertTrue(gb.checkHorizWin());
-    }
+            gb.placeToken('X',0);
+            egb[0][0] = 'X';
+            gb.placeToken('X',1);
+            egb[0][1] = 'X';
+            gb.placeToken('X',2);
+            egb[0][2] = 'X';
+            
+            assertEquals(gb.checkHorizWin(0,2,'X'),true);
+        }
 
+        @Test
+        public void testCheckHorizWin_bottomrowdifchars() {
+            IGameBoard gb = factory.makeStack(4,6,3);
+            char[][] egb = makeExpectedBoard(4,6);
 
-    // Test case for checkVertWin
-// Test case 1 - Vertical win in the first column
-    @Test
-    public void testCheckVertWinCase1() {
-        IGameBoard gb = factory1.makeGameBoard();
-        gb.dropToken('X', 0);
-        gb.dropToken('O', 1);
-        gb.dropToken('X', 0);
-        gb.dropToken('O', 2);
-        gb.dropToken('X', 0);
-        assertTrue(gb.checkVertWin());
-    }
+            gb.placeToken('X',0);
+            egb[0][0] = 'X';
+            gb.placeToken('O',1);
+            egb[0][1] = 'O';
+            gb.placeToken('X',2);
+            egb[0][2] = 'X';
 
-    // Test case 2 - Vertical win in the middle column
-    @Test
-    public void testCheckVertWinCase2() {
-        IGameBoard gb = factory1.makeGameBoard();
-        gb.dropToken('X', 1);
-        gb.dropToken('O', 0);
-        gb.dropToken('X', 1);
-        gb.dropToken('O', 2);
-        gb.dropToken('X', 1);
-        assertTrue(gb.checkVertWin());
-    }
+            assertEquals(gb.checkHorizWin(0,2,'X'),false);
+        }
 
-    // Test case 3 - No vertical win in a larger board
-    @Test
-    public void testCheckVertWinCase3() {
-        IGameBoard gb = factory1.makeGameBoard();
-        gb.dropToken('X', 0);
-        gb.dropToken('O', 1);
-        gb.dropToken('X', 0);
-        gb.dropToken('O', 2);
-        gb.dropToken('X', 0);
-        assertFalse(gb.checkVertWin());
-    }
+        @Test
+        public void testCheckHorizWin_toprow() {
+            IGameBoard gb = factory.makeStack(4,6,3);
+            char[][] egb = makeExpectedBoard(4,6);
 
-    // Test case 4 - Vertical win in the last column
-    @Test
-    public void testCheckVertWinCase4() {
-        IGameBoard gb = factory1.makeGameBoard();
-        gb.dropToken('X', 2);
-        gb.dropToken('O', 1);
-        gb.dropToken('X', 2);
-        gb.dropToken('O', 2);
-        gb.dropToken('X', 2);
-        assertTrue(gb.checkVertWin());
-    }
+            gb.placeToken('O',0);
+            egb[0][0] = 'O';
+            gb.placeToken('O',1);
+            egb[0][1] = 'O';
+            gb.placeToken('O',2);
+            egb[0][2] = 'O';
+            gb.placeToken('O',0);
+            egb[1][0] = 'O';
+            gb.placeToken('O',1);
+            egb[1][1] = 'O';
+            gb.placeToken('O',2);
+            egb[1][2] = 'O';
+            gb.placeToken('O',0);
+            egb[2][0] = 'O';
+            gb.placeToken('O',1);
+            egb[2][1] = 'O';
+            gb.placeToken('O',2);
+            egb[2][2] = 'O';
+            gb.placeToken('X',0);
+            egb[3][0] = 'X';
+            gb.placeToken('X',1);
+            egb[3][1] = 'X';
+            gb.placeToken('X',2);
+            egb[3][2] = 'X';
+            
+            assertEquals(gb.checkHorizWin(3,2,'X'),true);
+        }
 
+        @Test
+        public void testCheckHorizWin_middle() {
+            IGameBoard gb = factory.makeStack(4,6,3);
+            char[][] egb = makeExpectedBoard(4,6);
+
+            gb.placeToken('O',2);
+            egb[0][2] = 'O';
+            gb.placeToken('O',3);
+            egb[0][3] = 'O';
+            gb.placeToken('O',4);
+            egb[0][4] = 'O';
+            gb.placeToken('O',2);
+            egb[1][2] = 'O';
+            gb.placeToken('O',3);
+            egb[1][3] = 'O';
+            gb.placeToken('O',4);
+            egb[1][4] = 'O';
+            gb.placeToken('X',2);
+            egb[2][2] = 'X';
+            gb.placeToken('X',3);
+            egb[2][3] = 'X';
+            gb.placeToken('X',4);
+            egb[2][4] = 'X';
+
+            assertEquals(gb.checkHorizWin(2,4,'X'),true);
+        }
+
+        @Test
+        public void testCheckHorizWin_mixed() {
+            IGameBoard gb = factory.makeStack(4,6,3);
+            char[][] egb = makeExpectedBoard(4,6);
+
+            gb.placeToken('X',1);
+            egb[0][1] = 'X';
+            gb.placeToken('O',2);
+            egb[0][2] = 'O';
+            gb.placeToken('X',1);
+            egb[1][1] = 'X';
+            gb.placeToken('O',1);
+            egb[2][1] = 'O';
+            gb.placeToken('X',2);
+            egb[1][2] = 'X';
+            gb.placeToken('O',3);
+            egb[0][3] = 'O';
+            gb.placeToken('X',3);
+            egb[1][3] = 'X';
+
+            assertEquals(gb.checkHorizWin(1,3,'X'),true);
+        }
+
+        //TEST CASES FOR CHECKVERTWIN
+
+        @Test
+        public void testCheckVertWin_left() {
+            IGameBoard gb = factory.makeStack(4,6,3);
+            char[][] egb = makeExpectedBoard(4,6);
+
+            gb.placeToken('O',0);
+            egb[0][0] = 'O';
+            gb.placeToken('O',0);
+            egb[1][0] = 'O';
+            gb.placeToken('O',0);
+            egb[2][0] = 'O';
+
+            assertEquals(gb.checkVertWin(2,0,'O'),true);
+        }
+
+        @Test
+        public void testCheckVertWin_nowin() {
+            IGameBoard gb = factory.makeStack(4,6,3);
+            char[][] egb = makeExpectedBoard(4,6);
+
+            gb.placeToken('X',1);
+            egb[0][1] = 'X';
+            gb.placeToken('O',1);
+            egb[1][1] = 'O';
+            gb.placeToken('O',1);
+            egb[2][1] = 'O';
+
+            assertEquals(gb.checkVertWin(2,1,'O'),false);
+        }
+
+        @Test
+        public void testCheckVertWin_right() {
+            IGameBoard gb = factory.makeStack(4,6,3);
+            char[][] egb = makeExpectedBoard(4,6);
+
+            gb.placeToken('X',5);
+            egb[0][5] = 'X';
+            gb.placeToken('O',5);
+            egb[1][5] = 'O';
+            gb.placeToken('O',5);
+            egb[2][5] = 'O';
+            gb.placeToken('O',5);
+            egb[3][5] = 'O';
+
+            assertEquals(gb.checkVertWin(3,5,'O'),true);
+        }
+
+        @Test
+        public void testCheckVertWin_middle() {
+            IGameBoard gb = factory.makeStack(4,6,3);
+            char[][] egb = makeExpectedBoard(4,6);
+
+            gb.placeToken('O',1);
+            egb[0][1] = 'O';
+            gb.placeToken('O',1);
+            egb[1][1] = 'O';
+            gb.placeToken('O',1);
+            egb[2][1] = 'O';
+
+            assertEquals(gb.checkVertWin(2,1,'O'),true);
+        }
+
+        @Test
+        public void testCheckVertWin_horiz() {
+            IGameBoard gb = factory.makeStack(4,6,3);
+            char[][] egb = makeExpectedBoard(4,6);
+
+            gb.placeToken('X',0);
+            egb[0][0] = 'X';
+            gb.placeToken('X',1);
+            egb[0][1] = 'X';
+            gb.placeToken('X',2);
+            egb[0][2] = 'X';
+
+            assertEquals(gb.checkVertWin(2,0,'X'),false);
+        }
+        
     //TEST CASES FOR CHECKDIAGWIN FUNCTION
   
     @Test
