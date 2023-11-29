@@ -13,7 +13,7 @@ public class TestGameBoardMem {
     }
     private IGameBoard makeGameBoard() {
         int small = 3;
-        return new GameBoard(small, small, small);
+        return new GameBoardMem(small, small, small);
     }
 
     private String buildBoard(int r, int c) {

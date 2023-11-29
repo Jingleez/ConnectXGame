@@ -18,7 +18,7 @@ public class GameBoardMem extends AbsGameBoard{
     /**
      * Constructs a game board that is empty, but uses a map for better efficiency.
      * This constructor initializes a new instance of the gameboard class with a map of blank spaces,
-     * in which each position is a value and is assigned to the key being the character representing the player
+     * in which each position is a value and is assigneFd to the key being the character representing the player
      * who places their piece in that location.
      * The game board is being represented as a grid with rows and columns, where each position is initially empty.
      *

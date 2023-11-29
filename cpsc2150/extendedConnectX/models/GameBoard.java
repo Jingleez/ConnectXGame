@@ -75,7 +75,6 @@ public class GameBoard extends AbsGameBoard
         }
         insert = new BoardPosition(insert.getRow() + 1, insert.getColumn());
         }
-        System.out.println(Board[insert.getRow()][insert.getColumn()]);
         //Places the character 'p' in column 'c'. The token will be placed in the lowest available row in column 'c'.
     }
 
