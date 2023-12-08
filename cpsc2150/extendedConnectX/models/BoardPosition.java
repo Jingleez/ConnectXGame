@@ -13,8 +13,8 @@ Rowan Froeschner (Rojofroe)
  */
 public class BoardPosition
 {
-    private int maxRows = 9;
-    private int maxColumns = 7;
+    private static final int MAX_ROWS = 9;
+    private static final int MAX_COLS = 7;
     private int Row;
     private int Column;
 
