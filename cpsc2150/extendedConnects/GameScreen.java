@@ -17,9 +17,11 @@ public class GameScreen
         //Variable Creation/Initialization
         boolean playAgain = true;
 
+        final int MIN_PLAYERS = 2, MAX_PLAYERS = 10, MIN_NUM = 3, MAX_NUM = 100, MAX_WIN = 25;
+
         //While loop for the option to play the game again
         while (playAgain) {
-            final int minPlayers = 2, maxPlayers = 10, minNum = 3, maxNum = 100, maxWin = 25;
+            
             int userChoice = 0;
             //Variable start/reset to begin match
             IGameBoard newBoard = null;
@@ -31,13 +33,13 @@ public class GameScreen
                 System.out.println("How many players would you like to have?");
                 in = keyboard.nextLine();
                 numPlay = Integer.parseInt(in);
-                if (numPlay < minPlayers) {
+                if (numPlay < MIN_PLAYERS) {
                     System.out.println("Must be at least 2 players");
                 }
-                else if (numPlay > maxPlayers) {
+                else if (numPlay > MAX_PLAYERS) {
                     System.out.println("Must be 10 players or fewer");
                 }
-            }while (numPlay < minPlayers || numPlay > maxPlayers);
+            }while (numPlay < MIN_PLAYERS || numPlay > MAX_PLAYERS);
 
             for (int i = 1; i <= numPlay; i++) {
                 do {
@@ -56,40 +58,40 @@ public class GameScreen
                 System.out.println("How many rows would you like the board to have?");
                 in = keyboard.nextLine();
                 numRows = Integer.parseInt(in);
-                if (numRows < minNum) {
-                    System.out.println("Must be at least " + minNum + " rows");
+                if (numRows < MIN_NUM) {
+                    System.out.println("Must be at least " + MIN_NUM + " rows");
                 }
-                else if (numRows > maxNum) {
-                    System.out.println("Must be " + maxNum + " or fewer rows");
+                else if (numRows > MAX_NUM) {
+                    System.out.println("Must be " + MAX_NUM + " or fewer rows");
                 }
-            } while(numRows < minNum || numRows > maxNum);
+            } while(numRows < MIN_NUM || numRows > MAX_NUM);
 
             do {
                 System.out.println("How many columns would you like the board to have?");
                 in = keyboard.nextLine();
                 numCols = Integer.parseInt(in);
-                if (numCols < minNum) {
-                    System.out.println("Must be at least " + minNum + " columns");
+                if (numCols < MIN_NUM) {
+                    System.out.println("Must be at least " + MIN_NUM + " columns");
                 }
-                else if (numCols > maxNum) {
-                    System.out.println("Must be " + maxNum + " or fewer columns");
+                else if (numCols > MAX_NUM) {
+                    System.out.println("Must be " + MAX_NUM + " or fewer columns");
                 }
-            } while(numCols < minNum || numCols > maxNum);
+            } while(numCols < MIN_NUM || numCols > MAX_NUM);
 
             do {
                 System.out.println("How many in a row needed to win?");
                 in = keyboard.nextLine();
                 numToWin = Integer.parseInt(in);
-                if (numToWin < minNum) {
-                    System.out.println("Must be at least " + minNum);
+                if (numToWin < MIN_NUM) {
+                    System.out.println("Must be at least " + MIN_NUM);
                 }
-                else if (numToWin > maxWin) {
-                    System.out.println("Must be " + maxWin + " or fewer");
+                else if (numToWin > MAX_WIN) {
+                    System.out.println("Must be " + MAX_WIN + " or fewer");
                 }
                 else if (numToWin > numCols || numToWin > numRows) {
                     System.out.println("must be fewer than the number of columns and rows");
                 }
-            } while (numToWin < minNum || numToWin > maxWin || numToWin > numCols || numToWin > numRows );
+            } while (numToWin < MIN_NUM || numToWin > MAX_WIN || numToWin > numCols || numToWin > numRows );
 
             do {
                 System.out.println("Would you like a Fast Game (F/f) or a Memory Efficient Game (M/m)?");
