@@ -39,7 +39,6 @@ public class GameBoard extends AbsGameBoard
         maxColumn = Col;
         winNum = Win;
         Board = new char[maxRow][maxColumn];
-        //Board = new char [maxColumn][maxRow];
         for (int row = 0; row < maxRow; row++) {
             for (int col = 0; col < maxColumn; col++) {
                 Board[row][col] = ' ';
