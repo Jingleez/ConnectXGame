@@ -114,8 +114,8 @@ public class GameScreen
                 if (userChoice < 0) {
                     System.out.println("Column cannot be less than 0");
                     continue;
-                } else if (userChoice > newBoard.getNumColumns()) {
-                    System.out.println("Column cannot be greater than " + newBoard.getNumColumns());
+                } else if (userChoice > (newBoard.getNumColumns() - 1)) {
+                    System.out.println("Column cannot be greater than " + (newBoard.getNumColumns() - 1));
                     continue;
 
                 } else if (!newBoard.checkIfFree(userChoice)) {
@@ -155,7 +155,7 @@ public class GameScreen
                 } else if (playAgainChoice.equals("n")) {
                     playAgain = false;
                     break;
-                } 
+                }
             } while (true);
         }
     }
