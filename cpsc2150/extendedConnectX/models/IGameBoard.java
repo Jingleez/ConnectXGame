@@ -43,8 +43,8 @@ public interface IGameBoard {
      * @param p the character representing the player
      * @param c the column to drop the token in
      *
-     * @pre [the game board is not full]
-     * @post  Col = #Col AND Row = #Row AND Win = #Win AND self = #self + [the first free spot of column c gets set to
+     * @pre ["column" c is not "full"]
+     * @post  Col = #Col AND Row = #Row AND Win = #Win AND self = #self + [the first free spot of "column" c gets set to
      * player p's token]
      */
     public void dropToken(char p, int c);
