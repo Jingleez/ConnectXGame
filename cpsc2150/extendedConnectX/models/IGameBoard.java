@@ -23,7 +23,8 @@ public interface IGameBoard {
      * @return true or false
      *
      * @pre none
-     * @post self = #self  AND Col = #Col AND Row = #Row AND win = #Win AND checkifFree = (true [if
+     * @post self = #self  AND Col = #Col AND Row = #Row AND win = #Win AND
+     * [checkIfFree calls function whatsAtPos(BoardPosition)] AND checkIfFree = (true [if
      * the column has space for another token] OR false [if the column is full])
      */
     default boolean checkIfFree(int c) {

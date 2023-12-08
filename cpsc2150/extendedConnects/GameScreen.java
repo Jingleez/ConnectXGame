@@ -23,12 +23,14 @@ public class GameScreen
         while (playAgain) {
             
             int userChoice = 0;
+
             //Variable start/reset to begin match
             IGameBoard newBoard = null;
             int numRows, numCols, numPlay, numToWin;
             char player;
             List<Character> players = new ArrayList<>();
             String boardType, in;
+
             do {
                 System.out.println("How many players would you like to have?");
                 in = keyboard.nextLine();
@@ -105,6 +107,7 @@ public class GameScreen
 
             char currentPlayer = players.get(0);
             System.out.println(newBoard.toString()); //shows the first (empty) game-board
+
             //while loop that identifies if play again is true, and runs the game again if so
             while (true) {
                 System.out.println("Player " + currentPlayer + ", what column do you want to place your marker in?");
@@ -123,8 +126,10 @@ public class GameScreen
                     continue;
 
                 }
+
                 //token drop function
                 newBoard.dropToken(currentPlayer, userChoice);
+
                 //win statement that breaks to the previous while loop
                 if (newBoard.checkForWin(userChoice)) {
                     System.out.println(newBoard.toString());
@@ -144,6 +149,7 @@ public class GameScreen
                 //ternary statement that is used to determine which player has the next turn
                 currentPlayer = (currentPlayer == players.get(players.size() - 1)) ? players.get(0) : players.get(players.indexOf(currentPlayer) + 1);
             }
+
             //start of do while loop
             do {
                 System.out.println("Would you like to play again? Y/N");
