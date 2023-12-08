@@ -158,9 +158,7 @@ public class TestGameBoard {
         gb.dropToken(p1, col1);
         gb.dropToken(p1, col1);
         gb.dropToken(p1, col1);
-        assertEquals(p1, gb.whatsAtPos(new BoardPosition(row1, col1)));
-        assertEquals(p1, gb.whatsAtPos(new BoardPosition(row2, col1)));
-        assertEquals(p1, gb.whatsAtPos(new BoardPosition(row3, col1)));
+        assertTrue(!gb.checkIfFree(col1));
     }
 
     // Test case 5 - Filling multiple columns
@@ -186,15 +184,9 @@ public class TestGameBoard {
         gb.dropToken(p3, col3);
         gb.dropToken(p3, col3);
         gb.dropToken(p3, col3);
-        assertEquals(p1, gb.whatsAtPos(new BoardPosition(row1, col1)));
-        assertEquals(p1, gb.whatsAtPos(new BoardPosition(row2, col1)));
-        assertEquals(p1, gb.whatsAtPos(new BoardPosition(row3, col1)));
-        assertEquals(p2, gb.whatsAtPos(new BoardPosition(row1, col2)));
-        assertEquals(p2, gb.whatsAtPos(new BoardPosition(row2, col2)));
-        assertEquals(p2, gb.whatsAtPos(new BoardPosition(row3, col2)));
-        assertEquals(p3, gb.whatsAtPos(new BoardPosition(row1, col3)));
-        assertEquals(p3, gb.whatsAtPos(new BoardPosition(row2, col3)));
-        assertEquals(p3, gb.whatsAtPos(new BoardPosition(row3, col3)));
+        assertTrue(!gb.checkIfFree(col1));
+        assertTrue(!gb.checkIfFree(col2));
+        assertTrue(!gb.checkIfFree(col3));
     }
 
     // Test cases for whatsAtPos
