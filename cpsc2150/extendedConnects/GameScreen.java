@@ -155,9 +155,7 @@ public class GameScreen
                 } else if (playAgainChoice.equals("n")) {
                     playAgain = false;
                     break;
-                } else {
-                    System.out.println("Would you like to play again? Y/N");
-                }
+                } 
             } while (true);
         }
     }
