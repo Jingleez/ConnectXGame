@@ -16,9 +16,9 @@ Rowan Froeschner (Rojofroe)
  */
 public class GameBoard extends AbsGameBoard
 {
-    private int maxRow = 9;
-    private int maxColumn = 7;
-    private int winNum = 5;
+    private int maxRow;
+    private int maxColumn;
+    private int winNum;
     private char[][] Board;
 
 
