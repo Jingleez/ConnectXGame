@@ -344,11 +344,7 @@ public class TestGameBoardMem {
     public void testIsPlayerAtPosSingleToken() {
         IGameBoard gb = makeGameBoard();
         char p1 = 'X';
-        char p2 = 'O';
-        char empty = ' ';
         int col1 = 0;
-        int col2 = 1;
-        int col3 = 2;
         int row = 0;
         gb.dropToken(p1, col1);
         assertTrue(gb.isPlayerAtPos(new BoardPosition(row, col1), p1));

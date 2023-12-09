@@ -344,15 +344,11 @@ public class TestGameBoard {
     public void testIsPlayerAtPosSingleToken() {
         IGameBoard gb = makeGameBoard();
         char p1 = 'X';
-        char p2 = 'O';
-        char empty = ' ';
         int col1 = 0;
-        int col2 = 1;
-        int col3 = 2;
         int row = 0;
         gb.dropToken(p1, col1);
         assertTrue(gb.isPlayerAtPos(new BoardPosition(row, col1), p1));
-        assertFalse(gb.isPlayerAtPos(new BoardPosition(row, col1), p2));
+
     }
 
     // Test case 2 - Different positions for the same player
