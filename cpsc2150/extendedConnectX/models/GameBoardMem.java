@@ -62,6 +62,22 @@ public class GameBoardMem extends AbsGameBoard{
         return ' ';
     }
 
+    /**
+     * this function returns true if a specified player is at a specified location.
+     *
+     * @param pos [the position to check for which player is potentially located]
+     * @param player [a valid player character]
+     *
+     * @pre pos.Row < maxRow AND pos.Row >= 0 AND pos.Column < maxColumn AND pos.Column >= 0
+     * @pre player is a Character key in board
+     *
+     * @return true [IFF player is at pos in board] OW false
+     *
+     * @post
+     * isPlayerAtPos = true IFF [the player at the BoardPosition pos is equal to player] OR
+     * isPlayerAtPos = false IFF [gameMap does not contain player OR the key at BoardPosition is not equal to player] AND
+     * maxRow = #maxRow AND maxCol = #maxCol AND winNum = #winNum AND board = #board
+     */
     @Override
     public boolean isPlayerAtPos(BoardPosition pos, char player) {
         List<BoardPosition> positions = board.get(player);
