@@ -79,11 +79,8 @@ public class BoardPosition
      */
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) { return true; }
-        if (obj == null || getClass() != obj.getClass() ) { return false; }
-        BoardPosition other = (BoardPosition) obj;
-        return this.getRow() == other.getRow() && this.getColumn() == other.getColumn();
-
+        BoardPosition pos = (BoardPosition)obj;
+        return (Row == pos.Row && Column == pos.Column);
     }
 
     /**
