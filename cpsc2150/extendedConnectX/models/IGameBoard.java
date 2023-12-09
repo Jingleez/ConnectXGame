@@ -62,31 +62,22 @@ public interface IGameBoard {
      * checkForWin = (true [if the last token caused someone to win] OR false [if no one won so far])
      */
     default boolean checkForWin(int c) {
-        BoardPosition insert = new BoardPosition(0, c);
-        char piece = ' ';
-        int row = 0;
-        if (checkIfFree(c)) {
-            for (int i = 0; i < getNumRows(); i++) {
-                row = insert.getRow();
-                if (whatsAtPos(insert) != ' ') {
-                    row++;
-                    insert = new BoardPosition(row, insert.getColumn());
-                } else {
-                    insert = new BoardPosition((row - 1), insert.getColumn());
-                    piece = whatsAtPos(insert);
-                    break;
-                }
+        char tokCheck = ' ';
+        int row = getNumRows()-1;
+        BoardPosition pos = new BoardPosition(0,0);
+        //finding last placed token by moving down column c
+        for(; row >= 0; row--){
+            pos = new BoardPosition(row, c);
+            if(whatsAtPos(pos) != ' '){
+                tokCheck = whatsAtPos(pos);
+                break;
             }
         }
-        else {
-            insert = new BoardPosition((getNumRows() - 1), c);
-            piece = whatsAtPos(insert);
-        }
-        if (checkHorizWin(insert, piece) || checkVertWin(insert, piece) || checkDiagWin(insert, piece)) {
-            return true;
-        } else {
+        //making sure the column wasn't empty
+        if(tokCheck == ' ')
             return false;
-        }
+
+        return (checkHorizWin(pos , tokCheck) || checkVertWin(pos , tokCheck) || checkDiagWin(pos, tokCheck));
     }
 
 
