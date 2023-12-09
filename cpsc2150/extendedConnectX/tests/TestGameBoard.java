@@ -138,53 +138,97 @@ public class TestGameBoard {
         IGameBoard gb = makeGameBoard();
         char p1 = 'X';
         char p2 = 'O';
-        char empty = ' ';
+
         int col1 = 0;
         int col2 = 1;
-        int col3 = 2;
-        int row = 0;
-        int row2 = 1;
-        int Lrow = gb.getNumRows() - 1;
+
         gb.dropToken(p1, col1);
         gb.dropToken(p2, col2);
         gb.dropToken(p1, col1); // Overlapping token
-        assertEquals(p1, gb.whatsAtPos(new BoardPosition(row, col1)));
-        assertEquals(p2, gb.whatsAtPos(new BoardPosition(row, col2)));
-        assertEquals(p1, gb.whatsAtPos(new BoardPosition(row2, col1)));
+
+        char[][] board = new char[3][3];
+        for (int i = 0; i < 3; ++i) {
+            for (int j = 0; j < 3; ++j) {
+                board[i][j] = ' ';
+            }
+        }
+
+        board[0][0] = 'X';
+        board[0][1] = 'O';
+        board[1][0] = 'X';
+
+        String test= buildBoard(board , 3 , 3);
+
+        assertEquals(test , gb.toString());
     }
 
     // Test case 3 - Multiple tokens in the same row
     @Test
     public void testDropTokenFillRow() {
+
+        /*
+         I would personally edit the documentation to simulate a real game
+         by going in an alternating pattern with another player token
+        */
+
+
         IGameBoard gb = makeGameBoard();
         char p1 = 'X';
         int col1 = 0;
         int col2 = 1;
         int col3 = 2;
-        int row = 0;
+
         gb.dropToken(p1, col1);
         gb.dropToken(p1, col2);
         gb.dropToken(p1, col3);
-        assertEquals(p1, gb.whatsAtPos(new BoardPosition(row, col1)));
-        assertEquals(p1, gb.whatsAtPos(new BoardPosition(row, col2)));
-        assertEquals(p1, gb.whatsAtPos(new BoardPosition(row, col3)));
+
+        char[][] board = new char[3][3];
+        for (int i = 0; i < 3; ++i) {
+            for (int j = 0; j < 3; ++j) {
+                board[i][j] = ' ';
+            }
+        }
+
+        board[0][0] = 'X';
+        board[0][1] = 'X';
+        board[0][2] = 'X';
+
+        String test = buildBoard(board , 3 , 3);
+
+        assertEquals(test , gb.toString());
     }
 
     // Test case 4 - Filling a column
     @Test
     public void testDropTokenFillColumn() {
+
+        /*
+         I would personally edit the documentation to simulate a real game
+         by going in an alternating pattern with another player token
+        */
+
         IGameBoard gb = makeGameBoard();
         char p1 = 'X';
         int col1 = 0;
-        int row1 = 0;
-        int row2 = 1;
-        int row3 = 2;
+
         gb.dropToken(p1, col1);
         gb.dropToken(p1, col1);
         gb.dropToken(p1, col1);
-        assertEquals(p1, gb.whatsAtPos(new BoardPosition(row1, col1)));
-        assertEquals(p1, gb.whatsAtPos(new BoardPosition(row2, col1)));
-        assertEquals(p1, gb.whatsAtPos(new BoardPosition(row3, col1)));
+
+        char[][] board = new char[3][3];
+        for (int i = 0; i < 3; ++i) {
+            for (int j = 0; j < 3; ++j) {
+                board[i][j] = ' ';
+            }
+        }
+
+        board[0][0] = 'X';
+        board[1][0] = 'X';
+        board[2][0] = 'X';
+
+        String test = buildBoard(board , 3 , 3);
+
+        assertEquals(test , gb.toString());
     }
 
     // Test case 5 - Filling multiple columns
@@ -194,13 +238,11 @@ public class TestGameBoard {
         char p1 = 'X';
         char p2 = 'O';
         char p3 = 'A';
-        char empty = ' ';
+
         int col1 = 0;
         int col2 = 1;
         int col3 = 2;
-        int row1 = 0;
-        int row2 = 1;
-        int row3 = 2;
+
         gb.dropToken(p1, col1);
         gb.dropToken(p1, col1);
         gb.dropToken(p1, col1);
@@ -210,15 +252,28 @@ public class TestGameBoard {
         gb.dropToken(p3, col3);
         gb.dropToken(p3, col3);
         gb.dropToken(p3, col3);
-        assertEquals(p1, gb.whatsAtPos(new BoardPosition(row1, col1)));
-        assertEquals(p1, gb.whatsAtPos(new BoardPosition(row2, col1)));
-        assertEquals(p1, gb.whatsAtPos(new BoardPosition(row3, col1)));
-        assertEquals(p2, gb.whatsAtPos(new BoardPosition(row1, col2)));
-        assertEquals(p2, gb.whatsAtPos(new BoardPosition(row2, col2)));
-        assertEquals(p2, gb.whatsAtPos(new BoardPosition(row3, col2)));
-        assertEquals(p3, gb.whatsAtPos(new BoardPosition(row1, col3)));
-        assertEquals(p3, gb.whatsAtPos(new BoardPosition(row2, col3)));
-        assertEquals(p3, gb.whatsAtPos(new BoardPosition(row3, col3)));
+
+        char[][] board = new char[3][3];
+        for (int i = 0; i < 3; ++i) {
+            for (int j = 0; j < 3; ++j) {
+                board[i][j] = ' ';
+            }
+        }
+
+        board[0][0] = 'X';
+        board[1][0] = 'X';
+        board[2][0] = 'X';
+        board[0][1] = 'O';
+        board[1][1] = 'O';
+        board[2][1] = 'O';
+        board[0][2] = 'A';
+        board[1][2] = 'A';
+        board[2][2] = 'A';
+
+        String test = buildBoard(board , 3 , 3);
+
+        assertEquals(test , gb.toString());
+
     }
 
     // Test cases for whatsAtPos
