@@ -52,12 +52,14 @@ public interface IGameBoard {
     /**
      * checks if the last placed token wins the game, calls the other three check functions to do that
      *
-     * @param c the column of the last placed token
+     * @param c the "column" of the last placed token
      * @return true or false
      *
-     * @pre [the game board can not be empty]
-     * @post self = #self  AND Col = #Col AND Row = #Row AND Win = #Win AND checkForWin = (true [if
-     * the last token caused someone to win] OR false [if no one won so far])
+     * @pre ["column" c is not "full"]
+     * @post self = #self  AND Col = #Col AND Row = #Row AND Win = #Win AND
+     * [checkForWin calls functions getNumRows() AND whatsAtPos(BoardPosition) AND
+     * CheckHorizWin(int , char) AND checkVertWin(int , char) AND checkDiagWin(int , char)] AND
+     * checkForWin = (true [if the last token caused someone to win] OR false [if no one won so far])
      */
     default boolean checkForWin(int c) {
         BoardPosition insert = new BoardPosition(0, c);
@@ -96,7 +98,8 @@ public interface IGameBoard {
      * @return true or false
      *
      * @pre none
-     * @post self = #self  AND Col = #Col AND Row = #Row AND Win = #Win AND checkTie = (true [if the game board is full]
+     * @post self = #self  AND Col = #Col AND Row = #Row AND Win = #Win AND
+     * [checkTie() calls function checkIfFree(int)] AND checkTie = (true [if the game board is full]
      * OR False [if game board is not full])
      */
     default boolean checkTie() {
@@ -117,7 +120,8 @@ public interface IGameBoard {
      * @return true or false
      *
      * @pre none
-     * @post self = #self  AND Col = #Col AND Row = #Row AND Win = #Win and checkHorizWin = (true
+     * @post self = #self  AND Col = #Col AND Row = #Row AND Win = #Win AND
+     * [checkHorizWin calls functions getNumToWin() AND isPlayerAtPos(BoardPosition , char)] AND checkHorizWin = (true
      * [if there are Win of the same tokens consecutively horizontally] OR false [if there are not Win tokens
      * consecutively horizontally])
      */
@@ -155,7 +159,8 @@ public interface IGameBoard {
      * @return true or false
      *
      * @pre none
-     * @post self = #self  AND Col = #Col AND Row = #Row AND Win = #Win and checkVertWin = (true
+     * @post self = #self  AND Col = #Col AND Row = #Row AND Win = #Win AND
+     * [checkVertWin calls functions getNumToWin() AND isPlayerAtPos(BoardPosition , char)] AND checkVertWin = (true
      * [if there are Win of the same tokens consecutively vertically] OR false [if there is not Win tokens consecutively
      * vertically])
      */
@@ -192,7 +197,8 @@ public interface IGameBoard {
      * @return true or false
      *
      * @pre none
-     * @post self = #self  AND Col = #Col AND Row = #Row AND Win = #Win and checkHorizWin = (true
+     * @post self = #self  AND Col = #Col AND Row = #Row AND Win = #Win AND
+     * [checkDiagWin calls functions getNumToWin() AND isPlayerAtPos(BoardPosition , char)] AND checkHorizWin = (true
      * [if there are Win of the same tokens consecutively diagonally] OR false [if there is not Win tokens consecutively
      * diagonally])
      */
@@ -286,7 +292,7 @@ public interface IGameBoard {
      * @return what is at the board position pos
      *
      * @pre none
-     * @post self = #self  AND Col = #Col AND Row = #Row AND Win = #Win AND whatsAtPos = [what is at position pos]
+     * @post self = #self  AND Col = #Col AND Row = #Row AND Win = #Win AND whatsAtPos = [character is at position pos]
      */
     public char whatsAtPos(BoardPosition pos);
 
@@ -299,7 +305,8 @@ public interface IGameBoard {
      * @return true OR false
      *
      * @pre none
-     * @post self = #self  AND Col = #Col AND Row = #Row AND Win = #Win AND isPlayerAtPos = (true
+     * @post self = #self  AND Col = #Col AND Row = #Row AND Win = #Win AND
+     * [isPLayerAtpos calls function whatsAtPos(BoardPosition)] AND isPlayerAtPos = (true
      * [if player matches the token in position pos] OR false [if the two don't match])
      */
     default boolean isPlayerAtPos(BoardPosition pos, char player) {

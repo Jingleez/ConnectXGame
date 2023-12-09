@@ -16,9 +16,9 @@ Rowan Froeschner (Rojofroe)
  */
 public class GameBoard extends AbsGameBoard
 {
-    private int maxRow = 9;
-    private int maxColumn = 7;
-    private int winNum = 5;
+    private int maxRow;
+    private int maxColumn;
+    private int winNum;
     private char[][] Board;
 
 
@@ -29,7 +29,7 @@ public class GameBoard extends AbsGameBoard
      *
      * @pre row > 0 AND col > 0 AND win > 0
      *
-     * @post Initializes a new game board with all the positions containing blank spaces, AND maxRow = Row
+     * @post [Initializes a new game board with all the positions containing blank spaces] AND maxRow = Row
      * AND maxCol = Col AND winNum = Win
      * 
      */
@@ -52,18 +52,17 @@ public class GameBoard extends AbsGameBoard
      * This function places a token in a specific column, allowing it to drop until it collides with amother token
      *
      * @param c an integer, the column where the token is to be placed ( 0 <= c <= maxColumn-1)
-     * @param p a character, either 'X' or 'O', which represents the player's token
+     * @param p a character, which represents a player's token
      *
      * @pre 
-     * 0 < c (latest column) <= maxColumn - 1, [must be a valid column to place token in
-     * p = X or O, these are the only 2 valid pieces
-     * checkIfFree() must return true to confirm a token can be placed there.]
+     * 0 <= c <= (maxColumn - 1)
+     * p = [a valid player's token]
+     * [checkIfFree() must return true to confirm a token can be placed there.]
      *
      * @post
-     * The following function will loop (i = 0, i <= maxRow, i++) checking whether the location
-     * GameBoard[maxRow-i][c] each loop checking if spot is occupied by X or O, after going 
-     * down and when the loop either ends because no token or is occupied by X or O, go back up one row
-     * and place token value p at that location.
+     * [dropToken calls function whatsAtPos(BoardPosition)] AND maxColumn = #maxColumn AND maxRow = #maxRow AND
+     * winNum = #winNum AND Board = [Board with a playerToken placed in "available" element]
+     *
      */
     public void dropToken(char p, int c)
     {
@@ -83,33 +82,56 @@ public class GameBoard extends AbsGameBoard
      *
      * @param pos The boardPosition object that specifies the row and column to examine
      *
-     * @pre None
+     * @pre pos.Row >= 0 AND pos.Row < maxRow AND pos.Column >= 0 AND pos.Column < maxColumn
      *
-     * @post This function returns the character (‘X’, ‘O’, ‘ ‘ ) located at the specific boardPosition
-     * This function returns blank space, if the specified boardPosition is unoccupied. 
-     * The state of the 'Board' remains unchanged after this method is called (self = #self)
+     * @post
+     * whatsAtPos = [the character at pos] AND maxColumn = #maxColumn AND maxRow = #maxRow AND
+     * winNum = #winNum AND Board = #Board
      *
      * @return The character (‘X’, ‘O’, ‘ ‘ )
      */
     public char whatsAtPos(BoardPosition pos)
     {
-        if (pos.getRow() < 0 || pos.getRow() >= getNumRows() || pos.getColumn() < 0 || pos.getColumn() >= getNumColumns()) {
-            return ' ';
-        }
         return Board[pos.getRow()][pos.getColumn()];
     }
 
+
+    /**
+     * Returns the number of rows on the board
+     *
+     * @return rows - the number of rows in the board
+     * @post getNumRows() = maxRow AND
+     * maxColumn = #maxColumn AND maxRow = #maxRow AND
+     * winNum = #winNum AND Board = #Board
+     */
     @Override
     public int getNumRows() {
         return maxRow;
     }
 
+
+    /**
+     * Returns the number of columns on the board
+     *
+     * @return maxColumn - the number of columns in the board
+     * @post getNumColumns() = maxColumn AND
+     * maxColumn = #maxColumn AND maxRow = #maxRow AND
+     * winNum = #winNum AND Board = #Board
+     */
     @Override
     public int getNumColumns() {
         return maxColumn;
     }
 
 
+    /**
+     * Returns the number of tokens needed to win the game
+     *
+     * @return winNum - the number of tokens needed to win the game
+     * @post getNumToWin() = winNum AND
+     * maxColumn = #maxColumn AND maxRow = #maxRow AND
+     * winNum = #winNum AND Board = #Board
+     */
     @Override
     public int getNumToWin() {
         return winNum;
