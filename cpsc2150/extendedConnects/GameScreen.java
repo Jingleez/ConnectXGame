@@ -107,7 +107,6 @@ public class GameScreen
             } while (!boardType.equals("f") && !boardType.equals("m"));
 
             char currentPlayer = players.get(0);
-            System.out.println(newBoard.toString()); //shows the first (empty) game-board
             //shows the first (empty) game-board
             System.out.println(newBoard.toString()); 
             //while loop that identifies if play again is true, and runs the game again if so
