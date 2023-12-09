@@ -39,7 +39,6 @@ public class GameBoard extends AbsGameBoard
         maxColumn = Col;
         winNum = Win;
         Board = new char[maxRow][maxColumn];
-        //Board = new char [maxColumn][maxRow];
         for (int row = 0; row < maxRow; row++) {
             for (int col = 0; col < maxColumn; col++) {
                 Board[row][col] = ' ';
@@ -66,11 +65,14 @@ public class GameBoard extends AbsGameBoard
      */
     public void dropToken(char p, int c)
     {
-        BoardPosition insert = new BoardPosition(0, c); // Start from the bottom row in column 'c'.
+        // Start from the bottom row in column 'c'.
+        BoardPosition insert = new BoardPosition(0, c); 
         for (int i = 0; i < maxRow; i++) {
         if (whatsAtPos(insert) == ' ') {
-            Board[insert.getRow()][insert.getColumn()] = p; // Place the token at the current position.
-            break; // Exit the loop after placing the token.
+            // Place the token at the current position.
+            Board[insert.getRow()][insert.getColumn()] = p; 
+            // Exit the loop after placing the token.
+            break; 
         }
         insert = new BoardPosition(insert.getRow() + 1, insert.getColumn());
         }

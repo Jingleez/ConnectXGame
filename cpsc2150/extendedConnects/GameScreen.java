@@ -99,7 +99,8 @@ public class GameScreen
                 System.out.println("Would you like a Fast Game (F/f) or a Memory Efficient Game (M/m)?");
                 boardType = keyboard.nextLine().toLowerCase();
                 if (boardType.equals("f")) {
-                    newBoard = new GameBoard(numRows, numCols, numToWin); // Creates a game-board at start of match
+                    // Creates a game-board at start of match
+                    newBoard = new GameBoard(numRows, numCols, numToWin); 
                 } else if (boardType.equals("m")) {
                     newBoard = new GameBoardMem(numRows, numCols, numToWin);
                 }
@@ -107,12 +108,14 @@ public class GameScreen
 
             char currentPlayer = players.get(0);
             System.out.println(newBoard.toString()); //shows the first (empty) game-board
-
+            //shows the first (empty) game-board
+            System.out.println(newBoard.toString()); 
             //while loop that identifies if play again is true, and runs the game again if so
             while (true) {
                 System.out.println("Player " + currentPlayer + ", what column do you want to place your marker in?");
                 in = keyboard.nextLine();
-                userChoice = Integer.parseInt(in); //user input
+                //user input
+                userChoice = Integer.parseInt(in); 
                 //input verification
                 if (userChoice < 0) {
                     System.out.println("Column cannot be less than 0");
@@ -143,7 +146,8 @@ public class GameScreen
                     break;
                 }
                 else {
-                    System.out.println(newBoard.toString()); //shows the game-board
+                    //shows the game-board
+                    System.out.println(newBoard.toString()); 
                 }
 
                 //ternary statement that is used to determine which player has the next turn

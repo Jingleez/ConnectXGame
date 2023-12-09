@@ -215,6 +215,7 @@ public class TestGameBoard {
         gb.dropToken(p1, col1);
         gb.dropToken(p1, col1);
 
+
         char[][] board = new char[3][3];
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 3; ++j) {
@@ -229,6 +230,9 @@ public class TestGameBoard {
         String test = buildBoard(board , 3 , 3);
 
         assertEquals(test , gb.toString());
+
+        assertTrue(!gb.checkIfFree(col1));
+
     }
 
     // Test case 5 - Filling multiple columns
@@ -253,6 +257,7 @@ public class TestGameBoard {
         gb.dropToken(p3, col3);
         gb.dropToken(p3, col3);
 
+
         char[][] board = new char[3][3];
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 3; ++j) {
@@ -273,6 +278,11 @@ public class TestGameBoard {
         String test = buildBoard(board , 3 , 3);
 
         assertEquals(test , gb.toString());
+
+
+        assertTrue(!gb.checkIfFree(col1));
+        assertTrue(!gb.checkIfFree(col2));
+        assertTrue(!gb.checkIfFree(col3));
 
     }
 

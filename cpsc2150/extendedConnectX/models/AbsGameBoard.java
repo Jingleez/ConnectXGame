@@ -23,7 +23,8 @@ abstract class AbsGameBoard implements IGameBoard {
         /*This function returns a string representation of the entire game board, including labels for rows and columns,
          without altering the board's state. */
         // Initial check to see if the 'board' has rows and column
-        StringBuilder boardString = new StringBuilder(); // Create a StringBuilder for the string representation.
+        // Create a StringBuilder for the string representation.
+        StringBuilder boardString = new StringBuilder(); 
         // Before going to next row, adding a newline first
         boardString.append("|");
         for (int col=0; col < getNumColumns(); col++) {
@@ -37,7 +38,8 @@ abstract class AbsGameBoard implements IGameBoard {
         for (int row = getNumRows() - 1; row > -1; row--) {
             for (int col = 0; col < getNumColumns(); col++) {
                 BoardPosition pos = new BoardPosition(row, col);
-                boardString.append("|" + whatsAtPos(pos) + " "); // Appending contents of cell
+                // Appending contents of cell
+                boardString.append("|" + whatsAtPos(pos) + " "); 
             }
             boardString.append("|");
             // Before going to next row, adding a newline first
