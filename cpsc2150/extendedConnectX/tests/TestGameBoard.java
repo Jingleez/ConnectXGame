@@ -16,7 +16,7 @@ public class TestGameBoard {
         return new GameBoard(small, small, small);
     }
 
-    private String buildBoard(int r, int c) {
+    private String buildBoard(char[][] b , int r, int c) {
         StringBuilder boardString = new StringBuilder(); // Create a StringBuilder for the string representation.
         // Before going to next row, adding a newline first
         boardString.append("|");
@@ -35,8 +35,7 @@ public class TestGameBoard {
             //for (int col = getNumColumns() - 1; col > -1; col--) {
             for (int col = 0; col < c; col++) {
                 //for (int row = 0; row < getNumRows(); row++) {
-                BoardPosition pos = new BoardPosition(row, col);
-                boardString.append("|" +"  "); // Appending contents of cell
+                boardString.append("|" + b[row][col] + " "); // Appending contents of cell
             }
             boardString.append("|");
             // Before going to next row, adding a newline first
@@ -52,7 +51,13 @@ public class TestGameBoard {
     @Test
     public void testConstructorMinimum() {
         int small = 3;
-        String expBoard = buildBoard(small, small);
+        char[][] board = new char[small][small];
+        for (int i = 0; i < small; ++i) {
+            for (int j = 0; j < small; ++j) {
+                board[i][j] = ' ';
+            }
+        }
+        String expBoard = buildBoard(board , small , small);
         IGameBoard testBoard = makeGameBoard(small, small, small);
         assertEquals(small, testBoard.getNumRows());
         assertEquals(small, testBoard.getNumColumns());
@@ -66,7 +71,13 @@ public class TestGameBoard {
         int row = 8;
         int col = 17;
         int win = 7;
-        String expBoard = buildBoard(row, col);
+        char[][] board = new char[row][col];
+        for (int i = 0; i < row; ++i) {
+            for (int j = 0; j < col; ++j) {
+                board[i][j] = ' ';
+            }
+        }
+        String expBoard = buildBoard(board , row , col);
         IGameBoard testBoard = makeGameBoard(row, col, win);
         assertEquals(row, testBoard.getNumRows());
         assertEquals(col, testBoard.getNumColumns());
@@ -80,7 +91,13 @@ public class TestGameBoard {
         int row = 100;
         int col = 100;
         int win = 25;
-        String expBoard = buildBoard(row, col);
+        char[][] board = new char[row][col];
+        for (int i = 0; i < row; ++i) {
+            for (int j = 0; j < col; ++j) {
+                board[i][j] = ' ';
+            }
+        }
+        String expBoard = buildBoard(board , row , col);
         IGameBoard testBoard = makeGameBoard(row, col, win);
         assertEquals(row, testBoard.getNumRows());
         assertEquals(col, testBoard.getNumColumns());
@@ -96,16 +113,23 @@ public class TestGameBoard {
         IGameBoard gb = makeGameBoard();
         char p1 = 'X';
         char p2 = 'O';
-        char empty = ' ';
-        int col1 = 0;
-        int col2 = 1;
-        int col3 = 2;
-        int row = 0;
-        int Lrow = gb.getNumRows() - 1;
-        gb.dropToken(p1, col1);
-        gb.dropToken(p2, col2);
-        assertEquals(p1, gb.whatsAtPos(new BoardPosition(row, col1)));
-        assertEquals(p2, gb.whatsAtPos(new BoardPosition(row, col2)));
+
+        gb.dropToken(p1, 0);
+        gb.dropToken(p2, 1);
+
+        char[][] board = new char[3][3];
+        for (int i = 0; i < 3; ++i) {
+            for (int j = 0; j < 3; ++j) {
+                board[i][j] = ' ';
+            }
+        }
+
+        board[0][0] = 'X';
+        board[0][1] = 'O';
+
+        String test = buildBoard(board , 3 , 3);
+
+        assertEquals(test , gb.toString());
     }
 
     // Test case 2 - 2 in a column

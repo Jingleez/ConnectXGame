@@ -88,50 +88,27 @@ public class GameBoard extends AbsGameBoard
      * whatsAtPos = [the character at pos] AND maxColumn = #maxColumn AND maxRow = #maxRow AND
      * winNum = #winNum AND Board = #Board
      *
-     * @return The character (‘X’, ‘O’, ‘ ‘ )
+     * @return a valid player character or ' '
      */
     public char whatsAtPos(BoardPosition pos)
     {
         return Board[pos.getRow()][pos.getColumn()];
     }
 
-
-    /**
-     * Returns the number of rows on the board
-     *
-     * @return rows - the number of rows in the board
-     * @post getNumRows() = maxRow AND
-     * maxColumn = #maxColumn AND maxRow = #maxRow AND
-     * winNum = #winNum AND Board = #Board
-     */
     @Override
     public int getNumRows() {
         return maxRow;
     }
 
 
-    /**
-     * Returns the number of columns on the board
-     *
-     * @return maxColumn - the number of columns in the board
-     * @post getNumColumns() = maxColumn AND
-     * maxColumn = #maxColumn AND maxRow = #maxRow AND
-     * winNum = #winNum AND Board = #Board
-     */
+
     @Override
     public int getNumColumns() {
         return maxColumn;
     }
 
 
-    /**
-     * Returns the number of tokens needed to win the game
-     *
-     * @return winNum - the number of tokens needed to win the game
-     * @post getNumToWin() = winNum AND
-     * maxColumn = #maxColumn AND maxRow = #maxRow AND
-     * winNum = #winNum AND Board = #Board
-     */
+
     @Override
     public int getNumToWin() {
         return winNum;

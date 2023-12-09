@@ -13,19 +13,18 @@ public class GameBoardMem extends AbsGameBoard{
     private int maxCol;
     private int winNum;
     private HashMap<Character, List<BoardPosition>> board;
-    private List<Character> players;
 
     /**
      * Constructs a game board that is empty, but uses a map for better efficiency.
-     * This constructor initializes a new instance of the gameboard class with a map of blank spaces,
-     * in which each position is a value and is assigneFd to the key being the character representing the player
+     * This constructor initializes a new instance of the GameBoardMem class with a map of blank spaces,
+     * in which each position is a value and is assigned to the key being the character representing the player
      * who places their piece in that location.
      * The game board is being represented as a grid with rows and columns, where each position is initially empty.
      *
      * @pre None
      *
      * @post Initializes a new game board with all the positions equal to blank spaces, AND maxRow = row
-     * AND maxCol = col AND winNum = win AND [players is initialized to an empty Character ArrayList]
+     * AND maxCol = col AND winNum = win
      * 
      */
     public GameBoardMem(int row, int col, int win) {
@@ -33,13 +32,11 @@ public class GameBoardMem extends AbsGameBoard{
         maxCol = col;
         winNum = win;
         board = new HashMap<Character, List<BoardPosition>>();
-        players = new ArrayList<Character>();
     }
     @Override
     public void dropToken(char p, int c) {
-        // If the player is not already in the list of players, this adds them to the list.
-        if (!players.contains(p)) {
-            players.add(p);
+        // If the player is not already in the list of keys, this adds them to the list.
+        if (!board.containsKey(p)) {
             board.put(p, new ArrayList<BoardPosition>());
         }
         // Retrieving the list of positions for the player from the board map
